@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grant Automation Platform - Frontend
+
+Customer-facing Next.js application for the 4-stage grant automation workflow.
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript 5.3+
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Authentication**: Clerk
+- **Payments**: Stripe (to be configured)
+- **Deployment**: Vercel
+
+## Project Structure
+
+```
+frontend/
+├── app/
+│   ├── (marketing)/      # Public pages (landing, pricing, etc.)
+│   ├── (auth)/          # Authentication pages
+│   ├── (dashboard)/     # Protected dashboard routes
+│   └── api/             # API routes
+├── components/
+│   └── ui/              # shadcn/ui components
+├── lib/
+│   └── utils.ts         # Utility functions
+└── public/              # Static assets
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm (or pnpm)
+
+### Installation
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Setup environment variables**:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+   Then edit `.env.local` and add your keys:
+   - Clerk keys from https://dashboard.clerk.com
+   - Stripe keys from https://dashboard.stripe.com (for payment features)
+   - Backend API URL (default: http://localhost:8000/api/v1)
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+### Adding shadcn/ui Components
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add form
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Public Routes
+- `/` - Landing page
+- `/pricing` - Pricing page
+- `/about` - About page
+- `/contact` - Contact page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Auth Routes
+- `/sign-in` - Sign in page
+- `/sign-up` - Sign up page
 
-## Learn More
+### Protected Routes (Dashboard)
+- `/dashboard` - Dashboard home
+- `/profile` - Stage 1: Company Profile
+- `/discover` - Stage 2: Grant Discovery
+- `/analyze/[id]` - Stage 3: Grant Analysis ($199)
+- `/generate/[id]` - Stage 4: Application Generation ($999)
+- `/applications` - All applications
+- `/settings` - User settings
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See `.env.local.example` for all required environment variables.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Required
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - Clerk publishable key
+- `CLERK_SECRET_KEY` - Clerk secret key
+- `NEXT_PUBLIC_API_BASE_URL` - Backend API URL
 
-## Deploy on Vercel
+### Optional (for production)
+- Stripe keys (for payments)
+- PostHog keys (for analytics)
+- Sentry DSN (for error monitoring)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Integration with Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The frontend communicates with the FastAPI backend running on `http://localhost:8000` (or the URL specified in `NEXT_PUBLIC_API_BASE_URL`).
+
+### API Endpoints
+- `POST /api/v1/stage1/profile` - Company profiling
+- `POST /api/v1/stage2/discover` - Grant discovery
+- `POST /api/v1/stage3/analyze` - Grant analysis
+- `POST /api/v1/stage4/generate-application` - Application generation
+
+## Phase 1 Status: Complete ✅
+
+- [x] Next.js 14 project initialized with TypeScript
+- [x] Tailwind CSS + shadcn/ui configured
+- [x] Clerk authentication setup
+- [x] Basic routing structure created
+- [x] Environment variables template
+- [x] Middleware configured
+
+## Next Steps
+
+- **Phase 2**: Landing page + Auth flows
+- **Phase 3**: Stage 1 & 2 implementation
+- **Phase 4**: Stripe payments integration
+- **Phase 5**: Stage 3 & 4 implementation
+- **Phase 6**: Polish & deploy
+
+## Documentation
+
+- [Frontend INITIAL.md](../PRPs/frontend_INITIAL.md) - Complete specifications
+- [Frontend Handoff](../FRONTEND_HANDOFF.md) - Implementation guide
+- [Backend API Docs](../docs/stages/stage4_api.md) - API documentation
