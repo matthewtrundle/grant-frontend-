@@ -19,6 +19,10 @@ import { AgenticFlowBackground } from "@/components/ui/agentic-flow-background";
 // Import LogoWall component
 import LogoWall from "@/components/ui/logo-wall";
 
+// Import FundAid components
+import { FundAidNetworkBackground } from "@/components/ui/fundaid-network-background";
+import { RotatingGrantStatements } from "@/components/ui/rotating-grant-statements";
+
 export default function Home() {
   const stages = [
     {
@@ -65,20 +69,11 @@ export default function Home() {
     <div className="min-h-screen">
       {/* ===== HERO SECTION - WHITE BACKGROUND ===== */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-20 blur-sm grayscale-[0.3]"
-        >
-          <source src="/background_extended.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* FundAid Network Background */}
+        <FundAidNetworkBackground />
 
-        {/* Gradient overlay to blend video with white background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60 pointer-events-none" />
+        {/* Gradient overlay for depth - balanced */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/30 to-white/60 pointer-events-none" />
 
         {/* Content overlay */}
         <div className="container mx-auto max-w-6xl relative z-10 px-4 pt-32 pb-24">
@@ -90,7 +85,7 @@ export default function Home() {
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200">
-              <span className="text-sm text-purple-700 font-medium">AI-Powered Grant Writing</span>
+              <span className="text-sm text-purple-700 font-medium">For Healthcare Innovators</span>
             </div>
 
             {/* Hero Headline - DARK text on WHITE background */}
@@ -107,7 +102,7 @@ export default function Home() {
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">
-              Save $10,000+ and 100+ hours with our AI-powered 4-stage grant automation system.
+              Save $10,000+ and 100+ hours with our AI-powered grant automation for medical devices, diagnostics, and therapeutics. From NIH SBIR to FDA grants.
             </p>
 
             {/* CTA Buttons */}
@@ -131,6 +126,15 @@ export default function Home() {
             <p className="text-gray-500 pt-2">
               Free Stage 1 & 2 • No credit card required
             </p>
+          </motion.div>
+
+          {/* Rotating Grant Statements */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <RotatingGrantStatements />
           </motion.div>
 
           {/* Hero Stats - LIGHT MODE with gradient borders */}

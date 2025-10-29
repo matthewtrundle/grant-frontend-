@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type LogoType = "stack" | "integration";
@@ -15,7 +15,6 @@ type LogoItem = {
 
 // Tech stack with brand-appropriate font families
 const logos: LogoItem[] = [
-  // Core Stack
   {
     name: "Anthropic",
     type: "stack",
@@ -27,44 +26,42 @@ const logos: LogoItem[] = [
     name: "Vercel",
     type: "stack",
     fontFamily: "font-sans font-medium tracking-tight",
-    tagline: "Deployment",
+    tagline: "Deployment Platform",
     href: "https://vercel.com",
   },
   {
     name: "PostgreSQL",
     type: "stack",
     fontFamily: "font-sans font-medium",
-    tagline: "Database",
+    tagline: "Relational Database",
     href: "https://postgresql.org",
   },
   {
     name: "Redis",
     type: "stack",
     fontFamily: "font-sans font-semibold tracking-wide",
-    tagline: "Caching",
+    tagline: "In-Memory Cache",
     href: "https://redis.io",
   },
   {
     name: "Qdrant",
     type: "stack",
     fontFamily: "font-sans font-medium",
-    tagline: "Vector Search",
+    tagline: "Vector Database",
     href: "https://qdrant.tech",
   },
   {
     name: "Railway",
     type: "stack",
     fontFamily: "font-sans font-medium tracking-tight",
-    tagline: "Infrastructure",
+    tagline: "Cloud Infrastructure",
     href: "https://railway.app",
   },
-
-  // Integrations
   {
     name: "Clerk",
     type: "integration",
     fontFamily: "font-sans font-medium tracking-tight",
-    tagline: "Authentication",
+    tagline: "Auth Platform",
     href: "https://clerk.com",
   },
   {
@@ -78,42 +75,31 @@ const logos: LogoItem[] = [
     name: "Firecrawl",
     type: "integration",
     fontFamily: "font-sans font-semibold",
-    tagline: "Web Scraping",
+    tagline: "Web Intelligence",
     href: "https://firecrawl.dev",
   },
   {
     name: "Unstructured.io",
     type: "integration",
     fontFamily: "font-sans font-bold tracking-tight",
-    tagline: "Document AI",
+    tagline: "Document Processing",
     href: "https://unstructured.io",
   },
   {
     name: "Mem0",
     type: "integration",
     fontFamily: "font-sans font-semibold",
-    tagline: "Memory Layer",
+    tagline: "Memory Infrastructure",
     href: "https://mem0.ai",
   },
 ];
 
-function titleFor(types: Set<LogoType>) {
-  if (types.size === 1) {
-    const only = [...types][0];
-    if (only === "integration") return "Integrates with leading platforms";
-    if (only === "stack") return "Built with tools we trust";
-  }
-  // mixed list
-  return "Built with tools we trust";
-}
-
-// Individual logo card with flip animation
-function LogoCard({ logo, delay }: { logo: LogoItem; delay: number }) {
+function LogoCard({ logo, index }: { logo: LogoItem; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
-    // Set up non-coordinated rotation with random intervals
-    const rotationInterval = 4000 + Math.random() * 3000; // 4-7 seconds
+    const rotationInterval = 6000 + Math.random() * 3000;
+    const initialDelay = index * 500;
 
     const flipTimer = setTimeout(() => {
       const interval = setInterval(() => {
@@ -121,91 +107,124 @@ function LogoCard({ logo, delay }: { logo: LogoItem; delay: number }) {
       }, rotationInterval);
 
       return () => clearInterval(interval);
-    }, delay);
+    }, initialDelay);
 
     return () => clearTimeout(flipTimer);
-  }, [delay]);
+  }, [index]);
 
   return (
-    <motion.li
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: delay / 4000 }}
-      className="perspective-1000"
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, delay: index * 0.08 }}
+      className="flex-1 min-w-[220px]"
+      style={{ perspective: "1000px" }}
     >
       <a
         href={logo.href ?? "#"}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`${logo.name} (${logo.type})`}
+        aria-label={`${logo.name}`}
         className="group block h-full"
       >
         <motion.div
-          className="relative h-32 w-full"
+          className="relative h-28 w-full"
           animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          transition={{ duration: 0.7, ease: [0.4, 0.0, 0.2, 1] }}
           style={{ transformStyle: "preserve-3d" }}
         >
           {/* Front - Company Name */}
           <div
-            className="absolute inset-0 flex items-center justify-center rounded-2xl border border-gray-200/70 bg-white/60 p-6 shadow-sm backdrop-blur-sm transition-all group-hover:border-purple-300/50 group-hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:group-hover:border-purple-500/30"
+            className="absolute inset-0 flex items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-purple-300/50 group-hover:bg-white dark:bg-gray-900/90 dark:border-gray-700/50 dark:group-hover:border-purple-500/50"
             style={{ backfaceVisibility: "hidden" }}
           >
-            <span
-              className={`text-xl text-gray-900 dark:text-gray-100 ${logo.fontFamily}`}
-            >
-              {logo.name}
-            </span>
+            <div className="text-center px-4">
+              <span className={`text-2xl text-gray-900 dark:text-gray-100 ${logo.fontFamily}`}>
+                {logo.name}
+              </span>
+            </div>
           </div>
 
           {/* Back - Tagline */}
           <div
-            className="absolute inset-0 flex items-center justify-center rounded-2xl border border-purple-200/70 bg-purple-50/80 p-6 shadow-sm backdrop-blur-sm dark:border-purple-500/30 dark:bg-purple-900/20"
+            className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-purple-50 to-blue-50 backdrop-blur-sm border border-purple-200/50 shadow-sm dark:from-purple-900/20 dark:to-blue-900/20 dark:border-purple-500/30"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
-            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+            <span className="text-sm font-medium text-purple-700 dark:text-purple-300 px-4 text-center">
               {logo.tagline}
+            </span>
+            <span className="text-xs text-purple-600/60 dark:text-purple-400/60 mt-2 uppercase tracking-wider">
+              {logo.type === "stack" ? "Core Infrastructure" : "Integration"}
             </span>
           </div>
         </motion.div>
       </a>
-    </motion.li>
+    </motion.div>
   );
 }
 
 export default function LogoWall() {
-  const typeSet = new Set(logos.map((l) => l.type));
-  const title = titleFor(typeSet);
+  const [startIndex, setStartIndex] = useState(0);
+  const itemsToShow = 4;
 
-  // Generate random delays for non-coordinated animations
-  const delays = logos.map(() => Math.random() * 5000); // 0-5 second delays
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStartIndex((prev) => (prev + itemsToShow) % logos.length);
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const visibleLogos = [];
+  for (let i = 0; i < itemsToShow; i++) {
+    visibleLogos.push(logos[(startIndex + i) % logos.length]);
+  }
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
+    <section className="mx-auto max-w-7xl px-6 py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        className="space-y-3"
       >
         <h2 className="text-center text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-          {title}
+          Built with tools we trust
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Names are used for identification only. All trademarks are property
-          of their respective owners.
+        <p className="mt-2 text-center text-xs text-gray-500 dark:text-gray-500 max-w-xl mx-auto">
+          Names and trademarks are used for identification only. All trademarks are property of their respective owners.
         </p>
       </motion.div>
 
-      <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-        {logos.map((logo, index) => (
-          <LogoCard key={logo.name} logo={logo} delay={delays[index]} />
+      {/* Single row of 4 rotating logos */}
+      <div className="mt-12 flex gap-5 items-stretch justify-center">
+        <AnimatePresence>
+          {visibleLogos.map((logo, index) => (
+            <LogoCard key={`${logo.name}-${startIndex}`} logo={logo} index={index} />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Minimalist pagination indicators */}
+      <div className="flex items-center justify-center gap-1.5 mt-8">
+        {Array.from({ length: Math.ceil(logos.length / itemsToShow) }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setStartIndex(i * itemsToShow)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === Math.floor(startIndex / itemsToShow)
+                ? "w-6 bg-gradient-to-r from-purple-500 to-blue-500"
+                : "w-1.5 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
+            }`}
+            aria-label={`Go to page ${i + 1}`}
+          />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

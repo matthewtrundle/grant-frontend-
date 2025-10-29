@@ -99,24 +99,9 @@ export function Header() {
           title: "By Industry",
           items: [
             {
-              label: "Technology Startups",
-              href: "/solutions/tech-startups",
-              icon: Code,
-            },
-            {
               label: "Healthcare",
               href: "/solutions/healthcare",
               icon: Users,
-            },
-            {
-              label: "Clean Energy",
-              href: "/solutions/clean-energy",
-              icon: Zap,
-            },
-            {
-              label: "Manufacturing",
-              href: "/solutions/manufacturing",
-              icon: Building2,
             },
           ],
         },
@@ -231,19 +216,12 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className={`
-              text-xl font-bold
-              transition-colors duration-300
-              ${
-                isScrolled
-                  ? "bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
-                  : "text-gray-900"
-              }
-            `}
-          >
-            Grant Automation
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/fundaid-logo.png?v=5"
+              alt="FundAid"
+              className="h-14 w-auto transition-transform duration-200 group-hover:scale-105 drop-shadow-sm"
+            />
           </Link>
 
           {/* Desktop Navigation */}
