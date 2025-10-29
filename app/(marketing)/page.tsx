@@ -16,6 +16,9 @@ import { StaggerReveal, StaggerItem, RevealOnScroll } from "@/components/ui/reve
 // Import NEW agentic flow background
 import { AgenticFlowBackground } from "@/components/ui/agentic-flow-background";
 
+// Import LogoWall component
+import LogoWall from "@/components/ui/logo-wall";
+
 export default function Home() {
   const stages = [
     {
@@ -68,7 +71,7 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 blur-sm grayscale-[0.3]"
         >
           <source src="/background_extended.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -159,6 +162,11 @@ export default function Home() {
             ))}
           </motion.div>
         </div>
+      </section>
+
+      {/* ===== LOGO WALL SECTION - WHITE BACKGROUND ===== */}
+      <section className="bg-white">
+        <LogoWall />
       </section>
 
       {/* ===== GRADIENT TRANSITION SECTION - WHITE TO BLACK ===== */}

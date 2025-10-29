@@ -6,6 +6,7 @@ import { useAuth } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useProfile } from "@/lib/hooks/use-profile";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -41,6 +42,7 @@ export function ProfileForm() {
   const router = useRouter();
   const { getToken } = useAuth();
   const { toast } = useToast();
+  const { updateProfile } = useProfile();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ProfileFormValues>({
@@ -69,14 +71,19 @@ export function ProfileForm() {
         }
       );
 
+      // Update Clerk metadata with profile info
+      await updateProfile({
+        companyName: data.company_name,
+        profileId: response.profile_id,
+        trl: response.trl,
+        technologySummary: response.technology_summary,
+        onboardingComplete: true,
+      });
+
       toast({
         title: "Profile Created!",
         description: `Your TRL is ${response.trl}. Profile ID: ${response.profile_id}`,
       });
-
-      // Store profile_id for next stages
-      localStorage.setItem("current_profile_id", response.profile_id.toString());
-      localStorage.setItem("profile_data", JSON.stringify(response));
 
       // Redirect to discovery
       router.push("/discover");

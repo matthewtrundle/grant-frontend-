@@ -7,17 +7,37 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { GradientAnimatedButton } from "@/components/ui/animated-button";
+import { useProfile } from "@/lib/hooks/use-profile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DashboardPage() {
+  const { profile, isLoaded, hasProfile } = useProfile();
+
+  if (!isLoaded) {
+    return (
+      <div className="max-w-6xl mx-auto">
+        <Skeleton className="h-24 w-full mb-8" />
+        <Skeleton className="h-96 w-full" />
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">
-          Welcome to <AnimatedGradientText glow>Grant Automation</AnimatedGradientText>
+          Welcome {profile.companyName ? `, ${profile.companyName}!` : "to"}{" "}
+          {!profile.companyName && <AnimatedGradientText glow>Grant Automation</AnimatedGradientText>}
         </h1>
-        <p className="text-xl text-gray-600">
-          Let&apos;s get started with your grant application journey
-        </p>
+        {hasProfile ? (
+          <p className="text-xl text-gray-600">
+            Your TRL is <Badge className="inline">{profile.trl}</Badge> • Continue your grant application journey
+          </p>
+        ) : (
+          <p className="text-xl text-gray-600">
+            Let&apos;s get started with your grant application journey
+          </p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,7 +70,7 @@ export default function DashboardPage() {
             </ul>
             <Link href="/profile">
               <GradientAnimatedButton className="w-full">
-                Start Profile
+                {hasProfile ? "View Profile" : "Start Profile"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </GradientAnimatedButton>
             </Link>
@@ -84,9 +104,18 @@ export default function DashboardPage() {
                 <span>Personalized recommendations</span>
               </li>
             </ul>
-            <Button className="w-full" variant="outline" disabled>
-              Complete Profile First
-            </Button>
+            {hasProfile ? (
+              <Link href="/discover">
+                <GradientAnimatedButton className="w-full">
+                  Discover Grants
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </GradientAnimatedButton>
+              </Link>
+            ) : (
+              <Button className="w-full" variant="outline" disabled>
+                Complete Profile First
+              </Button>
+            )}
           </CardContent>
         </Card>
 

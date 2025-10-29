@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher([
   "/",
@@ -14,13 +15,30 @@ const isPublicRoute = createRouteMatcher([
   "/grants(.*)",
   "/sign-in(.*)",
   "/sign-up(.*)",
+  "/onboarding(.*)",
   "/api/webhooks/stripe(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    await auth.protect();
+  // Public routes don't need authentication
+  if (isPublicRoute(request)) {
+    return NextResponse.next();
   }
+
+  // Protect non-public routes
+  const { userId, sessionClaims } = await auth.protect();
+
+  // Check if user has completed onboarding
+  const onboardingComplete = sessionClaims?.publicMetadata?.onboardingComplete as boolean | undefined;
+  const isOnboardingRoute = request.nextUrl.pathname.startsWith("/onboarding");
+
+  // Redirect to onboarding if not completed (unless already on onboarding page)
+  if (userId && !onboardingComplete && !isOnboardingRoute) {
+    const onboardingUrl = new URL("/onboarding", request.url);
+    return NextResponse.redirect(onboardingUrl);
+  }
+
+  return NextResponse.next();
 });
 
 export const config = {

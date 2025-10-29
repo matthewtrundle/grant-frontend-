@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/api/client";
+import { useProfile } from "@/lib/hooks/use-profile";
 import type {
   Stage1ProfileResponse,
   Stage2DiscoverRequest,
@@ -28,32 +29,23 @@ export default function DiscoverPage() {
   const router = useRouter();
   const { getToken } = useAuth();
   const { toast } = useToast();
+  const { profile: userProfile, isLoaded, hasProfile } = useProfile();
 
-  const [profile, setProfile] = useState<Stage1ProfileResponse | null>(null);
   const [grants, setGrants] = useState<Grant[]>([]);
   const [totalFound, setTotalFound] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load profile from localStorage on mount
+  // Check if profile exists
   useEffect(() => {
-    const profileData = localStorage.getItem("profile_data");
-    if (profileData) {
-      try {
-        const parsedProfile: Stage1ProfileResponse = JSON.parse(profileData);
-        setProfile(parsedProfile);
-      } catch (err) {
-        console.error("Error parsing profile data:", err);
-        setError("Could not load your profile. Please create a profile first.");
-      }
-    } else {
+    if (isLoaded && !hasProfile) {
       setError("No profile found. Please create a profile first.");
     }
-  }, []);
+  }, [isLoaded, hasProfile]);
 
   const handleSearch = async (filters: GrantFilters) => {
-    if (!profile) {
+    if (!hasProfile || !userProfile.profileId) {
       toast({
         title: "Profile Required",
         description: "Please create a company profile first",
@@ -71,7 +63,7 @@ export default function DiscoverPage() {
       const token = await getToken();
 
       const request: Stage2DiscoverRequest = {
-        company_profile_id: profile.profile_id,
+        company_profile_id: userProfile.profileId,
         technology: filters.technology,
         funding_amount_min: filters.funding_amount_min,
         funding_amount_max: filters.funding_amount_max,
@@ -110,9 +102,8 @@ export default function DiscoverPage() {
   };
 
   const handleAnalyze = (grantId: number) => {
-    // Store the grant_id and navigate to Stage 3 (analysis)
-    localStorage.setItem("current_grant_id", grantId.toString());
-    router.push("/analyze");
+    // Navigate to Stage 3 (analysis) with grant_id in URL
+    router.push(`/analyze?grant_id=${grantId}`);
   };
 
   const handleCreateProfile = () => {
@@ -120,7 +111,7 @@ export default function DiscoverPage() {
   };
 
   // Show loading skeleton while checking for profile
-  if (!profile && !error) {
+  if (!isLoaded) {
     return (
       <div className="max-w-7xl mx-auto space-y-6">
         <Skeleton className="h-12 w-full" />
@@ -131,7 +122,7 @@ export default function DiscoverPage() {
   }
 
   // Show error if no profile
-  if (error && !profile) {
+  if (error && !hasProfile) {
     return (
       <div className="max-w-4xl mx-auto">
         <Alert variant="destructive">
@@ -161,11 +152,11 @@ export default function DiscoverPage() {
       </div>
 
       {/* Profile Summary */}
-      {profile && (
+      {hasProfile && (
         <Alert>
           <Sparkles className="h-4 w-4" />
           <AlertDescription>
-            <strong>{profile.company_name}</strong> • TRL {profile.trl} • {profile.technology_summary}
+            <strong>{userProfile.companyName}</strong> • TRL {userProfile.trl} • {userProfile.technologySummary}
           </AlertDescription>
         </Alert>
       )}
@@ -174,7 +165,7 @@ export default function DiscoverPage() {
       <GrantFiltersComponent
         onSearch={handleSearch}
         isLoading={isLoading}
-        initialTechnology={profile?.technology_summary || ""}
+        initialTechnology={userProfile?.technologySummary || ""}
       />
 
       {/* Results */}
