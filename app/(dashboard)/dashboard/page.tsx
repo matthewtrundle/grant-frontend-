@@ -1,14 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { GradientAnimatedButton } from "@/components/ui/animated-button";
 
 export default function DashboardPage() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Welcome to Grant Automation</h1>
+        <h1 className="text-4xl font-bold mb-2">
+          Welcome to <AnimatedGradientText glow>Grant Automation</AnimatedGradientText>
+        </h1>
         <p className="text-xl text-gray-600">
           Let&apos;s get started with your grant application journey
         </p>
@@ -43,10 +49,10 @@ export default function DashboardPage() {
               </li>
             </ul>
             <Link href="/profile">
-              <Button className="w-full">
+              <GradientAnimatedButton className="w-full">
                 Start Profile
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </GradientAnimatedButton>
             </Link>
           </CardContent>
         </Card>

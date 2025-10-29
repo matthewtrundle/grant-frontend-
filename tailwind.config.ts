@@ -58,11 +58,72 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        // Black & White Design System
+        black: {
+          DEFAULT: '#000000',
+          soft: '#0a0a0a',
+          light: '#1a1a1a',
+        },
+        gray: {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+        },
+        white: {
+          DEFAULT: '#ffffff',
+          soft: '#fafafa',
+        },
+        // Minimal accent for CTAs only
+        accent: {
+          DEFAULT: '#9333ea',
+          hover: '#7e22ce',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'subtle': '0 2px 8px rgba(0, 0, 0, 0.08)',
+        'soft': '0 4px 16px rgba(0, 0, 0, 0.12)',
+        'lifted': '0 8px 24px rgba(0, 0, 0, 0.16)',
+        'float': '0 12px 32px rgba(0, 0, 0, 0.2)',
+        'accent': '0 4px 16px rgba(147, 51, 234, 0.3)',
+      },
+      animation: {
+        'gradient-shift': 'gradient-shift 8s ease infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+      },
+      keyframes: {
+        'gradient-shift': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },
