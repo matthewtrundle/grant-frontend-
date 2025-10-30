@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, LucideIcon } from "lucide-react";
@@ -36,6 +36,7 @@ export function MegaMenuItem({
 }: MegaMenuItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const hasDropdown = columns && columns.length > 0;
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Simple link without dropdown
   if (!hasDropdown && href) {
@@ -55,11 +56,36 @@ export function MegaMenuItem({
     );
   }
 
+  const handleMouseEnter = () => {
+    // Clear any pending close timeout
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    // Delay closing by 150ms to prevent accidental reopens when moving between menu items
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 150);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div
       className={cn("relative", className)}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Trigger Button */}
       <button
