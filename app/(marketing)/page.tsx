@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,17 +14,22 @@ import { AnimatedGradientText, GradientText } from "@/components/ui/animated-gra
 import { GradientAnimatedButton, AnimatedButton } from "@/components/ui/animated-button";
 import { StaggerReveal, StaggerItem, RevealOnScroll } from "@/components/ui/reveal-on-scroll";
 
-// Import NEW agentic flow background
-import { AgenticFlowBackground } from "@/components/ui/agentic-flow-background";
-
 // Import LogoWall component
 import LogoWall from "@/components/ui/logo-wall";
 
 // Import FundAid components
-import { FundAidNetworkBackground } from "@/components/ui/fundaid-network-background";
+// import { FundAidNetworkBackground } from "@/components/ui/fundaid-network-background";
 import { RotatingGrantStatements } from "@/components/ui/rotating-grant-statements";
 
 export default function Home() {
+  const [scrollY, setScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const stages = [
     {
       icon: Target,
@@ -66,14 +72,24 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* ===== HERO SECTION - WHITE BACKGROUND ===== */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        {/* FundAid Network Background */}
-        <FundAidNetworkBackground />
+    <div className="min-h-screen relative">
+      {/* Main Hero Background - Primary Visual */}
+      <div
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/hero4.png')",
+          transform: `translateY(${scrollY * 0.5}px)`,
+          willChange: "transform"
+        }}
+      />
 
-        {/* Gradient overlay for depth - balanced */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/30 to-white/60 pointer-events-none" />
+      {/* Subtle white overlay to keep background visible */}
+      <div className="fixed inset-0 z-[1] bg-white/40" />
+
+      {/* Content Container */}
+      <div className="relative z-10">
+        {/* ===== HERO SECTION - CUSTOM BACKGROUND ===== */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
 
         {/* Content overlay */}
         <div className="container mx-auto max-w-6xl relative z-10 px-4 pt-32 pb-24">
@@ -105,19 +121,25 @@ export default function Home() {
               Save $10,000+ and 100+ hours with our AI-powered grant automation for medical devices, diagnostics, and therapeutics. From NIH SBIR to FDA grants.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex gap-4 justify-center flex-wrap pt-4">
+            {/* CTA Buttons - Fitts's Law optimized with proper spacing */}
+            <div className="flex gap-6 justify-center flex-wrap pt-4">
               <Link href="/sign-up">
                 <div className="relative inline-block">
                   <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
-                  <button className="relative px-8 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:scale-105 transition-transform duration-200 shadow-lg">
+                  <button
+                    className="relative min-w-[200px] px-8 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    aria-label="Start your free profile - no credit card required"
+                  >
                     Start Free Profile
-                    <ArrowRight className="ml-2 w-5 h-5 inline-block" />
+                    <ArrowRight className="ml-2 w-5 h-5 inline-block" aria-hidden="true" />
                   </button>
                 </div>
               </Link>
               <Link href="/pricing">
-                <button className="px-8 py-6 text-lg rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-semibold hover:border-purple-500 hover:bg-purple-50 transition-all duration-200">
+                <button
+                  className="min-w-[180px] px-8 py-6 text-lg rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-semibold hover:border-purple-500 hover:bg-purple-50 active:bg-purple-100 transition-all duration-200 hover:shadow-md"
+                  aria-label="View pricing plans"
+                >
                   View Pricing
                 </button>
               </Link>
@@ -137,7 +159,7 @@ export default function Home() {
             <RotatingGrantStatements />
           </motion.div>
 
-          {/* Hero Stats - LIGHT MODE with gradient borders */}
+          {/* Hero Stats - LIGHT MODE with gradient borders and micro-interactions */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -147,17 +169,22 @@ export default function Home() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="relative group"
+                className="relative group cursor-default"
                 whileHover={{ scale: 1.03, y: -4 }}
-                transition={{ duration: 0.2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 {/* Gradient border effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
-                <div className="relative p-8 rounded-2xl bg-white border-2 border-gray-200 group-hover:border-transparent text-center transition-all duration-300 shadow-sm">
+                <div className="relative p-8 rounded-2xl bg-white border-2 border-gray-200 group-hover:border-transparent text-center transition-all duration-300 shadow-sm group-hover:shadow-xl">
                   <div className="space-y-3">
-                    <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    <motion.div
+                      className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {stat.value}
-                    </div>
+                    </motion.div>
                     <div className="text-lg font-semibold text-gray-900">{stat.label}</div>
                     <div className="text-sm text-gray-600">{stat.description}</div>
                   </div>
@@ -169,38 +196,23 @@ export default function Home() {
       </section>
 
       {/* ===== LOGO WALL SECTION - WHITE BACKGROUND ===== */}
-      <section className="bg-white">
-        <LogoWall />
+      <section className="relative bg-white overflow-hidden">
+        {/* Content */}
+        <div className="relative z-10">
+          <LogoWall />
+        </div>
       </section>
 
       {/* ===== GRADIENT TRANSITION SECTION - WHITE TO BLACK ===== */}
       <section className="relative h-64 overflow-hidden">
         {/* Smooth gradient from white to dark */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-900 to-[#0A0A0F]" />
-
-        {/* Continue agentic flow through transition */}
-        <div className="absolute inset-0 opacity-50">
-          <AgenticFlowBackground
-            backgroundColor="dark"
-            prominence="prominent"
-            flowSpeed={4}
-            nodeCount={20}
-          />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-900/95 to-[#0A0A0F]" />
       </section>
 
       {/* ===== UNIFIED BENTO GRID SECTION - BLACK BACKGROUND ===== */}
-      <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-b from-[#0A0A0F] to-[#1A1A2E]">
-        {/* Agentic Flow Background - DARK MODE, PROMINENT */}
-        <AgenticFlowBackground
-          backgroundColor="dark"
-          prominence="prominent"
-          flowSpeed={4}
-          nodeCount={30}
-        />
-
-        {/* Glowing orb effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative py-24 px-4 overflow-hidden bg-[#0A0A0F]">
+        {/* Subtle glowing orb effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <RevealOnScroll variant="slideUp">
@@ -580,16 +592,6 @@ export default function Home() {
       <section className="relative py-24 px-4 overflow-hidden bg-[#0A0A0F]">
         <GradientOverlay variant="hero" />
 
-        {/* Final agentic flow */}
-        <div className="absolute inset-0 opacity-30">
-          <AgenticFlowBackground
-            backgroundColor="dark"
-            prominence="subtle"
-            flowSpeed={6}
-            nodeCount={15}
-          />
-        </div>
-
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <RevealOnScroll variant="slideUp">
             <div className="space-y-8">
@@ -605,9 +607,12 @@ export default function Home() {
               <Link href="/sign-up">
                 <div className="relative inline-block">
                   <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
-                  <button className="relative px-12 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold hover:scale-105 transition-transform duration-200 shadow-lg">
+                  <button
+                    className="relative min-w-[240px] px-12 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    aria-label="Start your free profile now"
+                  >
                     Start Your Free Profile
-                    <ArrowRight className="ml-2 w-5 h-5 inline-block" />
+                    <ArrowRight className="ml-2 w-5 h-5 inline-block" aria-hidden="true" />
                   </button>
                 </div>
               </Link>
@@ -615,6 +620,7 @@ export default function Home() {
           </RevealOnScroll>
         </div>
       </section>
+      </div>
     </div>
   );
 }

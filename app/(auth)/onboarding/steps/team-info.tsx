@@ -54,8 +54,8 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-white mb-2">Team Information</h2>
-      <p className="text-white/60 mb-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Team Information</h2>
+      <p className="text-gray-600 mb-6">
         Tell us about your team&apos;s expertise and background (optional)
       </p>
 
@@ -66,15 +66,15 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
             name="team_info"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Team & Expertise</FormLabel>
+                <FormLabel className="text-gray-700">Team & Expertise</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Founders, key team members, advisors, expertise..."
-                    className="min-h-[120px] bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500"
+                    className="min-h-[120px] bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-white/60">
+                <FormDescription className="text-gray-600">
                   Optional: Information about your team and their expertise. This can strengthen your grant applications.
                 </FormDescription>
                 <FormMessage />
@@ -82,8 +82,8 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
             )}
           />
 
-          <div className="p-4 rounded-lg backdrop-blur-xl bg-purple-500/10 border border-purple-500/20">
-            <p className="text-sm text-white/80">
+          <div className="p-4 rounded-lg bg-purple-50 border border-purple-200">
+            <p className="text-sm text-gray-700">
               💡 <strong>Tip:</strong> Including team expertise can improve your grant match scores by 15-20%.
               Consider mentioning PhDs, industry experience, previous grants, or relevant publications.
             </p>
@@ -95,7 +95,7 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
               variant="outline"
               onClick={onBack}
               disabled={isSubmitting}
-              className="border-white/10 bg-white/5 text-white hover:bg-white/10"
+              className="border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back
@@ -106,7 +106,7 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
                 variant="ghost"
                 onClick={handleSkip}
                 disabled={isSubmitting}
-                className="text-white/60 hover:text-white hover:bg-white/5"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
               >
                 Skip for now
               </Button>

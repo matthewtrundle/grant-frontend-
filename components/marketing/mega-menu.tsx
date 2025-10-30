@@ -45,7 +45,7 @@ export function MegaMenuItem({
         className={cn(
           "text-sm font-medium transition-colors duration-300",
           isScrolled
-            ? "text-white/80 hover:text-white"
+            ? "text-gray-900 hover:text-purple-600"
             : "text-gray-700 hover:text-gray-900",
           className
         )}
@@ -66,7 +66,7 @@ export function MegaMenuItem({
         className={cn(
           "flex items-center gap-1 text-sm font-medium transition-colors duration-300",
           isScrolled
-            ? "text-white/80 hover:text-white"
+            ? "text-gray-900 hover:text-purple-600"
             : "text-gray-700 hover:text-gray-900"
         )}
         onClick={() => setIsOpen(!isOpen)}

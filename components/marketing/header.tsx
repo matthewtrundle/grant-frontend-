@@ -22,11 +22,11 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll position to determine if we're past the white hero section
+  // Track scroll position for shrinking header effect
   useEffect(() => {
     const handleScroll = () => {
-      // Consider scrolled when past 80vh (approximately past white hero)
-      setIsScrolled(window.scrollY > window.innerHeight * 0.8);
+      // Snap menu into place after scrolling 100px
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -205,27 +205,29 @@ export function Header() {
     <header
       className={`
         sticky top-0 z-50
-        transition-all duration-300
+        transition-all duration-500 ease-in-out
         ${
           isScrolled
-            ? "bg-[#0A0A0F]/80 backdrop-blur-xl border-b border-white/10"
-            : "bg-white/80 backdrop-blur-xl border-b border-gray-200"
+            ? "bg-white/95 backdrop-blur-sm shadow-sm"
+            : "bg-transparent"
         }
       `}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className={`container mx-auto px-4 transition-all duration-500 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center group">
+          {/* Logo - Shrinks on scroll */}
+          <Link href="/" className={`flex items-center group transition-all duration-500 ${isScrolled ? '' : '-my-8'}`}>
             <img
-              src="/fundaid-logo.png?v=5"
+              src="/logo1.png"
               alt="FundAid"
-              className="h-14 w-auto transition-transform duration-200 group-hover:scale-105 drop-shadow-sm"
+              className={`w-auto transition-all duration-500 group-hover:scale-105 drop-shadow-lg ${
+                isScrolled ? 'h-16' : 'h-64'
+              }`}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+          {/* Desktop Navigation - transitions on scroll */}
+          <nav className={`hidden lg:flex items-center transition-all duration-500 ${isScrolled ? 'gap-4' : 'gap-6'}`}>
             {navigationItems.map((item, index) => (
               <MegaMenuItem
                 key={index}
@@ -243,14 +245,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="sm"
-                className={`
-                  transition-colors duration-300
-                  ${
-                    isScrolled
-                      ? "text-white hover:text-white hover:bg-white/10"
-                      : "text-gray-900 hover:text-gray-900 hover:bg-gray-100"
-                  }
-                `}
+                className="text-gray-900 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300"
               >
                 Sign In
               </Button>
@@ -265,17 +260,10 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Fitts's Law optimized */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className={`
-              lg:hidden transition-colors duration-300
-              ${
-                isScrolled
-                  ? "text-white hover:text-white/80"
-                  : "text-gray-900 hover:text-gray-700"
-              }
-            `}
+            className="lg:hidden transition-all duration-300 p-2 rounded-md min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-900 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-200"
             aria-label="Open navigation menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"

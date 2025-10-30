@@ -53,8 +53,8 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-white mb-2">Your Technology</h2>
-      <p className="text-white/60 mb-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Technology</h2>
+      <p className="text-gray-600 mb-6">
         Describe your core innovation or technology - this helps us assess your Technology Readiness Level (TRL)
       </p>
 
@@ -65,15 +65,15 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
             name="technology"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Technology Description *</FormLabel>
+                <FormLabel className="text-gray-700">Technology Description *</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="AI-powered drug discovery platform using machine learning to identify novel therapeutic targets..."
-                    className="min-h-[120px] bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500"
+                    className="min-h-[120px] bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-white/60">
+                <FormDescription className="text-gray-600">
                   Describe your core technology or innovation (minimum 10 characters)
                 </FormDescription>
                 <FormMessage />
@@ -86,15 +86,15 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Company Description</FormLabel>
+                <FormLabel className="text-gray-700">Company Description</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Additional context about your company, mission, or market..."
-                    className="min-h-[100px] bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500"
+                    className="min-h-[100px] bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-white/60">
+                <FormDescription className="text-gray-600">
                   Optional: Additional details about your company
                 </FormDescription>
                 <FormMessage />
@@ -107,7 +107,7 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
               type="button"
               variant="outline"
               onClick={onBack}
-              className="border-white/10 bg-white/5 text-white hover:bg-white/10"
+              className="border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back

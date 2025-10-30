@@ -51,8 +51,8 @@ export function CompanyInfoStep({ onNext, initialData }: CompanyInfoStepProps) {
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-white mb-2">Company Information</h2>
-      <p className="text-white/60 mb-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-2">Company Information</h2>
+      <p className="text-gray-600 mb-6">
         Tell us about your company so we can match you with the right grants
       </p>
 
@@ -63,15 +63,15 @@ export function CompanyInfoStep({ onNext, initialData }: CompanyInfoStepProps) {
             name="company_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Company Name *</FormLabel>
+                <FormLabel className="text-gray-700">Company Name *</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="BioTech Innovations Inc"
-                    className="bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500"
+                    className="bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-white/60">
+                <FormDescription className="text-gray-600">
                   The legal name of your company or organization
                 </FormDescription>
                 <FormMessage />
@@ -84,15 +84,15 @@ export function CompanyInfoStep({ onNext, initialData }: CompanyInfoStepProps) {
             name="website"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Website URL</FormLabel>
+                <FormLabel className="text-gray-700">Website URL</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="https://example.com"
-                    className="bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500"
+                    className="bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-white/60">
+                <FormDescription className="text-gray-600">
                   Your company website (optional)
                 </FormDescription>
                 <FormMessage />

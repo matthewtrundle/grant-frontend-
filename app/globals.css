@@ -63,6 +63,11 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -130,6 +135,45 @@
     );
     background-size: 1000px 100%;
     animation: shimmer 2s infinite linear;
+  }
+
+  /* Micro-interaction Utilities */
+  .interactive-scale {
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+  }
+
+  .interactive-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .interactive-scale:active {
+    transform: scale(0.95);
+  }
+
+  .interactive-lift {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    cursor: pointer;
+  }
+
+  .interactive-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .interactive-lift:active {
+    transform: translateY(-2px);
+  }
+
+  /* Focus States for Accessibility */
+  .focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: outline-color 0.2s ease;
+  }
+
+  .focus-ring:focus-visible {
+    outline-color: #9333ea;
   }
 
   /* Black & White Theme Utilities */

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type LogoType = "stack" | "integration";
@@ -168,22 +168,6 @@ function LogoCard({ logo, index }: { logo: LogoItem; index: number }) {
 }
 
 export default function LogoWall() {
-  const [startIndex, setStartIndex] = useState(0);
-  const itemsToShow = 4;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStartIndex((prev) => (prev + itemsToShow) % logos.length);
-    }, 7000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const visibleLogos = [];
-  for (let i = 0; i < itemsToShow; i++) {
-    visibleLogos.push(logos[(startIndex + i) % logos.length]);
-  }
-
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <motion.div
@@ -201,28 +185,10 @@ export default function LogoWall() {
         </p>
       </motion.div>
 
-      {/* Single row of 4 rotating logos */}
-      <div className="mt-12 flex gap-5 items-stretch justify-center">
-        <AnimatePresence>
-          {visibleLogos.map((logo, index) => (
-            <LogoCard key={`${logo.name}-${startIndex}`} logo={logo} index={index} />
-          ))}
-        </AnimatePresence>
-      </div>
-
-      {/* Minimalist pagination indicators */}
-      <div className="flex items-center justify-center gap-1.5 mt-8">
-        {Array.from({ length: Math.ceil(logos.length / itemsToShow) }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setStartIndex(i * itemsToShow)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === Math.floor(startIndex / itemsToShow)
-                ? "w-6 bg-gradient-to-r from-purple-500 to-blue-500"
-                : "w-1.5 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
-            }`}
-            aria-label={`Go to page ${i + 1}`}
-          />
+      {/* Static grid of logos - no flashing carousel */}
+      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        {logos.map((logo, index) => (
+          <LogoCard key={logo.name} logo={logo} index={index} />
         ))}
       </div>
     </section>

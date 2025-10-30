@@ -82,9 +82,7 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0A0A0F] to-[#1A1A2E] relative">
-      <CircuitBackground opacity={0.1} />
-
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 relative">
       <div className="relative z-10 container mx-auto max-w-3xl px-4 py-16">
         {/* Header */}
         <motion.div
@@ -92,10 +90,10 @@ export default function OnboardingPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Welcome, {user?.firstName}!
           </h1>
-          <p className="text-xl text-white/60">
+          <p className="text-xl text-gray-600">
             Let&apos;s set up your company profile to start finding grants
           </p>
         </motion.div>
@@ -106,8 +104,8 @@ export default function OnboardingPage() {
             {STEPS.map((step) => (
               <div
                 key={step.id}
-                className={`text-sm ${
-                  step.id <= currentStep ? "text-purple-400" : "text-white/40"
+                className={`text-sm font-medium ${
+                  step.id <= currentStep ? "text-purple-600" : "text-gray-400"
                 }`}
               >
                 {step.title}
@@ -115,13 +113,13 @@ export default function OnboardingPage() {
             ))}
           </div>
           <Progress value={progress} className="h-2" />
-          <div className="text-center text-sm text-white/60 mt-2">
+          <div className="text-center text-sm text-gray-600 mt-2">
             Step {currentStep} of {STEPS.length}
           </div>
         </div>
 
         {/* Step Content */}
-        <PremiumMotionCard className="backdrop-blur-xl bg-white/[0.03] border border-white/10 p-8">
+        <PremiumMotionCard className="bg-white shadow-2xl border border-gray-200 p-8">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
               <CompanyInfoStep
@@ -155,9 +153,9 @@ export default function OnboardingPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-6 p-4 rounded-lg backdrop-blur-xl bg-white/[0.03] border border-white/10"
+          className="mt-6 p-4 rounded-lg bg-white/60 border border-gray-200"
         >
-          <p className="text-sm text-white/60 text-center">
+          <p className="text-sm text-gray-600 text-center">
             🔒 Your information is secure and will only be used to match you with relevant grants
           </p>
         </motion.div>

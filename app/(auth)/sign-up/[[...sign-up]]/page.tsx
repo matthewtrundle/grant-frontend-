@@ -2,22 +2,20 @@ import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
-    <div className="flex items-center justify-center">
-      <SignUp
-        afterSignUpUrl="/onboarding"
-        appearance={{
-          elements: {
-            card: "backdrop-blur-xl bg-white/[0.03] border border-white/10",
-            headerTitle: "text-white",
-            headerSubtitle: "text-white/60",
-            socialButtonsBlockButton: "border-white/10 bg-white/5 text-white hover:bg-white/10",
-            formButtonPrimary: "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700",
-            formFieldLabel: "text-white",
-            formFieldInput: "bg-white/5 border-white/10 text-white placeholder-white/40 focus:border-purple-500",
-            footerActionLink: "text-purple-400 hover:text-purple-300",
-          },
-        }}
-      />
-    </div>
+    <SignUp
+      afterSignUpUrl="/onboarding"
+      appearance={{
+        elements: {
+          card: "bg-white shadow-2xl",
+          headerTitle: "text-gray-900",
+          headerSubtitle: "text-gray-600",
+          socialButtonsBlockButton: "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+          formButtonPrimary: "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700",
+          formFieldLabel: "text-gray-700",
+          formFieldInput: "bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500",
+          footerActionLink: "text-purple-600 hover:text-purple-700",
+        },
+      }}
+    />
   );
 }
