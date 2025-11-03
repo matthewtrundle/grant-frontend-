@@ -22,14 +22,6 @@ import LogoWall from "@/components/ui/logo-wall";
 import { RotatingGrantStatements } from "@/components/ui/rotating-grant-statements";
 
 export default function Home() {
-  const [scrollY, setScrollY] = React.useState(0);
-
-  React.useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const stages = [
     {
       icon: Target,
@@ -73,18 +65,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Main Hero Background - Primary Visual */}
+      {/* Main Hero Background - Static for reduced visual overload - Only covers hero section */}
       <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute top-0 left-0 right-0 h-screen bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/hero4.png')",
-          transform: `translateY(${scrollY * 0.5}px)`,
-          willChange: "transform"
+          backgroundImage: "url('/hero4.png')"
         }}
       />
 
       {/* Subtle white overlay to keep background visible */}
-      <div className="fixed inset-0 z-[1] bg-white/40" />
+      <div className="absolute top-0 left-0 right-0 h-screen z-[1] bg-white/40" />
 
       {/* Content Container */}
       <div className="relative z-10">
@@ -92,17 +82,29 @@ export default function Home() {
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
 
         {/* Content overlay */}
-        <div className="container mx-auto max-w-6xl relative z-10 px-4 pt-32 pb-24">
+        <div className="container mx-auto max-w-6xl relative z-10 px-4 pt-4 pb-20">
           <motion.div
-            className="text-center space-y-8"
+            className="text-center space-y-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200">
-              <span className="text-sm text-purple-700 font-medium">For Healthcare Innovators</span>
-            </div>
+            {/* Centered Logo - Moderate size for balance */}
+            <motion.div
+              className="flex flex-col items-center justify-center mb-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <img
+                src="/logo1.png"
+                alt="FundAid for Health"
+                className="w-auto h-40 md:h-48 lg:h-56 drop-shadow-2xl mb-3"
+              />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200">
+                <span className="text-sm md:text-base text-purple-700 font-medium">For Healthcare Innovators</span>
+              </div>
+            </motion.div>
 
             {/* Hero Headline - DARK text on WHITE background */}
             <h1 className="hero-headline-xl">
@@ -620,7 +622,7 @@ export default function Home() {
           </RevealOnScroll>
         </div>
       </section>
-      </div>
+    </div>
     </div>
   );
 }

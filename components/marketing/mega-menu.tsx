@@ -44,10 +44,10 @@ export function MegaMenuItem({
       <Link
         href={href}
         className={cn(
-          "text-sm font-medium transition-colors duration-300",
+          "font-medium transition-all duration-500",
           isScrolled
-            ? "text-gray-900 hover:text-purple-600"
-            : "text-gray-700 hover:text-gray-900",
+            ? "text-sm text-gray-900 hover:text-purple-600"
+            : "text-lg text-gray-700 hover:text-gray-900",
           className
         )}
       >
@@ -90,10 +90,10 @@ export function MegaMenuItem({
       {/* Trigger Button */}
       <button
         className={cn(
-          "flex items-center gap-1 text-sm font-medium transition-colors duration-300",
+          "flex items-center gap-1 font-medium transition-all duration-500",
           isScrolled
-            ? "text-gray-900 hover:text-purple-600"
-            : "text-gray-700 hover:text-gray-900"
+            ? "text-sm text-gray-900 hover:text-purple-600"
+            : "text-lg text-gray-700 hover:text-gray-900"
         )}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -101,7 +101,8 @@ export function MegaMenuItem({
         {hasDropdown && (
           <ChevronDown
             className={cn(
-              "w-4 h-4 transition-transform duration-200",
+              "transition-all duration-500",
+              isScrolled ? "w-4 h-4" : "w-5 h-5",
               isOpen && "rotate-180"
             )}
           />

@@ -209,25 +209,30 @@ export function Header() {
         ${
           isScrolled
             ? "bg-white/95 backdrop-blur-sm shadow-sm"
-            : "bg-transparent"
+            : "bg-transparent pointer-events-none"
         }
       `}
     >
       <div className={`container mx-auto px-4 transition-all duration-500 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
-          {/* Logo - Shrinks on scroll */}
-          <Link href="/" className={`flex items-center group transition-all duration-500 ${isScrolled ? '' : '-my-8'}`}>
+          {/* Logo - Hidden when not scrolled (logo is in hero), visible when scrolled */}
+          <Link
+            href="/"
+            className={`flex items-center group transition-all duration-500 ${
+              isScrolled ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}
+          >
             <img
               src="/logo1.png"
-              alt="FundAid"
-              className={`w-auto transition-all duration-500 group-hover:scale-105 drop-shadow-lg ${
-                isScrolled ? 'h-16' : 'h-64'
-              }`}
+              alt="FundAid for Health"
+              className="w-auto h-16 transition-all duration-500 group-hover:scale-105 drop-shadow-lg"
             />
           </Link>
 
           {/* Desktop Navigation - transitions on scroll */}
-          <nav className={`hidden lg:flex items-center transition-all duration-500 ${isScrolled ? 'gap-4' : 'gap-6'}`}>
+          <nav className={`hidden lg:flex items-center transition-all duration-500 ${
+            isScrolled ? 'gap-4 pointer-events-auto' : 'gap-6 pointer-events-none opacity-0'
+          }`}>
             {navigationItems.map((item, index) => (
               <MegaMenuItem
                 key={index}
@@ -240,7 +245,9 @@ export function Header() {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className={`hidden md:flex items-center gap-3 transition-all duration-500 ${
+            isScrolled ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+          }`}>
             <Link href="/sign-in">
               <Button
                 variant="ghost"
