@@ -22,6 +22,13 @@ import LogoWall from "@/components/ui/logo-wall";
 import { RotatingGrantStatements } from "@/components/ui/rotating-grant-statements";
 
 export default function Home() {
+  // Force re-mount animations on navigation
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const stages = [
     {
       icon: Target,
@@ -91,14 +98,14 @@ export default function Home() {
           <motion.div
             className="text-center space-y-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
             transition={{ duration: 0.6 }}
           >
             {/* Centered Logo - Moderate size for balance */}
             <motion.div
               className="flex flex-col items-center justify-center mb-4"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: mounted ? 1 : 0, scale: mounted ? 1 : 0.9 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <img
