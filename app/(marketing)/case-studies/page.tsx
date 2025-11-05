@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Award, TrendingUp, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { StatCard, QuoteCard, OffsetCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="medium"
+        glowColor="#6C47FF"
+        opacity={0.10}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero - White */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div className="space-y-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Badge className="bg-black text-white px-4 py-2 text-sm">Case Studies</Badge>
@@ -31,7 +38,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Study 1 - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-12">
             <Badge className="bg-purple-950 text-purple-300 border border-purple-600/30 mb-4">Healthcare AI</Badge>
@@ -49,7 +56,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Study 2 - White */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-12">
             <Badge className="bg-gray-200 text-black mb-4">Clean Energy</Badge>
@@ -67,7 +74,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* CTA - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-8">
             <h2 className="text-4xl md:text-5xl heading-white">Your Success Story Starts Here</h2>

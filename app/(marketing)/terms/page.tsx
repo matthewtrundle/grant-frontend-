@@ -1,7 +1,15 @@
+import { CircuitBackground } from "@/components/ui/circuit-background";
+
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white py-24">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <div className="min-h-screen bg-white py-24 relative">
+      <CircuitBackground
+        density="low"
+        glowColor="#2563EB"
+        opacity={0.06}
+        className="fixed inset-0 z-0"
+      />
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
           Terms of Service
         </h1>

@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, DollarSign, Calculator, AlertTriangle, CheckCircle2, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, FloatingContentCard, MinimalIconCard, QuoteCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function BudgetPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="low"
+        glowColor="#2563EB"
+        opacity={0.08}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero Section - White Background */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="space-y-8"
@@ -75,7 +82,7 @@ export default function BudgetPage() {
       </section>
 
       {/* Common Budget Errors Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -119,7 +126,7 @@ export default function BudgetPage() {
       </section>
 
       {/* Validation Rules Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-black mb-4">
@@ -210,7 +217,7 @@ export default function BudgetPage() {
       </section>
 
       {/* Budget Categories Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -293,7 +300,7 @@ export default function BudgetPage() {
       </section>
 
       {/* Cost Sharing Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-black mb-4">
@@ -379,7 +386,7 @@ export default function BudgetPage() {
       </section>
 
       {/* Testimonial Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard
             quote="The validator caught a $12K math error in our indirect costs. Would have been disqualified if we submitted that. Worth every penny."
@@ -391,7 +398,7 @@ export default function BudgetPage() {
       </section>
 
       {/* CTA Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

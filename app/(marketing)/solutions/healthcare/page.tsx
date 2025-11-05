@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Heart, Activity, Shield, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, FloatingContentCard, MinimalIconCard, QuoteCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function HealthcarePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="medium"
+        glowColor="#3B82F6"
+        opacity={0.10}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero Section - White Background */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="space-y-8"
@@ -74,7 +81,7 @@ export default function HealthcarePage() {
       </section>
 
       {/* Top Healthcare Grants - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -118,7 +125,7 @@ export default function HealthcarePage() {
       </section>
 
       {/* Healthcare-Specific Challenges - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-black mb-4">
@@ -188,7 +195,7 @@ export default function HealthcarePage() {
       </section>
 
       {/* Success Story - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard
             quote="Won NIH SBIR Phase II ($1.9M) for our AI diagnostic tool. The platform handled all the clinical trial design sections—we never could have written those ourselves."
@@ -200,7 +207,7 @@ export default function HealthcarePage() {
       </section>
 
       {/* CTA - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

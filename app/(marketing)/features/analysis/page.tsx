@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, FileSearch, Calendar, DollarSign, CheckCircle2, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, AsymmetricTextCard, MinimalIconCard, QuoteCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function AnalysisPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="medium"
+        glowColor="#6C47FF"
+        opacity={0.10}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero Section - White Background */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="space-y-8"
@@ -75,7 +82,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* What We Analyze Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -119,7 +126,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* Timeline Feature Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -167,7 +174,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* Budget Analysis Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -216,7 +223,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* Risk Analysis Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-black mb-4">
@@ -298,7 +305,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* Testimonial Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard
             quote="The analysis revealed we were missing a required partnership that would have disqualified us. $199 saved us 40 hours of wasted work."
@@ -310,7 +317,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* What You Get Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl md:text-4xl heading-black mb-12 text-center">
             Deliverables ($199)
@@ -367,7 +374,7 @@ export default function AnalysisPage() {
       </section>
 
       {/* CTA Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

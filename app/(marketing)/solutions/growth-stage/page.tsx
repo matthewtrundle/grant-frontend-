@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, TrendingUp, Rocket, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, QuoteCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function GrowthStagePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="medium"
+        glowColor="#6C47FF"
+        opacity={0.10}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero - White */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div className="space-y-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Badge className="bg-black text-white px-4 py-2 text-sm">Solutions for Growth-Stage Companies</Badge>
@@ -39,7 +46,7 @@ export default function GrowthStagePage() {
       </section>
 
       {/* Programs - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">Growth-Stage Grant Programs</h2>
@@ -55,14 +62,14 @@ export default function GrowthStagePage() {
       </section>
 
       {/* Success Story - White */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard quote="Post-Series A, we won DOE scale-up grant ($8.5M). Extended our runway by 18 months without dilution. Reached profitability before needing Series B." author="Priya Patel" role="CFO, Battery Tech Inc (now profitable)" theme="light" />
         </div>
       </section>
 
       {/* CTA - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-8">
             <h2 className="text-4xl md:text-5xl heading-white">Scale Without Dilution</h2>

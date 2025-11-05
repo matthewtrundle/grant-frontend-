@@ -6,12 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, FileText, Users, Target, CheckCircle2, Download, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, FloatingContentCard, MinimalIconCard, QuoteCard, SplitCard } from "@/components/ui/abstract-cards";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function GenerationPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="high"
+        glowColor="#9333EA"
+        opacity={0.12}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero Section - White Background */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="space-y-8"
@@ -75,7 +82,7 @@ export default function GenerationPage() {
       </section>
 
       {/* RAG System Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -119,7 +126,7 @@ export default function GenerationPage() {
       </section>
 
       {/* Multi-Agent Simulation Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-black mb-4">
@@ -195,7 +202,7 @@ export default function GenerationPage() {
       </section>
 
       {/* What's Included Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl heading-white mb-4">
@@ -256,7 +263,7 @@ export default function GenerationPage() {
       </section>
 
       {/* Word Limit Enforcement Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -309,7 +316,7 @@ export default function GenerationPage() {
       </section>
 
       {/* Testimonial Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard
             quote="We won $250K on our first AI-generated application. The 3-assessor feedback caught issues our internal team missed. Best $999 we ever spent."
@@ -321,7 +328,7 @@ export default function GenerationPage() {
       </section>
 
       {/* ROI Section - White Background */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl md:text-4xl heading-black mb-12 text-center">
             Return on Investment
@@ -360,7 +367,7 @@ export default function GenerationPage() {
       </section>
 
       {/* CTA Section - Black Background */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

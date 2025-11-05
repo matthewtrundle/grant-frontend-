@@ -10,6 +10,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function AboutPage() {
   const values = [
@@ -88,9 +89,15 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CircuitBackground
+        density="medium"
+        glowColor="#8B5CF6"
+        opacity={0.10}
+        className="fixed inset-0 z-0"
+      />
       {/* Hero Section - White */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 relative z-10 md:py-32 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -116,7 +123,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0 }}
@@ -145,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section - White */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <div className="max-w-3xl mx-auto space-y-8">
             <motion.div
@@ -189,7 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -232,7 +239,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section - White */}
-      <section className="section-light py-24 px-4 border-t border-gray-200">
+      <section className="section-light py-24 relative z-10 px-4 border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,7 +281,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section - Black */}
-      <section className="section-dark py-24 px-4 border-t border-gray-800">
+      <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
