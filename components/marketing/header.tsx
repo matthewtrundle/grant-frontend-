@@ -260,9 +260,9 @@ export function Header() {
             <Link href="/sign-up">
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-105 transition-transform duration-200"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-105 transition-transform duration-200 whitespace-nowrap"
               >
-                Get Started
+                Start Free TRL Assessment
               </Button>
             </Link>
           </div>

@@ -6,12 +6,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero - White */}
-      <section className="section-light py-24 md:py-32 px-4">
+    <div className="min-h-screen relative">
+      {/* Circuit Background */}
+      <CircuitBackground
+        density="medium"
+        glowColor="#6C47FF"
+        opacity={0.12}
+        className="fixed inset-0 z-0"
+      />
+
+      {/* Hero - White with circuit pattern */}
+      <section className="section-light py-24 md:py-32 px-4 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             className="text-center space-y-8"
@@ -19,7 +28,7 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="bg-black text-white px-4 py-2 text-sm badge-pulse">Pricing</Badge>
+            <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 text-sm badge-pulse">Pricing</Badge>
             <h1 className="text-5xl md:text-7xl heading-black max-w-4xl mx-auto">
               Simple, <span className="accent-underline">Transparent</span> Pricing
             </h1>

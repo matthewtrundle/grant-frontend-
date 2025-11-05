@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { CircuitBackground } from "@/components/ui/circuit-background";
 import {
   Mail,
   MessageSquare,
@@ -132,9 +133,17 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Circuit Background */}
+      <CircuitBackground
+        density="low"
+        glowColor="#3B82F6"
+        opacity={0.08}
+        className="fixed inset-0 z-0"
+      />
+
       {/* Hero Section - White */}
-      <section className="section-light py-24 md:py-32 px-4">
+      <section className="section-light py-24 md:py-32 px-4 relative z-10">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

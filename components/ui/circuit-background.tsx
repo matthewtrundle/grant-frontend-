@@ -203,10 +203,10 @@ export function CircuitBackground({
             <motion.circle
               cx={`${node.x}%`}
               cy={`${node.y}%`}
-              r="3"
+              r={3}
               fill={glowColor}
               filter="url(#node-glow)"
-              initial={{ opacity: 0.3 }}
+              initial={{ opacity: 0.3, r: 3 }}
               animate={{
                 opacity: [0.3, 0.7, 0.3],
                 r: [3, 4, 3]
@@ -223,9 +223,9 @@ export function CircuitBackground({
             <circle
               cx={`${node.x}%`}
               cy={`${node.y}%`}
-              r="1.5"
+              r={1.5}
               fill="white"
-              strokeWidth="0.5"
+              strokeWidth={0.5}
             />
           </g>
         ))}
