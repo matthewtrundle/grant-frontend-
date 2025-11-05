@@ -65,16 +65,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Main Hero Background - Static for reduced visual overload - Only covers hero section */}
-      <div
-        className="absolute top-0 left-0 right-0 h-screen bg-cover bg-center bg-no-repeat"
+      {/* Main Hero Background - Smooth parallax effect with extended coverage */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[120vh] bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{
-          backgroundImage: "url('/hero4.png')"
+          backgroundImage: "url('/hero4.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top"
         }}
+        initial={{ y: 0 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", damping: 30, stiffness: 100 }}
       />
 
-      {/* Subtle white overlay to keep background visible */}
-      <div className="absolute top-0 left-0 right-0 h-screen z-[1] bg-white/40" />
+      {/* Subtle white overlay with gradient fade - extends beyond viewport */}
+      <div className="fixed top-0 left-0 right-0 h-[120vh] z-[1] bg-gradient-to-b from-white/40 via-white/40 to-white/60 pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-10">
@@ -123,16 +128,16 @@ export default function Home() {
               Healthcare innovators waste months writing grant applications that get rejected. We help you find the right grants, write compelling applications, and actually get funded—all powered by AI that's studied thousands of successful submissions.
             </p>
 
-            {/* CTA Buttons - Fitts's Law optimized with proper spacing */}
+            {/* CTA Buttons - Focused on TRL Assessment */}
             <div className="flex gap-6 justify-center flex-wrap pt-4">
               <Link href="/sign-up">
                 <div className="relative inline-block">
                   <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
                   <button
-                    className="relative min-w-[200px] px-8 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
-                    aria-label="Find your grants - completely free, no credit card"
+                    className="relative min-w-[280px] px-8 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    aria-label="Create your profile and start free TRL assessment"
                   >
-                    Find Your Grants →
+                    Start Free TRL Assessment →
                   </button>
                 </div>
               </Link>
@@ -147,7 +152,7 @@ export default function Home() {
             </div>
 
             <p className="text-gray-500 pt-2">
-              Get started free • Profile + Discovery at no cost • No credit card needed
+              Free company profile + TRL assessment • Find matching grants instantly • No credit card needed
             </p>
           </motion.div>
 
