@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,13 +17,15 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { GradientAnimatedButton } from "@/components/ui/animated-button";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, FileText } from "lucide-react";
+import { FileUpload, UploadedFile } from "@/components/ui/file-upload";
 
 const technologySchema = z.object({
   technology: z.string().min(10, {
     message: "Technology description must be at least 10 characters.",
   }),
   description: z.string().optional(),
+  uploaded_files: z.array(z.any()).optional(),
 });
 
 type TechnologyValues = z.infer<typeof technologySchema>;
@@ -34,16 +37,28 @@ interface TechnologyStepProps {
 }
 
 export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepProps) {
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+
   const form = useForm<TechnologyValues>({
     resolver: zodResolver(technologySchema),
     defaultValues: {
       technology: initialData?.technology || "",
       description: initialData?.description || "",
+      uploaded_files: initialData?.uploaded_files || [],
     },
   });
 
+  const handleFilesChange = (files: UploadedFile[]) => {
+    setUploadedFiles(files);
+    form.setValue("uploaded_files", files);
+  };
+
   function onSubmit(data: TechnologyValues) {
-    onNext(data);
+    // Include uploaded files in the submission
+    onNext({
+      ...data,
+      uploaded_files: uploadedFiles,
+    });
   }
 
   return (
@@ -53,9 +68,9 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Technology</h2>
-      <p className="text-gray-600 mb-6">
-        Describe your core innovation or technology - this helps us assess your Technology Readiness Level (TRL)
+      <h2 className="text-2xl font-bold text-white mb-2">Tell us about your innovation</h2>
+      <p className="text-white/60 mb-6">
+        What problem are you solving? We'll use this to find grants that match your technology stage and impact potential.
       </p>
 
       <Form {...form}>
@@ -65,16 +80,16 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
             name="technology"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700">Technology Description *</FormLabel>
+                <FormLabel className="text-white font-medium">What are you building? *</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="AI-powered drug discovery platform using machine learning to identify novel therapeutic targets..."
-                    className="min-h-[120px] bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
+                    placeholder="Example: We're developing an AI-powered diagnostic tool that helps doctors detect early-stage pancreatic cancer using non-invasive blood tests..."
+                    className="min-h-[120px] bg-white/5 border-white/20 text-white placeholder-white/40 focus:border-purple-500 focus:ring-purple-500 focus:ring-offset-0 backdrop-blur-sm"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-gray-600">
-                  Describe your core technology or innovation (minimum 10 characters)
+                <FormDescription className="text-white/50">
+                  Tell us about your technology and the impact it will have (the more detail, the better our matches)
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -86,16 +101,42 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700">Company Description</FormLabel>
+                <FormLabel className="text-white font-medium">Anything else we should know?</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Additional context about your company, mission, or market..."
-                    className="min-h-[100px] bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500"
+                    placeholder="Tell us about your mission, the market you're targeting, or why this matters to you..."
+                    className="min-h-[100px] bg-white/5 border-white/20 text-white placeholder-white/40 focus:border-purple-500 focus:ring-purple-500 focus:ring-offset-0 backdrop-blur-sm"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-gray-600">
-                  Optional: Additional details about your company
+                <FormDescription className="text-white/50">
+                  Optional, but helps us understand the bigger picture
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* File Upload Section */}
+          <FormField
+            control={form.control}
+            name="uploaded_files"
+            render={() => (
+              <FormItem>
+                <FormLabel className="text-white font-medium flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-purple-400" />
+                  Supporting Documents (Optional)
+                </FormLabel>
+                <FormControl>
+                  <FileUpload
+                    accept=".pdf,.doc,.docx,.pptx,.txt"
+                    maxSize={50}
+                    maxFiles={5}
+                    onFilesChange={handleFilesChange}
+                  />
+                </FormControl>
+                <FormDescription className="text-white/50">
+                  Upload pitch decks, technical docs, or other supporting materials (max 50MB per file)
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -107,7 +148,7 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
               type="button"
               variant="outline"
               onClick={onBack}
-              className="border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+              className="border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-sm"
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back

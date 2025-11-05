@@ -58,9 +58,9 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: "40%", label: "Success Rate", description: "Applications funded" },
-    { value: "$50K", label: "Average Grant", description: "Typical award size" },
-    { value: "14 Days", label: "Time to Submit", description: "From start to finish" }
+    { value: "100+", label: "Hours Saved", description: "Per application" },
+    { value: "$10K+", label: "Cost Savings", description: "vs. grant consultants" },
+    { value: "48 Hrs", label: "First Draft", description: "Complete application ready" }
   ];
 
   return (
@@ -109,18 +109,18 @@ export default function Home() {
             {/* Hero Headline - DARK text on WHITE background */}
             <h1 className="hero-headline-xl">
               <span className="text-gray-900 block">
-                Generate Winning Grant
+                Stop Writing Grants.
               </span>
               <span className="text-gray-900 block">
-                Applications in{" "}
-              </span>
-              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent inline-block">
-                48 Hours
+                Start{" "}
+                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent inline-block">
+                  Winning Them.
+                </span>
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">
-              Save $10,000+ and 100+ hours with our AI-powered grant automation for medical devices, diagnostics, and therapeutics. From NIH SBIR to FDA grants.
+              Healthcare innovators waste months writing grant applications that get rejected. We help you find the right grants, write compelling applications, and actually get funded—all powered by AI that's studied thousands of successful submissions.
             </p>
 
             {/* CTA Buttons - Fitts's Law optimized with proper spacing */}
@@ -130,25 +130,24 @@ export default function Home() {
                   <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
                   <button
                     className="relative min-w-[200px] px-8 py-6 text-lg rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg hover:shadow-xl"
-                    aria-label="Start your free profile - no credit card required"
+                    aria-label="Find your grants - completely free, no credit card"
                   >
-                    Start Free Profile
-                    <ArrowRight className="ml-2 w-5 h-5 inline-block" aria-hidden="true" />
+                    Find Your Grants →
                   </button>
                 </div>
               </Link>
               <Link href="/pricing">
                 <button
                   className="min-w-[180px] px-8 py-6 text-lg rounded-lg border-2 border-gray-300 bg-white text-gray-900 font-semibold hover:border-purple-500 hover:bg-purple-50 active:bg-purple-100 transition-all duration-200 hover:shadow-md"
-                  aria-label="View pricing plans"
+                  aria-label="See how it works and pricing"
                 >
-                  View Pricing
+                  See How It Works
                 </button>
               </Link>
             </div>
 
             <p className="text-gray-500 pt-2">
-              Free Stage 1 & 2 • No credit card required
+              Get started free • Profile + Discovery at no cost • No credit card needed
             </p>
           </motion.div>
 
