@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: "Grant Automation Platform - AI-Powered Grant Writing in 48 Hours",
   description: "Generate winning grant applications with AI. Save $10,000+ and 100+ hours. Get your TRL assessment, discover matching grants, and create complete applications.",
   keywords: ["grant writing", "AI grants", "SBIR", "STTR", "grant automation", "grant funding"],
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
