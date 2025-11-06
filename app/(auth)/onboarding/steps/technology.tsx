@@ -25,6 +25,8 @@ const technologySchema = z.object({
     message: "Technology description must be at least 10 characters.",
   }),
   description: z.string().optional(),
+  intellectual_property: z.string().optional(),
+  market_size: z.string().optional(),
   uploaded_files: z.array(z.any()).optional(),
 });
 
@@ -44,6 +46,8 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
     defaultValues: {
       technology: initialData?.technology || "",
       description: initialData?.description || "",
+      intellectual_property: initialData?.intellectual_property || "",
+      market_size: initialData?.market_size || "",
       uploaded_files: initialData?.uploaded_files || [],
     },
   });
@@ -111,6 +115,48 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
                 </FormControl>
                 <FormDescription className="text-white/50">
                   Optional, but helps us understand the bigger picture
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="intellectual_property"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-white font-medium">Intellectual Property & Patents</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="e.g., 3 patents filed (USPTO #123456, #234567, #345678), trade secrets in AI algorithm, exclusive license from MIT..."
+                    className="min-h-[100px] bg-white/5 border-white/20 text-white placeholder-white/40 focus:border-purple-500 focus:ring-purple-500 focus:ring-offset-0 backdrop-blur-sm"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-white/50">
+                  Optional: Patents, trade secrets, exclusive licenses, or IP strategy. This strengthens grant applications.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="market_size"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-white font-medium">Market Size & Opportunity</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="e.g., $50B global market, 2M potential customers in US, growing 15% annually..."
+                    className="min-h-[80px] bg-white/5 border-white/20 text-white placeholder-white/40 focus:border-purple-500 focus:ring-purple-500 focus:ring-offset-0 backdrop-blur-sm"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="text-white/50">
+                  Optional: Market size estimates, growth rate, target customers. Helps identify commercial potential.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

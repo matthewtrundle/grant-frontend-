@@ -69,13 +69,13 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
                 <FormLabel className="text-white font-medium">Team & Expertise</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Founders, key team members, advisors, expertise..."
+                    placeholder="e.g., CEO: PhD in Bioengineering (MIT), 2 exits, 10 patents. CTO: Former Google AI lead, published in Nature. Advisors: Dr. Jane Smith (Harvard), prior SBIR Phase II winner..."
                     className="min-h-[120px] bg-white/5 border-white/20 text-white placeholder-white/40 focus:border-purple-500 focus:ring-purple-500 focus:ring-offset-0 backdrop-blur-sm"
                     {...field}
                   />
                 </FormControl>
                 <FormDescription className="text-white/50">
-                  Optional: Information about your team and their expertise. This can strengthen your grant applications.
+                  Optional: Team members, their credentials (PhDs, publications, prior exits, relevant expertise), and advisors. Strong teams significantly improve grant success rates.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
