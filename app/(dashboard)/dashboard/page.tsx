@@ -25,16 +25,16 @@ export default function DashboardPage() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">
+        <h1 className="text-4xl font-bold mb-2 text-white">
           Welcome {profile.companyName ? `, ${profile.companyName}!` : "to"}{" "}
           {!profile.companyName && <AnimatedGradientText glow>Grant Automation</AnimatedGradientText>}
         </h1>
         {hasProfile ? (
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-white/70">
             Your TRL is <Badge className="inline">{profile.trl}</Badge> • Continue your grant application journey
           </p>
         ) : (
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-white/70">
             Let&apos;s get started with your grant application journey
           </p>
         )}

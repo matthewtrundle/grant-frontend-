@@ -8,9 +8,9 @@ export default function ProfilePage() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <Badge variant="secondary">Stage 1</Badge>
-          <h1 className="text-3xl font-bold">Company Profile</h1>
+          <h1 className="text-3xl font-bold text-white">Company Profile</h1>
         </div>
-        <p className="text-gray-600">
+        <p className="text-white/70">
           Tell us about your company and technology. We&apos;ll assess your Technology Readiness Level (TRL)
           and create a profile for grant matching.
         </p>

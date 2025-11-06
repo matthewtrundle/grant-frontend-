@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
+import { GradientAnimatedButton } from "@/components/ui/animated-button";
 import { CompanyInfoStep } from "./steps/company-info";
 import { TechnologyStep } from "./steps/technology";
 import { TeamInfoStep } from "./steps/team-info";

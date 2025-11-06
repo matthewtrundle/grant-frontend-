@@ -107,9 +107,9 @@ export default function VaultPage() {
             <FolderOpen className="w-3.5 h-3.5" />
             Document Vault
           </Badge>
-          <h1 className="text-3xl font-bold">Your Documents</h1>
+          <h1 className="text-3xl font-bold text-white">Your Documents</h1>
         </div>
-        <p className="text-gray-600">
+        <p className="text-white/70">
           Upload and manage pitch decks, technical specs, financials, and any other supporting documents.
           Our AI agents scan these to better understand your innovation and find relevant grants.
         </p>

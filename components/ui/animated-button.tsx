@@ -129,7 +129,7 @@ export const GradientAnimatedButton = forwardRef<HTMLButtonElement, AnimatedButt
       <AnimatedButton
         ref={ref}
         className={cn(
-          "bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800",
+          "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700",
           "shadow-lg hover:shadow-xl transition-all duration-300",
           className
         )}
