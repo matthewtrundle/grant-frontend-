@@ -72,10 +72,15 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-white mb-2">Tell us about your innovation</h2>
-      <p className="text-white/60 mb-6">
-        What problem are you solving? We'll use this to find grants that match your technology stage and impact potential.
-      </p>
+      <div className="mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 mb-4">
+          <span className="text-xs text-purple-400 font-semibold tracking-wide">STEP 2 OF 3</span>
+        </div>
+        <h2 className="text-3xl font-bold text-white mb-3 tracking-tight">Your Innovation</h2>
+        <p className="text-white/60 text-lg">
+          Tell us about the technology, the market opportunity, and share any supporting documents
+        </p>
+      </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -163,31 +168,33 @@ export function TechnologyStep({ onNext, onBack, initialData }: TechnologyStepPr
             )}
           />
 
-          {/* File Upload Section */}
-          <FormField
-            control={form.control}
-            name="uploaded_files"
-            render={() => (
-              <FormItem>
-                <FormLabel className="text-white font-medium flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-purple-400" />
-                  Supporting Documents (Optional)
-                </FormLabel>
-                <FormControl>
-                  <FileUpload
-                    accept=".pdf,.doc,.docx,.pptx,.txt"
-                    maxSize={50}
-                    maxFiles={5}
-                    onFilesChange={handleFilesChange}
-                  />
-                </FormControl>
-                <FormDescription className="text-white/50">
-                  Upload pitch decks, technical docs, or other supporting materials (max 50MB per file)
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {/* File Upload Section - Enhanced */}
+          <div className="p-5 rounded-xl bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-purple-500/10 border border-purple-500/30 backdrop-blur-sm">
+            <FormField
+              control={form.control}
+              name="uploaded_files"
+              render={() => (
+                <FormItem>
+                  <FormLabel className="text-white font-semibold flex items-center gap-2 text-base">
+                    <FileText className="w-5 h-5 text-purple-400" />
+                    Supporting Documents
+                  </FormLabel>
+                  <FormControl>
+                    <FileUpload
+                      accept=".pdf,.doc,.docx,.pptx,.txt"
+                      maxSize={50}
+                      maxFiles={5}
+                      onFilesChange={handleFilesChange}
+                    />
+                  </FormControl>
+                  <FormDescription className="text-white/60 mt-3">
+                    <strong className="text-purple-400">Got pitch decks, technical docs, or product specs?</strong> Drop them here (non-confidential only). This helps our AI understand your innovation better and find more relevant grants. Max 50MB per file.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <div className="flex justify-between">
             <Button

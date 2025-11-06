@@ -54,10 +54,15 @@ export function TeamInfoStep({ onComplete, onBack, initialData, isSubmitting }: 
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-2xl font-bold text-white mb-2">Who's on your team?</h2>
-      <p className="text-white/60 mb-6">
-        Grant reviewers love seeing strong teams. Tell us about your founders, advisors, or key expertise.
-      </p>
+      <div className="mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 mb-4">
+          <span className="text-xs text-purple-400 font-semibold tracking-wide">STEP 3 OF 3</span>
+        </div>
+        <h2 className="text-3xl font-bold text-white mb-3 tracking-tight">Your Team</h2>
+        <p className="text-white/60 text-lg">
+          Grant reviewers love strong teams. Tell us about founders, advisors, and key expertise.
+        </p>
+      </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

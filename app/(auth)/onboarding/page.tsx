@@ -305,12 +305,13 @@ export default function OnboardingPage() {
                     </div>
 
                     <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                      You're all set, {user?.firstName || 'there'}! 🎉
+                      Boom! You're locked in, {user?.firstName || 'legend'}! 💥
                     </h2>
 
                     <p className="text-white/60 text-lg mb-8 max-w-lg mx-auto">
-                      We've analyzed your innovation and we're excited about what you're building.
-                      Our AI is already searching for grants that match your unique technology.
+                      Holy smokes, this is fire! 🔥 Our AI swarm is absolutely <em>crushing</em> the grant database right now.
+                      Your perfect matches are getting GPT'd harder than a Y Combinator pitch deck.
+                      We're talking serious <strong className="text-purple-400">10x energy</strong> here! 🚀
                     </p>
 
                     <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6 mb-8 max-w-lg mx-auto">
@@ -325,30 +326,43 @@ export default function OnboardingPage() {
                       </p>
                     </div>
 
-                    <div className="text-left max-w-lg mx-auto mb-8 p-4 bg-white/5 rounded-lg border border-white/10">
-                      <p className="text-sm font-semibold text-purple-400 mb-3">What happens next?</p>
-                      <div className="space-y-2 text-sm text-white/70">
-                        <div className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-0.5">→</span>
-                          <span><strong className="text-white/90">Right now:</strong> Our AI is analyzing thousands of grants to find your best matches</span>
+                    <div className="text-left max-w-lg mx-auto mb-8 p-5 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-purple-500/10 rounded-xl border border-purple-500/30 backdrop-blur-sm">
+                      <p className="text-sm font-bold text-purple-300 mb-4 flex items-center gap-2">
+                        <span className="text-lg">🤖</span>
+                        What's happening behind the scenes?
+                      </p>
+                      <div className="space-y-3 text-sm text-white/80">
+                        <div className="flex items-start gap-3">
+                          <span className="text-xl">⚡</span>
+                          <div>
+                            <strong className="text-white font-semibold">Right this second:</strong> Our neural nets are yeeting through 1,500+ NIH grants with that sweet, sweet vector search magic. Think Pinecone vibes but <em>way</em> more alpha.
+                          </div>
                         </div>
-                        <div className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-0.5">→</span>
-                          <span><strong className="text-white/90">Within 24 hours:</strong> You'll receive your personalized grant matches</span>
+                        <div className="flex items-start gap-3">
+                          <span className="text-xl">🎯</span>
+                          <div>
+                            <strong className="text-white font-semibold">T-minus 24 hours:</strong> You'll get a Notion-style dashboard with your top grant matches, fit scores, and actionable intel. No cap, we're talking serious ROI potential here. 📈
+                          </div>
                         </div>
-                        <div className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-0.5">→</span>
-                          <span><strong className="text-white/90">Need help?</strong> Check your dashboard for guides and resources</span>
+                        <div className="flex items-start gap-3">
+                          <span className="text-xl">💎</span>
+                          <div>
+                            <strong className="text-white font-semibold">Pro move:</strong> Peep your dashboard for grant-writing frameworks and insider tips. This isn't your grandma's grant platform - we're building in public, shipping fast, and staying lean. 🏗️
+                          </div>
                         </div>
                       </div>
                     </div>
 
                     <GradientAnimatedButton
                       onClick={() => router.push("/dashboard")}
-                      className="w-full md:w-auto"
+                      className="w-full md:w-auto text-base font-bold"
                     >
-                      Go to Dashboard
+                      Let's Gooo! 🚀
                     </GradientAnimatedButton>
+
+                    <p className="text-xs text-white/40 mt-4">
+                      check back in ~24h for some seriously dope opportunities
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
