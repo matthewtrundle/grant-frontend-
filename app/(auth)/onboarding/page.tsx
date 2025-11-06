@@ -305,13 +305,11 @@ export default function OnboardingPage() {
                     </div>
 
                     <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                      Boom! You're locked in, {user?.firstName || 'legend'}! 💥
+                      You're all set, {user?.firstName || 'there'}! 🎉
                     </h2>
 
                     <p className="text-white/60 text-lg mb-8 max-w-lg mx-auto">
-                      Holy smokes, this is fire! 🔥 Our AI swarm is absolutely <em>crushing</em> the grant database right now.
-                      Your perfect matches are getting GPT'd harder than a Y Combinator pitch deck.
-                      We're talking serious <strong className="text-purple-400">10x energy</strong> here! 🚀
+                      Thank you for completing your profile. Our AI agents are now analyzing your innovation against our database of 1,500+ grants to find the best matches for your technology and stage.
                     </p>
 
                     <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6 mb-8 max-w-lg mx-auto">
@@ -329,25 +327,25 @@ export default function OnboardingPage() {
                     <div className="text-left max-w-lg mx-auto mb-8 p-5 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-purple-500/10 rounded-xl border border-purple-500/30 backdrop-blur-sm">
                       <p className="text-sm font-bold text-purple-300 mb-4 flex items-center gap-2">
                         <span className="text-lg">🤖</span>
-                        What's happening behind the scenes?
+                        What happens next?
                       </p>
                       <div className="space-y-3 text-sm text-white/80">
                         <div className="flex items-start gap-3">
                           <span className="text-xl">⚡</span>
                           <div>
-                            <strong className="text-white font-semibold">Right this second:</strong> Our neural nets are yeeting through 1,500+ NIH grants with that sweet, sweet vector search magic. Think Pinecone vibes but <em>way</em> more alpha.
+                            <strong className="text-white font-semibold">Now:</strong> Our AI is searching through 1,500+ NIH grants using advanced vector search to find opportunities that match your technology, stage, and team profile.
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
                           <span className="text-xl">🎯</span>
                           <div>
-                            <strong className="text-white font-semibold">T-minus 24 hours:</strong> You'll get a Notion-style dashboard with your top grant matches, fit scores, and actionable intel. No cap, we're talking serious ROI potential here. 📈
+                            <strong className="text-white font-semibold">Within 24 hours:</strong> You'll receive your personalized grant matches with fit scores and detailed analysis in your dashboard.
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
-                          <span className="text-xl">💎</span>
+                          <span className="text-xl">📚</span>
                           <div>
-                            <strong className="text-white font-semibold">Pro move:</strong> Peep your dashboard for grant-writing frameworks and insider tips. This isn't your grandma's grant platform - we're building in public, shipping fast, and staying lean. 🏗️
+                            <strong className="text-white font-semibold">In the meantime:</strong> Explore your dashboard for grant-writing resources, timeline guidance, and best practices.
                           </div>
                         </div>
                       </div>
@@ -355,13 +353,13 @@ export default function OnboardingPage() {
 
                     <GradientAnimatedButton
                       onClick={() => router.push("/dashboard")}
-                      className="w-full md:w-auto text-base font-bold"
+                      className="w-full md:w-auto"
                     >
-                      Let's Gooo! 🚀
+                      Go to Dashboard
                     </GradientAnimatedButton>
 
                     <p className="text-xs text-white/40 mt-4">
-                      check back in ~24h for some seriously dope opportunities
+                      Check back within 24 hours for your personalized grant matches
                     </p>
                   </motion.div>
                 )}
