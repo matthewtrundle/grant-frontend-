@@ -59,7 +59,7 @@ export function DashboardHeader() {
                   className={cn(
                     "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                     isActive
-                      ? "bg-purple-950/50 text-purple-300 border border-purple-600/30"
+                      ? "bg-purple-950/50 text-purple-300 border border-ocean-600/30"
                       : "text-dark-300 hover:bg-dark-800/50 hover:text-white"
                   )}
                 >
@@ -96,7 +96,7 @@ export function DashboardHeader() {
                 className={cn(
                   "px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border",
                   isActive
-                    ? "bg-purple-950/50 text-purple-300 border-purple-600/30"
+                    ? "bg-purple-950/50 text-purple-300 border-ocean-600/30"
                     : "text-dark-300 hover:bg-dark-800/50 hover:text-white border-dark-700"
                 )}
               >

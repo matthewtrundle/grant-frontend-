@@ -84,7 +84,7 @@ export default function GrantsPage() {
             transition={{ duration: 0.6 }}
           >
             <Badge className="bg-black text-white px-4 py-2 text-sm">Grant Database</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               <span className="accent-underline">2,400+</span> Active Grant Programs
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl">
@@ -137,7 +137,7 @@ export default function GrantsPage() {
                       <h3 className="text-xl font-bold heading-white mb-2">{grant.title}</h3>
                       <p className="text-sm text-gray-400">{grant.agency}</p>
                     </div>
-                    <Badge className="bg-purple-950 text-purple-300 border border-purple-600/30 whitespace-nowrap">
+                    <Badge className="bg-purple-950 text-purple-300 border border-ocean-600/30 whitespace-nowrap">
                       {grant.category}
                     </Badge>
                   </div>
@@ -270,7 +270,7 @@ export default function GrantsPage() {
             ].map((category, index) => (
               <div
                 key={index}
-                className="p-6 bg-gray-900 border border-gray-800 rounded-lg hover:border-purple-600 transition-colors cursor-pointer"
+                className="p-6 bg-gray-900 border border-gray-800 rounded-lg hover:border-ocean-600 transition-colors cursor-pointer"
               >
                 <div className="text-3xl font-bold text-white mb-2">{category.count}</div>
                 <div className="body-white text-sm">{category.label}</div>

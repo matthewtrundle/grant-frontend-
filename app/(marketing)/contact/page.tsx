@@ -415,7 +415,7 @@ export default function ContactPage() {
                 </Button>
               </Link>
               <Link href="/pricing">
-                <Button variant="outline" size="lg" className="btn-magnetic">
+                <Button variant="outline" size="lg" className="btn-magnetic hover-glow">
                   View Pricing
                 </Button>
               </Link>

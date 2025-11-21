@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
         <div className="container mx-auto max-w-6xl">
           <motion.div className="space-y-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Badge className="bg-black text-white px-4 py-2 text-sm">Case Studies</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               <span className="accent-underline">Success Stories</span> from Our Customers
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl">
@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
       <section className="section-dark py-24 relative z-10 px-4 border-t border-gray-800">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-12">
-            <Badge className="bg-purple-950 text-purple-300 border border-purple-600/30 mb-4">Healthcare AI</Badge>
+            <Badge className="bg-purple-950 text-purple-300 border border-ocean-600/30 mb-4">Healthcare AI</Badge>
             <h2 className="text-4xl heading-white mb-4">CardioAI Diagnostics: $2.1M NIH SBIR</h2>
             <p className="text-xl body-white">From pre-revenue to Phase II funding in 18 months</p>
           </div>

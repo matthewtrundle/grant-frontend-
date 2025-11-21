@@ -52,7 +52,7 @@ export default function PaywallDemoPage() {
           <CardHeader>
             <div className="flex items-center justify-between mb-2">
               <Badge variant="secondary">Stage 3</Badge>
-              <Badge variant="outline" className="text-purple-600 border-purple-600">
+              <Badge variant="outline" className="text-ocean-700 border-ocean-600">
                 <Lock className="mr-1 h-3 w-3" />
                 $199
               </Badge>
@@ -147,7 +147,7 @@ export default function PaywallDemoPage() {
         <CardContent>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 1
               </span>
               <div>
@@ -156,7 +156,7 @@ export default function PaywallDemoPage() {
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 2
               </span>
               <div>
@@ -165,7 +165,7 @@ export default function PaywallDemoPage() {
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 3
               </span>
               <div>
@@ -174,7 +174,7 @@ export default function PaywallDemoPage() {
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 4
               </span>
               <div>
@@ -183,7 +183,7 @@ export default function PaywallDemoPage() {
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 5
               </span>
               <div>
@@ -192,7 +192,7 @@ export default function PaywallDemoPage() {
               </div>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-purple-600">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-sm font-medium text-ocean-700">
                 6
               </span>
               <div>

@@ -30,7 +30,7 @@ export default function AnalysisPage() {
               Stage 3 • $199 per grant
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Deep RFP <span className="accent-underline">Analysis</span>
             </h1>
 

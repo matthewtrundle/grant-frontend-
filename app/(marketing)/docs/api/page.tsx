@@ -7,7 +7,7 @@ export default function APIDocsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 py-24">
+      <div className="relative overflow-hidden bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700 py-24">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -40,7 +40,7 @@ export default function APIDocsPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="flex items-start gap-4 mb-6">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-ocean-500 via-teal-500 to-ocean-600 flex items-center justify-center">
               <Zap className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -61,19 +61,19 @@ export default function APIDocsPage() {
             </p>
             <ul className="space-y-2 text-gray-700">
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 mt-1">•</span>
+                <span className="text-ocean-700 mt-1">•</span>
                 <span>Integrate grant discovery into your existing workflows</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 mt-1">•</span>
+                <span className="text-ocean-700 mt-1">•</span>
                 <span>Automate company profile generation and TRL assessments</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 mt-1">•</span>
+                <span className="text-ocean-700 mt-1">•</span>
                 <span>Access grant analysis and document generation programmatically</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 mt-1">•</span>
+                <span className="text-ocean-700 mt-1">•</span>
                 <span>Build custom integrations with your internal systems</span>
               </li>
             </ul>
@@ -89,7 +89,7 @@ export default function APIDocsPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
-              <Lock className="w-6 h-6 text-purple-600" />
+              <Lock className="w-6 h-6 text-ocean-700" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Enterprise Security
@@ -136,7 +136,7 @@ export default function APIDocsPage() {
 
         {/* Early Access CTA */}
         <motion.div
-          className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-8 text-center"
+          className="bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700 rounded-2xl p-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -150,7 +150,7 @@ export default function APIDocsPage() {
           </p>
           <a
             href="/contact?subject=API%20Beta%20Access"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-ocean-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
           >
             Request Beta Access
           </a>

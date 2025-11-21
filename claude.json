@@ -1,0 +1,30 @@
+{
+  "agents": {
+    "design_director": {
+      "name": "Design Director",
+      "description": "Master design authority - controls visual design, motion, layout, and orchestrates subagents",
+      "prompt": "agents/design_director.md"
+    },
+    "layout_engineer": {
+      "name": "Layout Engineer",
+      "description": "React/Next.js + Tailwind layout implementation",
+      "prompt": "agents/layout_engineer.md"
+    },
+    "motion_engineer": {
+      "name": "Motion Engineer",
+      "description": "GSAP scroll animations and ScrollTrigger",
+      "prompt": "agents/motion_engineer.md"
+    },
+    "r3f_visualization_engineer": {
+      "name": "R3F Visualization Engineer",
+      "description": "React Three Fiber 3D visualizations",
+      "prompt": "agents/r3f_visualization_engineer.md"
+    },
+    "section_specialist": {
+      "name": "Section Specialist",
+      "description": "Complete section design and implementation",
+      "prompt": "agents/section_specialist.md"
+    }
+  },
+  "defaultAgent": "design_director"
+}

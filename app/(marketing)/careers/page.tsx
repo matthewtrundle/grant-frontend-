@@ -51,7 +51,7 @@ export default function CareersPage() {
             transition={{ duration: 0.6 }}
           >
             <Badge className="bg-black text-white px-4 py-2 text-sm">Careers</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Build the <span className="accent-underline">Future</span> of Grant Funding
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl">
@@ -151,7 +151,7 @@ export default function CareersPage() {
                     <div>
                       <h3 className="text-2xl font-bold heading-white mb-2">{job.title}</h3>
                       <div className="flex flex-wrap gap-3 text-sm">
-                        <Badge className="bg-purple-950 text-purple-300 border border-purple-600/30">
+                        <Badge className="bg-purple-950 text-purple-300 border border-ocean-600/30">
                           {job.team}
                         </Badge>
                         <span className="text-gray-400">{job.location}</span>

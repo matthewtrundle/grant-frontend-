@@ -25,7 +25,7 @@ export default function GettingStartedPage() {
               </Badge>
             </Link>
 
-            <h1 className="text-5xl md:text-7xl heading-black">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black">
               <span className="accent-underline">Getting Started</span> Guide
             </h1>
 

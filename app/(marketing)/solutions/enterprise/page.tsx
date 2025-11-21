@@ -22,7 +22,7 @@ export default function EnterprisePage() {
         <div className="container mx-auto max-w-6xl">
           <motion.div className="space-y-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <Badge className="bg-black text-white px-4 py-2 text-sm">Solutions for Enterprise</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Grant Funding for <span className="accent-underline">Enterprise Innovation</span>
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl">

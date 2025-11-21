@@ -51,7 +51,7 @@ export default function BlogPage() {
             transition={{ duration: 0.6 }}
           >
             <Badge className="bg-black text-white px-4 py-2 text-sm">Blog</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Grant Funding <span className="accent-underline">Insights</span>
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl">
@@ -67,10 +67,10 @@ export default function BlogPage() {
         <div className="container mx-auto max-w-4xl">
           <div className="space-y-8">
             {posts.map((post, index) => (
-              <FloatingContentCard key={index} theme="dark" elevation="subtle" className="hover:border-purple-600 transition-colors">
+              <FloatingContentCard key={index} theme="dark" elevation="subtle" className="hover:border-ocean-600 transition-colors">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-sm">
-                    <Badge className="bg-purple-950 text-purple-300 border border-purple-600/30">{post.category}</Badge>
+                    <Badge className="bg-purple-950 text-purple-300 border border-ocean-600/30">{post.category}</Badge>
                     <span className="flex items-center gap-2 text-gray-400">
                       <Calendar className="w-4 h-4" />
                       {post.date}

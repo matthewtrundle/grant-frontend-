@@ -30,7 +30,7 @@ export default function ProfilerPage() {
               Stage 1 • FREE
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Company Profiler <span className="accent-underline">& TRL Assessment</span>
             </h1>
 

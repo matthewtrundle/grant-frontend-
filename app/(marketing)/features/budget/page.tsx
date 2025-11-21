@@ -30,7 +30,7 @@ export default function BudgetPage() {
               Budget Validation • Included in Stage 3 & 4
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Automated <span className="accent-underline">Budget Validation</span>
             </h1>
 

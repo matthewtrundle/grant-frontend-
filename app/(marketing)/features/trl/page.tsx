@@ -32,7 +32,7 @@ export default function TRLPage() {
               TRL Assessment • FREE
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Technology Readiness Level <span className="accent-underline">Scoring</span>
             </h1>
 

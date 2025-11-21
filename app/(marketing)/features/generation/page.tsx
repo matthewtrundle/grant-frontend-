@@ -30,7 +30,7 @@ export default function GenerationPage() {
               Stage 4 • $999 per grant
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Complete <span className="accent-underline">Application Generation</span>
             </h1>
 
@@ -170,7 +170,7 @@ export default function GenerationPage() {
                   Checks research rigor, citation quality, broader impacts, dissemination plans,
                   and alignment with grant objectives. Scores 0-10 on academic merit.
                 </p>
-                <Badge className="bg-purple-600 text-white">Academic Score</Badge>
+                <Badge className="bg-ocean-600 text-white">Academic Score</Badge>
               </div>
             </FloatingContentCard>
           </div>

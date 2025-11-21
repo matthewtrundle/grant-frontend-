@@ -128,7 +128,7 @@ print(result.data)`
                 <div className="flex gap-4 justify-center flex-wrap pt-4">
                   <Link href="/">
                     <div className="relative inline-block">
-                      <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
+                      <div className="absolute inset-0 bg-ocean-500/30 rounded-lg blur-xl" />
                       <GradientAnimatedButton size="lg" className="relative px-8 py-6">
                         View Live Demo
                         <ArrowRight className="ml-2 w-5 h-5" />
@@ -467,7 +467,7 @@ print(result.data)`
               <div className="flex gap-4 justify-center">
                 <Link href="/">
                   <div className="relative inline-block">
-                    <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-xl" />
+                    <div className="absolute inset-0 bg-ocean-500/30 rounded-lg blur-xl" />
                     <GradientAnimatedButton size="lg" className="relative px-12 py-6 text-lg">
                       View Live Site
                       <ArrowRight className="ml-2 w-5 h-5" />

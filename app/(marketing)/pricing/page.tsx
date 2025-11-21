@@ -28,8 +28,8 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 text-sm badge-pulse">Pricing</Badge>
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl mx-auto">
+            <Badge className="bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700 text-white px-4 py-2 text-sm badge-pulse">Pricing</Badge>
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl mx-auto">
               Simple, <span className="accent-underline">Transparent</span> Pricing
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">

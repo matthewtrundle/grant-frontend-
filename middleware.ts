@@ -16,6 +16,12 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/onboarding(.*)",
+  "/digilab-test(.*)",
+  "/digilab-refined(.*)",
+  "/digilab-timeline(.*)",
+  "/test-timeline(.*)",
+  "/process-timeline-test(.*)",
+  "/showcase-timeline(.*)",
   "/api/webhooks/stripe(.*)",
 ]);
 

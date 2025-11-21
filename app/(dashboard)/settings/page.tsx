@@ -70,7 +70,7 @@ export default function SettingsPage() {
             profileSectionContent: "text-white/80",
             formFieldLabel: "text-white",
             formFieldInput: "bg-white/5 border-white/10 text-white",
-            formButtonPrimary: "bg-gradient-to-r from-purple-600 to-blue-600",
+            formButtonPrimary: "bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700",
             headerTitle: "text-white",
             headerSubtitle: "text-white/60",
           },
@@ -108,7 +108,7 @@ export default function SettingsPage() {
                   You haven't created a company profile yet.
                 </p>
                 <Link href="/profile">
-                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600">
+                  <Button className="bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700">
                     Create Company Profile
                   </Button>
                 </Link>

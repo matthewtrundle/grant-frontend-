@@ -303,7 +303,7 @@ export default function AboutPage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button variant="outline" size="lg" className="btn-magnetic">
+                <Button variant="outline" size="lg" className="btn-magnetic hover-glow">
                   Contact Sales
                 </Button>
               </Link>

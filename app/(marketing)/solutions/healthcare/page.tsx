@@ -30,7 +30,7 @@ export default function HealthcarePage() {
               Solutions for Healthcare & Biotech
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Grant Funding for <span className="accent-underline">Healthcare Innovation</span>
             </h1>
 

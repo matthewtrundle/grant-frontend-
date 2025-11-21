@@ -30,7 +30,7 @@ export default function TrackerPage() {
               Application Tracker • FREE
             </Badge>
 
-            <h1 className="text-5xl md:text-7xl heading-black max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl">
               Grant Application <span className="accent-underline">Tracker</span>
             </h1>
 
