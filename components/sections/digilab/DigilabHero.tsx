@@ -19,13 +19,7 @@ import { digilibTheme } from '@/lib/digilab-theme';
 import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import dynamic from 'next/dynamic';
-
-// Dynamically import 3D scene
-const DNAScrollScene = dynamic(
-  () => import('@/components/3d/DNAScrollScene').then((mod) => mod.DNAScrollScene),
-  { ssr: false }
-);
+import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -90,15 +84,24 @@ export function DigilabHero() {
       )}
       style={{ backgroundColor: digilibTheme.backgrounds.light }}
     >
-      {/* 3D DNA Background - Very Subtle */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none z-0">
-        <DNAScrollScene pages={1} damping={0.3} />
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/Fund Aid Minimalist Variation 1.png"
+          alt="Fund Aid Hero Background"
+          fill
+          priority
+          className="object-cover"
+          quality={100}
+        />
+        {/* Overlay gradient for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
       </div>
 
       {/* Vertical Line - Scroll Hint */}
       <div
         ref={lineRef}
-        className="hero-line absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-gradient-to-b from-transparent via-sky-500 to-transparent z-[1]"
+        className="hero-line absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-gradient-to-b from-transparent via-white/60 to-transparent z-[1]"
       />
 
       {/* Content Container */}
@@ -107,15 +110,15 @@ export function DigilabHero() {
         <h1
           className={cn(
             digilibTheme.typography.display,
-            'mb-6 leading-[1.1]'
+            'mb-6 leading-[1.1]',
+            'text-white drop-shadow-lg'
           )}
-          style={{ color: digilibTheme.text.lightBg }}
         >
           <span className="hero-heading-word inline-block mr-6">Transform</span>
           <span className="hero-heading-word inline-block mr-6">Research</span>
           <br />
           <span className="hero-heading-word inline-block mr-6">into</span>
-          <span className="hero-heading-word inline-block bg-gradient-to-r from-sky-600 to-emerald-600 bg-clip-text text-transparent">
+          <span className="hero-heading-word inline-block bg-gradient-to-r from-sky-300 to-emerald-300 bg-clip-text text-transparent">
             Funding
           </span>
         </h1>
@@ -126,9 +129,9 @@ export function DigilabHero() {
             'hero-subheading',
             digilibTheme.typography.body,
             digilibTheme.spacing.textBlock,
-            'mx-auto mb-8'
+            'mx-auto mb-8',
+            'text-white/90 drop-shadow-md'
           )}
-          style={{ color: digilibTheme.text.muted }}
         >
           AI-powered grant automation for researchers who want to focus on science, not paperwork
         </p>
@@ -170,12 +173,12 @@ export function DigilabHero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 opacity-50 animate-bounce">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 opacity-70 animate-bounce">
         <div className="flex flex-col items-center gap-2">
-          <div className="w-6 h-10 rounded-full border-2 border-slate-300 flex items-center justify-center">
-            <div className="w-1 h-2 rounded-full bg-slate-400" />
+          <div className="w-6 h-10 rounded-full border-2 border-white/60 flex items-center justify-center">
+            <div className="w-1 h-2 rounded-full bg-white/80" />
           </div>
-          <span className="text-xs text-slate-400 tracking-wider uppercase">Scroll</span>
+          <span className="text-xs text-white/80 tracking-wider uppercase">Scroll</span>
         </div>
       </div>
     </section>

@@ -125,6 +125,9 @@ export function MissionSection() {
       className={cn('relative min-h-screen', 'flex items-center justify-center', 'overflow-hidden')}
       style={{ backgroundColor: digilibTheme.backgrounds.accent }}
     >
+      {/* Subtle gradient overlay bridging hero to timeline */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-amber-500/5 pointer-events-none z-0" />
+
       {/* Animated Grant Dots Background */}
       <div
         ref={dotsRef}
@@ -142,7 +145,7 @@ export function MissionSection() {
               top: `${dot.y}%`,
               width: `${dot.size}px`,
               height: `${dot.size}px`,
-              backgroundColor: dot.status === 'failed' ? '#EF4444' : '#10B981',
+              backgroundColor: dot.status === 'failed' ? '#EF4444' : '#F59E0B',  // Changed funded to amber
               opacity: dot.status === 'failed' ? 0.4 : 0.6,
             }}
           />
@@ -190,10 +193,10 @@ export function MissionSection() {
             )}
             style={{ color: digilibTheme.text.muted }}
           >
-            With <span className="text-emerald-600 font-bold">AI-driven precision</span>, we help
+            With <span className="text-amber-600 font-bold">AI-driven precision</span>, we help
             you craft winning applications
             <br />
-            and <span className="text-emerald-600 font-bold">increase your success rate by 40%</span>.
+            and <span className="text-amber-600 font-bold">increase your success rate by 40%</span>.
           </p>
         </div>
       </div>

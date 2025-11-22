@@ -20,9 +20,9 @@ export function Stage1Clustering() {
 
   const dots = useMemo(() => {
     const categories = [
-      { center: new THREE.Vector3(-2, 1, 0), count: 15, color: '#0EA5E9' },
-      { center: new THREE.Vector3(2, 1, 0), count: 12, color: '#10B981' },
-      { center: new THREE.Vector3(0, -1, 0), count: 10, color: '#8B5CF6' },
+      { center: new THREE.Vector3(-2, 1, 0), count: 15, color: '#0891B2' },  // Cyan-600
+      { center: new THREE.Vector3(2, 1, 0), count: 12, color: '#06B6D4' },   // Cyan-500
+      { center: new THREE.Vector3(0, -1, 0), count: 10, color: '#0EA5E9' },  // Sky-500
     ];
 
     return categories.flatMap((cat) =>
@@ -91,8 +91,8 @@ export function Stage2GrantGrid() {
         <mesh key={i} position={grant.position}>
           <boxGeometry args={[0.8, 0.8, 0.1]} />
           <meshStandardMaterial
-            color={grant.matchScore > 0.7 ? '#10B981' : grant.matchScore > 0.4 ? '#F59E0B' : '#64748B'}
-            emissive={grant.matchScore > 0.7 ? '#10B981' : '#64748B'}
+            color={grant.matchScore > 0.7 ? '#8B5CF6' : grant.matchScore > 0.4 ? '#A78BFA' : '#64748B'}
+            emissive={grant.matchScore > 0.7 ? '#8B5CF6' : '#64748B'}
             emissiveIntensity={grant.matchScore * 0.3}
             metalness={0.4}
             roughness={0.3}
@@ -108,10 +108,10 @@ export function Stage3BudgetBars() {
   const groupRef = useRef<THREE.Group>(null);
 
   const bars = useMemo(() => [
-    { height: 2.5, color: '#8B5CF6', label: 'Personnel', x: -2 },
-    { height: 1.8, color: '#0EA5E9', label: 'Equipment', x: -0.6 },
-    { height: 1.2, color: '#10B981', label: 'Materials', x: 0.8 },
-    { height: 0.9, color: '#F59E0B', label: 'Travel', x: 2 },
+    { height: 2.5, color: '#F97316', label: 'Personnel', x: -2 },    // Orange-500
+    { height: 1.8, color: '#FB923C', label: 'Equipment', x: -0.6 },  // Orange-400
+    { height: 1.2, color: '#FDBA74', label: 'Materials', x: 0.8 },   // Orange-300
+    { height: 0.9, color: '#FED7AA', label: 'Travel', x: 2 },        // Orange-200
   ], []);
 
   useFrame((state) => {
@@ -148,10 +148,10 @@ export function Stage4MultiAgent() {
   const groupRef = useRef<THREE.Group>(null);
 
   const agents = useMemo(() => [
-    { position: new THREE.Vector3(0, 2, 0), color: '#F59E0B', label: 'Writer' },
-    { position: new THREE.Vector3(-1.5, -1, 0), color: '#0EA5E9', label: 'Technical' },
-    { position: new THREE.Vector3(1.5, -1, 0), color: '#10B981', label: 'Business' },
-    { position: new THREE.Vector3(0, -1, -1.5), color: '#8B5CF6', label: 'Academic' },
+    { position: new THREE.Vector3(0, 2, 0), color: '#F59E0B', label: 'Writer' },       // Amber-500
+    { position: new THREE.Vector3(-1.5, -1, 0), color: '#FCD34D', label: 'Technical' }, // Amber-300
+    { position: new THREE.Vector3(1.5, -1, 0), color: '#FDE68A', label: 'Business' },  // Amber-200
+    { position: new THREE.Vector3(0, -1, -1.5), color: '#FBBF24', label: 'Academic' }, // Amber-400
   ], []);
 
   useFrame((state) => {

@@ -11,24 +11,19 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { digilibTheme } from '@/lib/digilab-theme';
 import { StepCard } from '@/components/ui/StepCard';
-import {
-  Stage1Clustering,
-  Stage2GrantGrid,
-  Stage3BudgetBars,
-  Stage4MultiAgent,
-} from '@/components/3d/ProcessVisuals';
 import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// Dynamically import R3F canvas wrapper (client-only, no SSR)
+const ProcessTimelineCanvas = dynamic(
+  () => import('@/components/3d/ProcessTimelineCanvas'),
+  { ssr: false, loading: () => <div className="w-full h-full bg-slate-900/5 animate-pulse" /> }
+);
 
 const stages = [
   {
@@ -69,6 +64,17 @@ const stages = [
   },
 ];
 
+// Background gradient helper based on active step
+const getBackgroundGradient = (step: 1 | 2 | 3 | 4) => {
+  const gradients = {
+    1: 'linear-gradient(135deg, rgba(8, 145, 178, 0.08) 0%, rgba(245, 241, 233, 1) 100%)',    // Cyan tint
+    2: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(245, 241, 233, 1) 100%)',   // Violet tint
+    3: 'linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(245, 241, 233, 1) 100%)',   // Orange tint
+    4: 'linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 241, 233, 1) 100%)',   // Amber tint
+  };
+  return gradients[step];
+};
+
 export function ProcessTimeline() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState<1 | 2 | 3 | 4>(1);
@@ -78,25 +84,41 @@ export function ProcessTimeline() {
       const section = sectionRef.current;
       if (!section) return;
 
-      // Create scroll triggers for each stage
+      // Create scroll triggers for each stage (400vh = 100vh per stage)
       stages.forEach((stage, i) => {
         ScrollTrigger.create({
           trigger: section,
-          start: `top+${i * 25}% center`,
-          end: `top+${(i + 1) * 25}% center`,
+          start: `top+${i * 100}vh top`,
+          end: `top+${(i + 1) * 100}vh top`,
           onEnter: () => setActiveStep(stage.id),
           onEnterBack: () => setActiveStep(stage.id),
+          // markers: true, // Uncomment for debugging
         });
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [] }
+  );
+
+  // Animate background when activeStep changes
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      gsap.to(section, {
+        background: getBackgroundGradient(activeStep),
+        duration: 0.6,
+        ease: 'power2.out',
+      });
+    },
+    { scope: sectionRef, dependencies: [activeStep] }
   );
 
   return (
     <section
       ref={sectionRef}
       className={cn('relative min-h-[400vh]')}
-      style={{ backgroundColor: digilibTheme.backgrounds.light }}
+      style={{ background: getBackgroundGradient(1) }} // Initial gradient
     >
       <div className="sticky top-0 min-h-screen grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-12">
         {/* Left Column: Sticky StepCards */}
@@ -115,21 +137,7 @@ export function ProcessTimeline() {
 
         {/* Right Column: 3D Visualizations */}
         <div className="relative h-[600px] rounded-2xl overflow-hidden bg-slate-900/5">
-          <Canvas>
-            <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
-            <OrbitControls enableZoom={false} enablePan={false} />
-
-            {/* Lighting */}
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={0.8} />
-            <pointLight position={[-5, -5, -5]} intensity={0.3} />
-
-            {/* Stage-specific visualization */}
-            {activeStep === 1 && <Stage1Clustering />}
-            {activeStep === 2 && <Stage2GrantGrid />}
-            {activeStep === 3 && <Stage3BudgetBars />}
-            {activeStep === 4 && <Stage4MultiAgent />}
-          </Canvas>
+          <ProcessTimelineCanvas activeStep={activeStep} />
 
           {/* Stage label overlay */}
           <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">

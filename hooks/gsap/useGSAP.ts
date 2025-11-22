@@ -17,6 +17,12 @@
 
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin globally
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type UseGSAPOptions = {
   scope?: React.RefObject<HTMLElement>;
