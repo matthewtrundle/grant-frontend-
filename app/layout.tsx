@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Orbitron } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
@@ -12,6 +12,13 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
+  display: "swap",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-orbitron",
   display: "swap",
 });
 
@@ -36,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable} ${playfair.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} ${orbitron.variable}`}>
         <body className="antialiased">
           <SmoothScrollProvider />
           {children}

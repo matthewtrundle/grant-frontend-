@@ -9,10 +9,10 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import Lenis from 'lenis';
 import FundAidTimelineBackground from '@/components/FundAidTimelineBackground';
@@ -40,22 +40,22 @@ const STAGES = [
   },
   {
     number: 3,
-    label: 'Analysis',
-    description: 'Requirement mapping and fit scoring',
-    features: []
+    label: 'Grant Analysis',
+    description: 'Our AI agents parse the grant RFP, extract key requirements and evaluation criteria, then map them to your company profile. We retrieve successful grant examples using RAG to understand what assessors look for.',
+    features: ['RFP Parsing', 'Requirement Mapping', 'Example Retrieval', 'Budget Planning']
   },
   {
     number: 4,
-    label: 'Generation',
-    description: 'Multi-agent writing and quality control',
-    features: []
+    label: 'Document Generation',
+    description: 'A team of specialized AI writing agents collaborates to craft your application. Each section is written to match successful examples, then assessed by our multi-agent simulation system that mimics real grant reviewers.',
+    features: ['Multi-Agent Writing', 'RAG-Enhanced Responses', 'Assessor Simulation', 'Quality Control']
   }
 ];
 
 const COLORS = {
-  teal: new THREE.Color('#2FB49E'),
-  lavender: new THREE.Color('#A98CEB'),
-  bg: new THREE.Color('#0C051A')
+  teal: new THREE.Color('#1A8B76'),      // Darker, more muted teal
+  lavender: new THREE.Color('#6B4DB8'),  // Darker, more muted lavender
+  bg: new THREE.Color('#FFFFFF')
 };
 
 // ============================================
@@ -81,7 +81,7 @@ function getPopupVisibility(scrollProgress: number, startThreshold: number, endT
   }
 
   // Fade in phase
-  const fadeInDuration = 0.05; // 5% scroll range for fade in
+  const fadeInDuration = 0.08; // 8% scroll range for fade in - increased for smoother, more intentional transitions
   if (scrollProgress < startThreshold + fadeInDuration) {
     const t = (scrollProgress - startThreshold) / fadeInDuration;
     return { opacity: t, translateX: 0, translateY: 8 * (1 - t) };
@@ -164,14 +164,14 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
     stage4Scales: []
   });
 
-  // Initialize particles
+  // Initialize particles (tighter initial spread, centered)
   useState(() => {
     const data = particleData.current;
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       data.positions[i] = new THREE.Vector3(
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 16,
-        (Math.random() - 0.5) * 10
+        (Math.random() - 0.5) * 8,   // Reduced from 20 to 8
+        (Math.random() - 0.5) * 8,   // Reduced from 16 to 8
+        (Math.random() - 0.5) * 4    // Reduced from 10 to 4
       );
       data.targets[i] = data.positions[i].clone();
       data.colors[i] = i % 2 === 0 ? COLORS.teal.clone() : COLORS.lavender.clone();
@@ -184,23 +184,23 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
   useState(() => {
     const data = particleData.current;
 
-    // Stage 1: Clustering
+    // Stage 1: Clustering (tighter, more centered)
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const cluster = Math.floor(i / (PARTICLE_COUNT / 4));
       const angle = (cluster / 4) * Math.PI * 2;
-      const clusterRadii = [3, 5.5, 7, 4.5];
+      const clusterRadii = [2, 3.5, 4.5, 3];  // Reduced radii
       const radius = clusterRadii[cluster % 4];
       data.stage1Targets[i] = new THREE.Vector3(
-        Math.cos(angle) * radius + (Math.random() - 0.5) * 2,
-        Math.sin(cluster * 0.5) * 3 + (Math.random() - 0.5) * 2,
-        Math.sin(angle) * radius * 4 + (Math.random() - 0.5) * 4
+        Math.cos(angle) * radius + (Math.random() - 0.5) * 1,  // Reduced randomness
+        Math.sin(cluster * 0.5) * 2 + (Math.random() - 0.5) * 1,  // Reduced spread
+        Math.sin(angle) * radius * 2 + (Math.random() - 0.5) * 2  // Reduced Z spread
       );
       data.stage1Scales[i] = 1.0;
     }
 
-    // Stage 2: Grid
+    // Stage 2: Grid (tighter spacing)
     const gridSize = Math.ceil(Math.sqrt(PARTICLE_COUNT));
-    const spacing = 1.8;
+    const spacing = 1.3;  // Reduced from 1.8 to 1.3
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const row = Math.floor(i / gridSize);
       const col = i % gridSize;
@@ -212,10 +212,10 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
       data.stage2Scales[i] = 1.0;
     }
 
-    // Stage 3: Funnel
+    // Stage 3: Funnel (tighter, more centered)
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const y = (i / PARTICLE_COUNT) * 10 - 5;
-      const radius = 6 - (y + 5) * 1.2;
+      const y = (i / PARTICLE_COUNT) * 8 - 4;  // Reduced height from 10 to 8
+      const radius = 4 - (y + 4) * 0.8;  // Reduced starting radius and taper
       const angle = i * 0.5;
       data.stage3Targets[i] = new THREE.Vector3(
         Math.cos(angle) * radius,
@@ -225,39 +225,43 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
       data.stage3Scales[i] = i >= PARTICLE_COUNT * 0.7 ? 0 : 1.1;
     }
 
-    // Stage 4: Orbital system
+    // Stage 4: Orbital system with smoother transition from Stage 3 funnel
+    // Start with particles closer to funnel's bottom, then expand into orbital rings
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       if (i < 15) {
-        // Core cluster
+        // Core cluster - positioned to continue from funnel's narrow bottom
         const theta = (i / 15) * Math.PI * 2;
         const phi = Math.acos(2 * (i / 15) - 1);
         data.stage4Targets[i] = new THREE.Vector3(
-          Math.sin(phi) * Math.cos(theta) * 1.8,
-          Math.cos(phi) * 1.8,
-          Math.sin(phi) * Math.sin(theta) * 1.8
+          Math.sin(phi) * Math.cos(theta) * 1.5,
+          Math.cos(phi) * 1.5 - 2, // Offset down to align with funnel bottom
+          Math.sin(phi) * Math.sin(theta) * 1.5
         );
         data.stage4Scales[i] = 1.8;
       } else if (i < 40) {
-        // Inner ring
+        // Inner ring - gradual expansion from core
         const angle = ((i - 15) / 25) * Math.PI * 2;
+        const ringProgress = (i - 15) / 25;
         data.stage4Targets[i] = new THREE.Vector3(
-          Math.cos(angle) * 7,
-          Math.sin((i - 15) * 0.4) * 2,
-          Math.sin(angle) * 7
+          Math.cos(angle) * (3 + ringProgress * 2), // Gradual radius increase
+          Math.sin((i - 15) * 0.4) * 1.0 - 1, // Closer to center vertically
+          Math.sin(angle) * (3 + ringProgress * 2)
         );
         data.stage4Scales[i] = 1.2;
       } else if (i < 65) {
-        // Outer ring
+        // Outer ring - smooth expansion
         const angle = ((i - 40) / 25) * Math.PI * 2 + Math.PI / 6;
+        const ringProgress = (i - 40) / 25;
         data.stage4Targets[i] = new THREE.Vector3(
-          Math.cos(angle) * 12,
-          Math.cos((i - 40) * 0.3) * 3,
-          Math.sin(angle) * 12
+          Math.cos(angle) * (6 + ringProgress * 2), // Progressive expansion
+          Math.cos((i - 40) * 0.3) * 1.5, // Gentle vertical variation
+          Math.sin(angle) * (6 + ringProgress * 2)
         );
         data.stage4Scales[i] = 1.0;
       } else {
-        // Hide rest
-        data.stage4Targets[i] = new THREE.Vector3(0, 0, 0);
+        // Fade out remaining particles gradually
+        const fadeProgress = (i - 65) / (PARTICLE_COUNT - 65);
+        data.stage4Targets[i] = new THREE.Vector3(0, -3 * fadeProgress, 0);
         data.stage4Scales[i] = 0;
       }
     }
@@ -298,48 +302,52 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
         data.stage3Scales[i] * weights.stage3 +
         data.stage4Scales[i] * weights.stage4;
 
-      // Lerp to blended target (faster for smoother continuous motion)
-      data.positions[i].lerp(blendedTarget, 0.08);
-      data.scales[i] += (blendedScale - data.scales[i]) * 0.08;
+      // Adaptive lerp speed - slower during Stage 3->4 transition for smoother motion
+      const isStage3To4Transition = weights.stage3 > 0 && weights.stage4 > 0;
+      const lerpSpeed = isStage3To4Transition ? 0.05 : 0.08; // Slower during harsh transition
 
-      // Idle motion + scroll-based parallax
+      // Lerp to blended target
+      data.positions[i].lerp(blendedTarget, lerpSpeed);
+      data.scales[i] += (blendedScale - data.scales[i]) * lerpSpeed;
+
+      // Idle motion + scroll-based parallax (reduced for tighter control)
       let offset = new THREE.Vector3(0, 0, 0);
 
-      // Scroll-based parallax for all stages (subtle movement within each stage)
+      // Scroll-based parallax for all stages (very subtle movement)
       const stageProgress = scrollProgress * 4; // 0-4 range
       const withinStageProgress = (stageProgress % 1); // 0-1 within current stage
       const parallaxDepth = (i % 10) / 10; // Different depths for different particles
 
-      offset.x += Math.sin(withinStageProgress * Math.PI * 2 + i * 0.3) * 0.15 * parallaxDepth;
-      offset.y += Math.cos(withinStageProgress * Math.PI * 2 + i * 0.5) * 0.1 * parallaxDepth;
-      offset.z += Math.sin(withinStageProgress * Math.PI + i * 0.2) * 0.08 * parallaxDepth;
+      offset.x += Math.sin(withinStageProgress * Math.PI * 2 + i * 0.3) * 0.08 * parallaxDepth;  // Reduced from 0.15
+      offset.y += Math.cos(withinStageProgress * Math.PI * 2 + i * 0.5) * 0.05 * parallaxDepth;  // Reduced from 0.1
+      offset.z += Math.sin(withinStageProgress * Math.PI + i * 0.2) * 0.04 * parallaxDepth;  // Reduced from 0.08
 
-      // Stage-specific idle motion
+      // Stage-specific idle motion (very subtle)
       if (stage === 1) {
-        offset.x += Math.sin(time * 0.3 + i) * 0.05;
-        offset.y += Math.sin(time * 0.2 + i * 0.5) * 0.08;
+        offset.x += Math.sin(time * 0.3 + i) * 0.03;  // Reduced from 0.05
+        offset.y += Math.sin(time * 0.2 + i * 0.5) * 0.04;  // Reduced from 0.08
       } else if (stage === 4) {
         // Core pulse
         if (i < 15) {
           data.scales[i] = data.targetScales[i] * (1 + Math.sin(time * 1.5) * 0.05);
         }
-        // Ring rotations
+        // Ring rotations (updated to match tighter radii)
         if (i >= 15 && i < 40) {
           const ringIndex = i - 15;
           const angle = (ringIndex / 25) * Math.PI * 2 + time * 0.2;
           data.positions[i].set(
-            Math.cos(angle) * 7,
-            Math.sin(ringIndex * 0.4) * 2,
-            Math.sin(angle) * 7
+            Math.cos(angle) * 5,  // Updated from 7 to match stage4Targets
+            Math.sin(ringIndex * 0.4) * 1.5,  // Updated from 2
+            Math.sin(angle) * 5  // Updated from 7
           );
         }
         if (i >= 40 && i < 65) {
           const ringIndex = i - 40;
           const angle = (ringIndex / 25) * Math.PI * 2 - time * 0.15;
           data.positions[i].set(
-            Math.cos(angle) * 12,
-            Math.cos(ringIndex * 0.3) * 3,
-            Math.sin(angle) * 12
+            Math.cos(angle) * 8,  // Updated from 12 to match stage4Targets
+            Math.cos(ringIndex * 0.3) * 2,  // Updated from 3
+            Math.sin(angle) * 8  // Updated from 12
           );
         }
       }
@@ -397,8 +405,14 @@ function ParticleSystem({ stage, scrollProgress }: { stage: number; scrollProgre
   return (
     <>
       <instancedMesh ref={meshRef} args={[undefined, undefined, PARTICLE_COUNT]}>
-        <sphereGeometry args={[0.12, 16, 16]} />
-        <meshBasicMaterial />
+        <sphereGeometry args={[0.12, 32, 32]} />
+        <meshStandardMaterial
+          vertexColors
+          emissive="#00D4AA"
+          emissiveIntensity={0.5}
+          metalness={0.2}
+          roughness={0.3}
+        />
       </instancedMesh>
 
       <lineSegments ref={linesRef} geometry={lineGeometry}>
@@ -426,6 +440,16 @@ function Scene({ stage, scrollProgress }: { stage: number; scrollProgress: numbe
       <fog attach="fog" args={[COLORS.bg, 20, 30]} />
       <ambientLight color={COLORS.teal} intensity={0.25} />
       <ParticleSystem stage={stage} scrollProgress={scrollProgress} />
+
+      {/* Post-processing effects for fantastical glow */}
+      <EffectComposer>
+        <Bloom
+          luminanceThreshold={0.2}
+          luminanceSmoothing={0.9}
+          intensity={1.5}
+          radius={0.8}
+        />
+      </EffectComposer>
     </Canvas>
   );
 }
@@ -476,9 +500,9 @@ export default function ProcessTimelineDigilab() {
     ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: '+=2000vh',
+      end: '+=4500vh',  // Optimized: sweet spot between too fast (3500vh) and too slow (6000vh)
       pin: true,
-      scrub: 3, // Even slower for ultra-smooth, cinematic feel
+      scrub: 4,  // Optimal scrub value for smooth, responsive scrolling
       onUpdate: (self) => {
         const progress = self.progress;
         setScrollProgress(progress);
@@ -514,14 +538,14 @@ export default function ProcessTimelineDigilab() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[500vh] bg-[#0C051A]"
+      className="relative w-full min-h-[4500vh] bg-white"
     >
       {/* Pinned container */}
       <div className="sticky top-0 h-screen w-full">
-        <div className="h-full grid grid-cols-[25%_75%]">
+        <div className="h-full grid grid-cols-[35%_65%]">
 
-          {/* Left: Timeline (25%) */}
-          <div className="relative flex flex-col justify-center px-12">
+          {/* Left: Timeline (35% - expanded for more prominent stage descriptions) */}
+          <div className="relative flex flex-col justify-center px-16">
             {/* Scroll progress indicator (ruler) */}
             <svg
               className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-[70vh] pointer-events-none"
@@ -560,7 +584,7 @@ export default function ProcessTimelineDigilab() {
                     y1={y}
                     x2="8"
                     y2={y}
-                    stroke="rgba(255,255,255,0.12)"
+                    stroke="rgba(0,0,0,0.15)"
                     strokeWidth="1.5"
                   />
                 </g>
@@ -571,7 +595,7 @@ export default function ProcessTimelineDigilab() {
                 cx="4"
                 cy={scrollProgress * 700}
                 r="3"
-                fill="#2FB49E"
+                fill="#1A8B76"
                 opacity={0.8}
                 style={{
                   transition: 'cy 0.15s ease-out'
@@ -579,13 +603,13 @@ export default function ProcessTimelineDigilab() {
               />
             </svg>
 
-            <div className="relative w-full h-full flex items-center">
+            <div className="relative w-full h-full flex items-center justify-center">
               {STAGES.map((stage) => (
                 <div
                   key={stage.number}
                   data-stage={stage.number}
                   className={`
-                    absolute inset-0 flex flex-col justify-center
+                    absolute inset-0 flex flex-col justify-center items-center text-center
                     transition-all duration-700
                     ${currentStage === stage.number
                       ? 'opacity-100 pointer-events-auto'
@@ -600,11 +624,17 @@ export default function ProcessTimelineDigilab() {
                       font-black
                       leading-none
                       mb-4
+                      transition-all duration-700
                       ${currentStage === stage.number
-                        ? 'text-[#2FB49E]'
-                        : 'text-[#2FB49E] opacity-10'
+                        ? 'text-[#1A8B76]'
+                        : 'text-[#1A8B76] opacity-10'
                       }
                     `}
+                    style={{
+                      filter: currentStage === stage.number
+                        ? 'drop-shadow(0 0 30px rgba(26,139,118,0.6))'
+                        : 'none'
+                    }}
                   >
                     {stage.number}
                   </div>
@@ -618,8 +648,8 @@ export default function ProcessTimelineDigilab() {
                       font-medium
                       mb-8
                       ${currentStage === stage.number
-                        ? 'text-[#6B6B7C]'
-                        : 'text-[#6B6B7C]/30'
+                        ? 'text-[#4A4A4A]'
+                        : 'text-[#4A4A4A]/30'
                       }
                     `}
                   >
@@ -629,16 +659,16 @@ export default function ProcessTimelineDigilab() {
                   {/* Description */}
                   <div
                     className={`
-                      text-[15px]
-                      leading-[1.75]
+                      text-[20px]
+                      leading-[1.6]
                       tracking-[-0.01em]
-                      max-w-[320px]
+                      max-w-[420px]
                       mb-8
                       transition-opacity duration-700
                       font-light
                       ${currentStage === stage.number
-                        ? 'text-[#C5C3CC] opacity-100'
-                        : 'text-[#C5C3CC] opacity-0'
+                        ? 'text-[#4A4A4A] opacity-100'
+                        : 'text-[#4A4A4A] opacity-0'
                       }
                     `}
                   >
@@ -660,9 +690,9 @@ export default function ProcessTimelineDigilab() {
                       {stage.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-3 text-[13px] text-[#7E7B8A] font-light tracking-wide"
+                          className="flex items-center gap-3 text-[16px] text-[#4A4A4A] font-normal tracking-wide"
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#2FB49E]/60" />
+                          <div className="w-2 h-2 rounded-full bg-[#1A8B76]/70" />
                           {feature}
                         </div>
                       ))}
@@ -673,9 +703,9 @@ export default function ProcessTimelineDigilab() {
             </div>
           </div>
 
-          {/* Right: Fullscreen canvas (75%) */}
+          {/* Right: Fullscreen canvas (65%) */}
           <div className="relative h-full w-full">
-            <FundAidTimelineBackground stage={currentStage as 1 | 2 | 3 | 4} />
+            <FundAidTimelineBackground stage={currentStage as 1 | 2 | 3 | 4} scrollProgress={scrollProgress} />
             <Scene stage={currentStage} scrollProgress={scrollProgress} />
 
             {/* Floating annotation boxes with particle links */}
@@ -699,9 +729,9 @@ export default function ProcessTimelineDigilab() {
                     </svg>
 
                     {/* Text box */}
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Technology Profile</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">AI analyzes your technical capabilities</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Technology Profile</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">AI analyzes your technical capabilities</div>
                     </div>
                   </div>
                 </div>
@@ -726,9 +756,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">TRL Assessment</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Readiness level: 1-9 scale</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">TRL Assessment</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Readiness level: 1-9 scale</div>
                     </div>
                   </div>
                 </div>
@@ -753,9 +783,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="80" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Database Search</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Scanning federal & state grants</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Database Search</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Scanning federal & state grants</div>
                     </div>
                   </div>
                 </div>
@@ -780,9 +810,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Fit Scoring</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Ranked by relevance (0-100)</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Fit Scoring</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Ranked by relevance (0-100)</div>
                     </div>
                   </div>
                 </div>
@@ -807,9 +837,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="64" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">RFP Parsing</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Extracting requirements & criteria</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">RFP Parsing</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Extracting requirements & criteria</div>
                     </div>
                   </div>
                 </div>
@@ -834,9 +864,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Timeline</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">14-day submission plan</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Timeline</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">14-day submission plan</div>
                     </div>
                   </div>
                 </div>
@@ -861,9 +891,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="80" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Multi-Agent Writing</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Coordinated response generation</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Multi-Agent Writing</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Coordinated response generation</div>
                     </div>
                   </div>
                 </div>
@@ -888,9 +918,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">RAG Examples</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Learning from 50+ successful grants</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">RAG Examples</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Learning from 50+ successful grants</div>
                     </div>
                   </div>
                 </div>
@@ -915,9 +945,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
 
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Assessor Simulation</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">3 AI reviewers score responses</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Assessor Simulation</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">3 AI reviewers score responses</div>
                     </div>
                   </div>
                 </div>
@@ -942,9 +972,9 @@ export default function ProcessTimelineDigilab() {
                       <path d="M 0 0 Q 60 -20, 96 0" stroke="rgba(47,180,158,0.3)" strokeWidth="1" fill="none" strokeDasharray="4 4" />
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Team Analysis</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Evaluating team credentials & experience</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Team Analysis</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Evaluating team credentials & experience</div>
                     </div>
                   </div>
                 </div>
@@ -968,9 +998,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                       <circle cx="0" cy="72" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[180px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Data Pipeline</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Profile → Search Engine</div>
+                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#1A8B76]/20 rounded-lg px-4 py-3 min-w-[180px]">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Data Pipeline</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Profile → Search Engine</div>
                     </div>
                   </div>
                 </div>
@@ -993,9 +1023,9 @@ export default function ProcessTimelineDigilab() {
                       <line x1="0" y1="0" x2="80" y2="0" stroke="rgba(47,180,158,0.3)" strokeWidth="1" strokeDasharray="4 4" />
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Eligibility Filter</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Automated compliance checking</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Eligibility Filter</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Automated compliance checking</div>
                     </div>
                   </div>
                 </div>
@@ -1019,9 +1049,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                       <circle cx="112" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[180px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Ranked Results</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Top matches → Deep analysis</div>
+                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#1A8B76]/20 rounded-lg px-4 py-3 min-w-[180px]">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Ranked Results</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Top matches → Deep analysis</div>
                     </div>
                   </div>
                 </div>
@@ -1044,9 +1074,9 @@ export default function ProcessTimelineDigilab() {
                       <line x1="0" y1="0" x2="64" y2="0" stroke="rgba(47,180,158,0.3)" strokeWidth="1" strokeDasharray="4 4" />
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Budget Validation</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Compliance & allowable costs</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Budget Validation</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Compliance & allowable costs</div>
                     </div>
                   </div>
                 </div>
@@ -1070,9 +1100,9 @@ export default function ProcessTimelineDigilab() {
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                       <circle cx="0" cy="88" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[180px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Context Transfer</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Analysis → Writing Engine</div>
+                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#1A8B76]/20 rounded-lg px-4 py-3 min-w-[180px]">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Context Transfer</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Analysis → Writing Engine</div>
                     </div>
                   </div>
                 </div>
@@ -1095,9 +1125,9 @@ export default function ProcessTimelineDigilab() {
                       <line x1="0" y1="0" x2="80" y2="0" stroke="rgba(47,180,158,0.3)" strokeWidth="1" strokeDasharray="4 4" />
                       <circle cx="0" cy="0" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Mem0 Context</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Cross-stage memory persistence</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Mem0 Context</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Cross-stage memory persistence</div>
                     </div>
                   </div>
                 </div>
@@ -1121,9 +1151,9 @@ export default function ProcessTimelineDigilab() {
                       <path d="M 112 8 Q 70 24, 0 16" stroke="rgba(47,180,158,0.3)" strokeWidth="1" fill="none" strokeDasharray="4 4" />
                       <circle cx="0" cy="8" r="2" fill="rgba(47,180,158,0.6)" />
                     </svg>
-                    <div className="bg-[#1A1425]/80 backdrop-blur-sm border border-[#2FB49E]/20 rounded-lg px-4 py-3 min-w-[200px]">
-                      <div className="text-[11px] uppercase tracking-wider text-[#2FB49E] mb-1 font-medium">Iteration Loop</div>
-                      <div className="text-[13px] text-[#C5C3CC] font-light leading-relaxed">Write → Score → Refine → Repeat</div>
+                    <div className="bg-white/95 backdrop-blur-md border-2 border-[#1A8B76]/40 rounded-lg px-4 py-3 min-w-[200px] shadow-md">
+                      <div className="text-[11px] uppercase tracking-wider text-[#1A8B76] mb-1 font-medium">Iteration Loop</div>
+                      <div className="text-[13px] text-[#4A4A4A] font-light leading-relaxed">Write → Score → Refine → Repeat</div>
                     </div>
                   </div>
                 </div>

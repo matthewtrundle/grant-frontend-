@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/marketing/header";
+import { HamburgerMenu } from "@/components/marketing/hamburger-menu";
 import { Footer } from "@/components/marketing/footer";
 import { PageTransition } from "@/components/ui/page-transition";
 
@@ -19,7 +19,8 @@ export default function MarketingLayout({
         Skip to main content
       </a>
 
-      <Header />
+      {/* Floating hamburger menu - no header */}
+      <HamburgerMenu />
 
       <main id="main-content" tabIndex={-1} className="flex-1">
         <PageTransition>

@@ -27,9 +27,9 @@ interface FloatingParticlesProps {
 }
 
 const colorClasses = {
-  teal: 'bg-dna-teal',
-  green: 'bg-dna-green',
-  blue: 'bg-bio-blue',
+  teal: 'bg-[#2FB49E]', // Using fundaidTheme.accents.teal
+  green: 'bg-green-400',
+  blue: 'bg-blue-400',
   gray: 'bg-gray-400',
 };
 

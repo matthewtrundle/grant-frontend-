@@ -12,10 +12,11 @@
 import { useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { digilibTheme } from '@/lib/digilab-theme';
+import { fundaidTheme } from '@/lib/digilab-theme';
 import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -34,11 +35,11 @@ export function ContactCTA() {
 
   const ctaDots = useMemo<CtaDot[]>(() => {
     const dots: CtaDot[] = [];
+    // Use FundAid accent colors for dots
     const colors = [
-      digilibTheme.stages.profile,
-      digilibTheme.stages.discover,
-      digilibTheme.stages.analyze,
-      digilibTheme.stages.generate,
+      fundaidTheme.accents.teal,
+      fundaidTheme.accents.lavender,
+      fundaidTheme.accents.coral,
     ];
 
     // Create 50 dots with random positions
@@ -60,34 +61,55 @@ export function ContactCTA() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const tl = gsap.timeline({
+      // Set initial states
+      gsap.set('.cta-content', { opacity: 0, y: 30 });
+      gsap.set('.cta-dot', { scale: 0, opacity: 0 });
+
+      // Fade-in reveal for content (1200ms, power2.out)
+      gsap.to('.cta-content', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top center',
-          end: 'bottom center',
-          scrub: 1,
-        },
+          start: 'top 60%',
+          toggleActions: 'play none none none',
+          // markers: true, // Uncomment for debugging
+        }
       });
 
-      // Fade in content
-      tl.fromTo(
-        '.cta-content',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.5 }
-      );
-
-      // Pulse dots
-      tl.fromTo(
-        '.cta-dot',
-        { scale: 0, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 0.6,
-          stagger: { each: 0.01, from: 'random' },
-          duration: 0.5,
+      // Subtle dots fade-in (no bounce, just appear)
+      gsap.to('.cta-dot', {
+        scale: 1,
+        opacity: 0.3, // Keep dots subtle
+        duration: 1.2,
+        ease: 'power2.out',
+        stagger: {
+          each: 0.02,
+          from: 'center',
+          grid: 'auto',
         },
-        0.2
-      );
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 65%',
+          toggleActions: 'play none none none',
+          // markers: true, // Uncomment for debugging
+        }
+      });
+
+      // Add subtle floating animation to dots
+      gsap.utils.toArray('.cta-dot').forEach((dot: any, index: number) => {
+        gsap.to(dot, {
+          y: `+=${20 + Math.random() * 10}`,
+          x: `+=${Math.random() * 10 - 5}`,
+          duration: 2 + Math.random() * 2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          delay: index * 0.1,
+        });
+      });
     },
     { scope: sectionRef }
   );
@@ -95,9 +117,14 @@ export function ContactCTA() {
   return (
     <section
       ref={sectionRef}
-      className={cn('relative', digilibTheme.spacing.section)}
-      style={{ backgroundColor: digilibTheme.backgrounds.dark }}
+      className="relative min-h-screen py-24 md:py-32 lg:py-40"
+      style={{ backgroundColor: fundaidTheme.backgrounds.page }}
     >
+      {/* FloatingParticles for additional ambient motion */}
+      <div className="absolute inset-0 pointer-events-none">
+        <FloatingParticles count={15} color="teal" scrollInteractive />
+      </div>
+
       {/* Animated background dots */}
       <div className="absolute inset-0 overflow-hidden">
         {ctaDots.map((dot, i) => (
@@ -117,21 +144,21 @@ export function ContactCTA() {
       </div>
 
       {/* Content */}
-      <div className={cn('relative z-10', digilibTheme.spacing.container)}>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         <div className="cta-content text-center max-w-4xl mx-auto">
           {/* Headline */}
           <h2
-            className={cn(digilibTheme.typography.display, 'mb-8')}
-            style={{ color: digilibTheme.text.darkBg }}
+            className={cn(fundaidTheme.typography.h2, 'mb-8')}
+            style={{ color: fundaidTheme.text.main }}
           >
             Ready to Win Your Next Grant?
           </h2>
 
           {/* Subheadline */}
           <p
-            className={cn(digilibTheme.typography.h3, 'mb-12')}
+            className={cn(fundaidTheme.typography.bodyLarge, 'mb-12')}
             style={{
-              color: digilibTheme.text.muted,
+              color: fundaidTheme.text.muted,
               maxWidth: '70ch',
               margin: '0 auto 3rem',
             }}
@@ -145,9 +172,9 @@ export function ContactCTA() {
             {/* Primary CTA */}
             <Link
               href="/auth/sign-up"
-              className="group relative px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              className="group relative px-8 py-4 rounded-full font-bold text-lg fundaid-lift shadow-fundaid-md"
               style={{
-                backgroundColor: digilibTheme.stages.generate,
+                backgroundColor: fundaidTheme.accents.teal,
                 color: '#ffffff',
               }}
             >
@@ -160,10 +187,10 @@ export function ContactCTA() {
             {/* Secondary CTA */}
             <Link
               href="/pricing"
-              className="px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 border-2"
+              className="px-8 py-4 rounded-full font-bold text-lg fundaid-interactive border-2"
               style={{
-                borderColor: digilibTheme.text.darkBg,
-                color: digilibTheme.text.darkBg,
+                borderColor: fundaidTheme.accents.teal,
+                color: fundaidTheme.text.main,
                 backgroundColor: 'transparent',
               }}
             >
@@ -172,7 +199,7 @@ export function ContactCTA() {
           </div>
 
           {/* Trust Signal */}
-          <div className="mt-12 flex items-center justify-center gap-8 text-sm" style={{ color: digilibTheme.text.muted }}>
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm" style={{ color: fundaidTheme.text.muted }}>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

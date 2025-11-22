@@ -24,6 +24,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import dynamic from 'next/dynamic';
+import FundAidTimelineBackground from '@/components/FundAidTimelineBackground';
+import { ConnectingLine } from '@/components/ui/decorative-elements';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +86,7 @@ export default function ProcessTimeline() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const [currentStage, setCurrentStage] = useState(1);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // GSAP ScrollTrigger animations
   useGSAP(() => {
@@ -105,6 +108,7 @@ export default function ProcessTimeline() {
       // markers: true, // Enable for development debugging
       onUpdate: (self) => {
         const progress = self.progress;
+        setScrollProgress(progress);
 
         // Update current stage based on scroll progress
         // 0-25% = Stage 1, 25-50% = Stage 2, 50-75% = Stage 3, 75-100% = Stage 4
@@ -302,10 +306,18 @@ export default function ProcessTimeline() {
     <section
       ref={sectionRef}
       data-timeline-section
-      className="relative bg-[#0C051A] min-h-[400vh]"
+      className="relative bg-[#0C051A] min-h-[400vh] overflow-hidden"
     >
+      {/* FundAid Timeline Background - technical blueprint visualization */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <FundAidTimelineBackground
+          stage={currentStage as 1 | 2 | 3 | 4}
+          scrollProgress={scrollProgress}
+        />
+      </div>
+
       {/* Sticky container that pins during scroll */}
-      <div className="sticky top-0 h-screen">
+      <div className="sticky top-0 h-screen relative z-10">
         {/* Three-column grid: 20% timeline, 35% content, 45% canvas */}
         <div className="h-full grid grid-cols-1 lg:grid-cols-[20%_35%_45%] gap-6 lg:gap-8 px-4 lg:px-8 max-w-[1600px] mx-auto">
 
@@ -407,6 +419,22 @@ export default function ProcessTimeline() {
 
           {/* Column 2: Content Layer (35% - NEW) */}
           <div className="relative hidden lg:flex flex-col justify-center py-16 lg:py-0">
+            {/* Connecting line from active timeline marker to content */}
+            {currentStage && (
+              <ConnectingLine
+                x1="0%"
+                y1="50%"
+                x2="100%"
+                y2="50%"
+                className="absolute left-[-100%] w-[200%]"
+                gradient={true}
+                animated={true}
+                color="#2FB49E"
+                strokeWidth={1}
+                strokeDasharray="4,4"
+              />
+            )}
+
             {/* Content cards - one per stage */}
             <div className="relative space-y-32">
               {stageContent.map((content) => (

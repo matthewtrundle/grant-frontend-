@@ -11,10 +11,11 @@
 
 import { useRef } from 'react';
 import { cn } from '@/lib/utils';
-import { digilibTheme } from '@/lib/digilab-theme';
+import { fundaidTheme } from '@/lib/digilab-theme';
 import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { DotGridPattern, CornerBrackets, ConnectingLine, TechLines } from '@/components/ui/decorative-elements';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -64,24 +65,60 @@ export function SuccessStories() {
       const section = sectionRef.current;
       if (!section) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top center',
-          end: 'bottom center',
-          scrub: 1,
-        },
-      });
+      // Set initial states for progressive reveal
+      gsap.set('.success-header', { opacity: 0, y: 40 });
+      gsap.set('.success-card', { opacity: 0, y: 40 });
+      gsap.set('.summary-stat', { opacity: 0, y: 30 });
 
-      // Stagger in success cards
-      tl.fromTo(
-        '.success-card',
-        { opacity: 0, y: 60 },
+      // Progressive reveal: header first with smooth entrance
+      gsap.fromTo('.success-header',
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.2,
-          duration: 0.6,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 65%',
+            toggleActions: 'play none none none',
+            // markers: true, // Uncomment for debugging
+          }
+        }
+      );
+
+      // Then stagger in success cards with smooth progression
+      gsap.fromTo('.success-card',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          stagger: 0.15, // Progressive reveal
+          scrollTrigger: {
+            trigger: '.success-grid',
+            start: 'top 65%',
+            toggleActions: 'play none none none',
+            // markers: true, // Uncomment for debugging
+          }
+        }
+      );
+
+      // Summary stats reveal with slight delay
+      gsap.fromTo('.summary-stat',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: '.summary-stats',
+            start: 'top 70%',
+            toggleActions: 'play none none none',
+          }
         }
       );
     },
@@ -91,22 +128,40 @@ export function SuccessStories() {
   return (
     <section
       ref={sectionRef}
-      className={cn(digilibTheme.spacing.section)}
-      style={{ backgroundColor: digilibTheme.backgrounds.light }}
+      className="relative min-h-screen py-24 md:py-32 lg:py-40 overflow-hidden"
+      style={{ backgroundColor: fundaidTheme.backgrounds.page }}
     >
-      <div className={cn(digilibTheme.spacing.container)}>
+      {/* Background dot grid for depth */}
+      <DotGridPattern
+        color={fundaidTheme.text.muted}
+        dotSize={1.5}
+        spacing={50}
+        opacity={0.1}
+      />
+
+      {/* Tech lines for visual interest */}
+      <TechLines
+        className="top-20 left-0 w-full"
+        orientation="horizontal"
+        count={3}
+        spacing={60}
+        color={fundaidTheme.accents.teal}
+        opacity={0.08}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="success-header text-center mb-16">
           <h2
-            className={cn(digilibTheme.typography.h1, 'mb-6')}
-            style={{ color: digilibTheme.text.lightBg }}
+            className={cn(fundaidTheme.typography.h1, 'mb-6')}
+            style={{ color: fundaidTheme.text.main }}
           >
             Real Results
           </h2>
           <p
-            className={cn(digilibTheme.typography.body, 'mx-auto')}
+            className={cn(fundaidTheme.typography.body, 'mx-auto')}
             style={{
-              color: digilibTheme.text.muted,
+              color: fundaidTheme.text.muted,
               maxWidth: '60ch',
             }}
           >
@@ -116,53 +171,60 @@ export function SuccessStories() {
         </div>
 
         {/* Success Stories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="success-grid grid grid-cols-1 md:grid-cols-3 gap-8">
           {successStories.map((story) => (
             <div
               key={story.id}
-              className="success-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="success-card relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
+              {/* Corner brackets for each card */}
+              <CornerBrackets
+                color={fundaidTheme.accents.teal}
+                size={20}
+                strokeWidth={1.5}
+                opacity={0.3}
+              />
               {/* Amount Badge */}
               <div
                 className="inline-flex items-center px-4 py-2 rounded-full mb-6 font-bold text-white"
-                style={{ backgroundColor: digilibTheme.stages.generate }}
+                style={{ backgroundColor: fundaidTheme.accents.teal }}
               >
                 {story.amount}
               </div>
 
               {/* Grant Type */}
-              <div className="text-sm font-medium mb-4" style={{ color: digilibTheme.stages.discover }}>
+              <div className="text-sm font-medium mb-4" style={{ color: fundaidTheme.accents.lavender }}>
                 {story.grant}
               </div>
 
               {/* Testimonial */}
               <blockquote
-                className={cn(digilibTheme.typography.body, 'mb-6 italic')}
-                style={{ color: digilibTheme.text.lightBg }}
+                className={cn(fundaidTheme.typography.body, 'mb-6 italic')}
+                style={{ color: fundaidTheme.text.main }}
               >
                 "{story.testimonial}"
               </blockquote>
 
               {/* Author */}
               <div className="mb-6">
-                <div className="font-bold" style={{ color: digilibTheme.text.lightBg }}>
+                <div className="font-bold" style={{ color: fundaidTheme.text.main }}>
                   {story.author}
                 </div>
-                <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+                <div className="text-sm" style={{ color: fundaidTheme.text.muted }}>
                   {story.role}, {story.company}
                 </div>
               </div>
 
               {/* Metric */}
-              <div className="border-t border-slate-200 pt-6">
+              <div className="border-t pt-6" style={{ borderColor: fundaidTheme.text.muted, borderOpacity: 0.2 }}>
                 <div className="flex items-baseline gap-2">
                   <div
                     className="text-3xl font-bold"
-                    style={{ color: digilibTheme.stages.analyze }}
+                    style={{ color: fundaidTheme.accents.coral }}
                   >
                     {story.metric}
                   </div>
-                  <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+                  <div className="text-sm" style={{ color: fundaidTheme.text.muted, opacity: 0.6 }}>
                     {story.metricLabel}
                   </div>
                 </div>
@@ -172,37 +234,37 @@ export function SuccessStories() {
         </div>
 
         {/* Summary Stats */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
+        <div className="summary-stats mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="summary-stat">
             <div
               className="text-5xl font-bold mb-2"
-              style={{ color: digilibTheme.stages.profile }}
+              style={{ color: fundaidTheme.accents.teal }}
             >
               $4M+
             </div>
-            <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+            <div className="text-sm" style={{ color: fundaidTheme.text.muted, opacity: 0.6 }}>
               Total Funding Won
             </div>
           </div>
-          <div>
+          <div className="summary-stat">
             <div
               className="text-5xl font-bold mb-2"
-              style={{ color: digilibTheme.stages.discover }}
+              style={{ color: fundaidTheme.accents.lavender }}
             >
               42%
             </div>
-            <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+            <div className="text-sm" style={{ color: fundaidTheme.text.muted, opacity: 0.6 }}>
               Success Rate
             </div>
           </div>
-          <div>
+          <div className="summary-stat">
             <div
               className="text-5xl font-bold mb-2"
-              style={{ color: digilibTheme.stages.generate }}
+              style={{ color: fundaidTheme.accents.teal }}
             >
               11 days
             </div>
-            <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+            <div className="text-sm" style={{ color: fundaidTheme.text.muted, opacity: 0.6 }}>
               Average Time to Submit
             </div>
           </div>

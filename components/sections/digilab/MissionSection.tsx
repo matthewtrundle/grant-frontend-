@@ -1,120 +1,68 @@
 /**
- * MissionSection - The Grant Problem → Solution
+ * MissionSection - Why FundAid Exists
  *
- * Features:
- * - Pinned text over animated grant visualization
- * - Dots representing grants (red = failed, green = funded)
- * - Transition from problem to solution
- * - Parallax background movement
+ * Design Philosophy:
+ * - Calm, data-driven, serious grant research tool aesthetic
+ * - 2-column layout: narrative copy (left) + data card (right)
+ * - ONE subtle animation only (fade-in on scroll-in-view)
+ * - No particle chaos, no bouncing, no perpetual loops
+ * - Single teal accent for highlights
+ * - Mono fonts for data at 40-60% opacity
  */
 
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { cn } from '@/lib/utils';
-import { digilibTheme } from '@/lib/digilab-theme';
+import { fundaidTheme } from '@/lib/digilab-theme';
 import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { DotGridPattern, CornerBrackets, ConnectingLine, FloatingOrb } from '@/components/ui/decorative-elements';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-interface GrantDot {
-  x: number;
-  y: number;
-  size: number;
-  status: 'failed' | 'funded';
-  delay: number;
-}
-
 export function MissionSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const dotsRef = useRef<HTMLDivElement>(null);
-
-  // Generate random grant dots
-  const grantDots = useMemo(() => {
-    const dots: GrantDot[] = [];
-    const totalDots = 100;
-    const fundedRatio = 0.2; // 20% get funded
-
-    for (let i = 0; i < totalDots; i++) {
-      dots.push({
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 4 + Math.random() * 8,
-        status: Math.random() < fundedRatio ? 'funded' : 'failed',
-        delay: Math.random() * 2,
-      });
-    }
-
-    return dots;
-  }, []);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
       if (!section) return;
 
-      // Create pinned timeline
-      const tl = gsap.timeline({
+      // Set initial states
+      gsap.set('.mission-content', { opacity: 0, y: 30 });
+      gsap.set('.data-card-progress', { scaleX: 0, transformOrigin: 'left center' });
+
+      // ONE subtle fade-in animation on scroll-in-view (1200ms)
+      gsap.to('.mission-content', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top top',
-          end: '+=150%',
-          scrub: 1,
-          pin: true,
+          start: 'top 60%',
+          toggleActions: 'play none none none',
+          // markers: true, // Uncomment for debugging
         },
       });
 
-      // Parallax dots background
-      tl.fromTo(
-        '.grant-dots',
-        { yPercent: 0 },
-        { yPercent: -20, ease: 'none' },
-        0
-      );
-
-      // Fade out problem statement
-      tl.fromTo(
-        '.problem-text',
-        { opacity: 1, y: 0 },
-        { opacity: 0, y: -50, ease: 'power2.in' },
-        0
-      );
-
-      // Animate failed grants fading
-      tl.to(
-        '.grant-dot-failed',
-        {
-          opacity: 0.1,
-          scale: 0.5,
-          stagger: { each: 0.01, from: 'random' },
-          ease: 'power2.in',
+      // Slow progress bar fill-in for data card (2.5 seconds)
+      gsap.to('.data-card-progress', {
+        scaleX: 1,
+        duration: 2.5,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.data-card',
+          start: 'top 70%',
+          toggleActions: 'play none none none',
+          // markers: true, // Uncomment for debugging
         },
-        0.3
-      );
-
-      // Animate funded grants growing
-      tl.to(
-        '.grant-dot-funded',
-        {
-          scale: 1.5,
-          opacity: 1,
-          stagger: { each: 0.02, from: 'center' },
-          ease: 'back.out(2)',
-        },
-        0.5
-      );
-
-      // Fade in solution statement
-      tl.fromTo(
-        '.solution-text',
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, ease: 'power2.out' },
-        0.6
-      );
+      });
     },
     { scope: sectionRef }
   );
@@ -122,82 +70,208 @@ export function MissionSection() {
   return (
     <section
       ref={sectionRef}
-      className={cn('relative min-h-screen', 'flex items-center justify-center', 'overflow-hidden')}
-      style={{ backgroundColor: digilibTheme.backgrounds.accent }}
+      className="relative min-h-screen py-24 md:py-32 lg:py-40 overflow-hidden"
+      style={{ backgroundColor: fundaidTheme.backgrounds.page }}
     >
-      {/* Subtle gradient overlay bridging hero to timeline */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-amber-500/5 pointer-events-none z-0" />
+      {/* Background dot grid pattern for subtle depth */}
+      <DotGridPattern
+        color={fundaidTheme.text.muted}
+        dotSize={1}
+        spacing={30}
+        opacity={0.15}
+      />
 
-      {/* Animated Grant Dots Background */}
-      <div
-        ref={dotsRef}
-        className="grant-dots absolute inset-0 z-0"
-      >
-        {grantDots.map((dot, i) => (
-          <div
-            key={i}
-            className={cn(
-              'grant-dot absolute rounded-full',
-              dot.status === 'failed' ? 'grant-dot-failed' : 'grant-dot-funded'
-            )}
-            style={{
-              left: `${dot.x}%`,
-              top: `${dot.y}%`,
-              width: `${dot.size}px`,
-              height: `${dot.size}px`,
-              backgroundColor: dot.status === 'failed' ? '#EF4444' : '#F59E0B',  // Changed funded to amber
-              opacity: dot.status === 'failed' ? 0.4 : 0.6,
-            }}
-          />
-        ))}
+      {/* Floating particles for subtle motion */}
+      <div className="absolute inset-0 pointer-events-none">
+        <FloatingParticles count={20} color="teal" scrollInteractive />
       </div>
 
-      {/* Content Container */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Problem Statement */}
-        <div className="problem-text">
-          <h2
-            className={cn(digilibTheme.typography.h1, 'mb-6')}
-            style={{ color: digilibTheme.text.lightBg }}
-          >
-            The Grant Problem
-          </h2>
-          <p
-            className={cn(
-              digilibTheme.typography.body,
-              digilibTheme.spacing.textBlock,
-              'mx-auto text-2xl md:text-3xl font-medium leading-relaxed'
-            )}
-            style={{ color: digilibTheme.text.muted }}
-          >
-            Researchers spend <span className="text-red-600 font-bold">40% of their time</span> on
-            grant applications.
-            <br />
-            Only <span className="text-red-600 font-bold">20% get funded</span>.
-          </p>
-        </div>
+      {/* Floating orbs for filling deadspace */}
+      <FloatingOrb
+        className="top-20 left-[10%]"
+        size={200}
+        color={fundaidTheme.accents.teal}
+        opacity={0.05}
+        blur={40}
+      />
+      <FloatingOrb
+        className="bottom-20 right-[15%]"
+        size={150}
+        color={fundaidTheme.accents.teal}
+        opacity={0.03}
+        blur={30}
+      />
 
-        {/* Solution Statement (Initially hidden) */}
-        <div className="solution-text opacity-0">
-          <h2
-            className={cn(digilibTheme.typography.h1, 'mb-6')}
-            style={{ color: digilibTheme.text.lightBg }}
-          >
-            We're Changing That
-          </h2>
-          <p
-            className={cn(
-              digilibTheme.typography.body,
-              digilibTheme.spacing.textBlock,
-              'mx-auto text-2xl md:text-3xl font-medium leading-relaxed'
-            )}
-            style={{ color: digilibTheme.text.muted }}
-          >
-            With <span className="text-amber-600 font-bold">AI-driven precision</span>, we help
-            you craft winning applications
-            <br />
-            and <span className="text-amber-600 font-bold">increase your success rate by 40%</span>.
-          </p>
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mission-content relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Connecting line between columns on desktop */}
+          <div className="hidden lg:block absolute left-[45%] top-1/2 w-[10%] -translate-y-1/2">
+            <ConnectingLine
+              x1="0"
+              y1="0"
+              x2="100%"
+              y2="0"
+              gradient={true}
+              animated={false}
+              color={fundaidTheme.accents.teal}
+              strokeWidth={1}
+              strokeDasharray="6,6"
+            />
+          </div>
+          {/* Left Column: Narrative Copy */}
+          <div className="max-w-[600px]">
+            {/* Top Label */}
+            <div
+              className={cn(fundaidTheme.typography.stageLabel, 'mb-6')}
+              style={{ color: fundaidTheme.text.muted }}
+            >
+              WHY FUNDAID EXISTS
+            </div>
+
+            {/* Main Heading */}
+            <h2
+              className={cn(
+                'text-4xl md:text-5xl font-bold leading-tight mb-8'
+              )}
+              style={{ color: fundaidTheme.text.main }}
+            >
+              Most teams drown in grant PDFs.
+              <br />
+              Our agents read them for you.
+            </h2>
+
+            {/* Body Paragraphs */}
+            <div className="space-y-6">
+              <p
+                className={cn(fundaidTheme.typography.bodyLarge)}
+                style={{ color: fundaidTheme.text.muted }}
+              >
+                Every year, thousands of grants go unclaimed because researchers can't keep up
+                with the noise. They spend 40% of their time writing applications, only to
+                discover they're not eligible—or worse, miss the deadline entirely.
+              </p>
+
+              <p
+                className={cn(fundaidTheme.typography.bodyLarge)}
+                style={{ color: fundaidTheme.text.muted }}
+              >
+                FundAid doesn't just search grants. We read them. We extract every eligibility
+                criterion, every budget rule, every deadline nuance. Then we map your technology
+                profile against thousands of opportunities to find the ones you can actually win.
+              </p>
+
+              <p
+                className={cn(fundaidTheme.typography.bodyLarge)}
+                style={{ color: fundaidTheme.text.muted }}
+              >
+                We're not a marketplace. We're a research engine that turns messy databases
+                into a readable story—your story—backed by data, not hype.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: Single Data Card */}
+          <div className="lg:sticky lg:top-24">
+            <div
+              className="data-card relative bg-white rounded-2xl p-8 border"
+              style={{
+                borderColor: fundaidTheme.text.muted,
+                opacity: 0.95,
+              }}
+            >
+              {/* Corner brackets for the card */}
+              <CornerBrackets
+                color={fundaidTheme.accents.teal}
+                size={24}
+                strokeWidth={2}
+                opacity={0.4}
+              />
+              {/* Progress bar at top (optional visual interest) */}
+              <div
+                className="absolute top-0 left-0 right-0 h-1 overflow-hidden rounded-t-2xl"
+                style={{ backgroundColor: fundaidTheme.backgrounds.canvas }}
+              >
+                <div
+                  className="data-card-progress h-full origin-left"
+                  style={{
+                    backgroundColor: fundaidTheme.accents.teal,
+                    opacity: 0.6,
+                  }}
+                />
+              </div>
+
+              {/* Card Title */}
+              <div
+                className={cn(fundaidTheme.typography.stageLabel, 'mb-8 mt-2')}
+                style={{ color: fundaidTheme.text.muted, opacity: 0.5 }}
+              >
+                REAL-TIME GRANT INTELLIGENCE
+              </div>
+
+              {/* Data Metrics - Mono fonts, 40-60% opacity */}
+              <div className="space-y-6">
+                {/* Metric 1: Grants Scanned */}
+                <div>
+                  <div
+                    className={cn(fundaidTheme.typography.metric, 'mb-1')}
+                    style={{ color: fundaidTheme.text.muted, opacity: 0.5 }}
+                  >
+                    GRANTS SCANNED
+                  </div>
+                  <div
+                    className="text-5xl font-black leading-none"
+                    style={{ color: fundaidTheme.text.main }}
+                  >
+                    2,438
+                  </div>
+                </div>
+
+                {/* Metric 2: Good Matches */}
+                <div>
+                  <div
+                    className={cn(fundaidTheme.typography.metric, 'mb-1')}
+                    style={{ color: fundaidTheme.text.muted, opacity: 0.5 }}
+                  >
+                    GOOD MATCHES
+                  </div>
+                  <div
+                    className="text-5xl font-black leading-none"
+                    style={{ color: fundaidTheme.accents.teal }}
+                  >
+                    94
+                  </div>
+                </div>
+
+                {/* Metric 3: High-Priority */}
+                <div>
+                  <div
+                    className={cn(fundaidTheme.typography.metric, 'mb-1')}
+                    style={{ color: fundaidTheme.text.muted, opacity: 0.5 }}
+                  >
+                    HIGH-PRIORITY OPPORTUNITIES
+                  </div>
+                  <div
+                    className="text-5xl font-black leading-none"
+                    style={{ color: fundaidTheme.accents.teal }}
+                  >
+                    12
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom note */}
+              <div
+                className={cn('mt-8 pt-6 border-t', fundaidTheme.typography.metric)}
+                style={{
+                  borderColor: fundaidTheme.text.muted,
+                  color: fundaidTheme.text.muted,
+                  opacity: 0.4,
+                }}
+              >
+                Updated every 24 hours from NIH, NSF, DOE, USDA, and 47 other federal sources
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

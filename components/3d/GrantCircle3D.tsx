@@ -58,12 +58,10 @@ export function GrantCircle3D() {
       {/* Timeline ring */}
       <mesh ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
         <ringGeometry args={[3.8, 4, 64]} />
-        <meshStandardMaterial
-          color="#64748B"
-          opacity={0.2}
+        <meshBasicMaterial
+          color="#6B6B7C"
+          opacity={0.3}
           transparent
-          metalness={0.3}
-          roughness={0.7}
         />
       </mesh>
 
@@ -73,24 +71,22 @@ export function GrantCircle3D() {
         const x = Math.cos(grant.angle) * radius;
         const y = Math.sin(grant.angle) * radius;
 
-        // Color based on match score
+        // Color based on match score - using FundAid colors
         const color = grant.matchScore > 0.8
-          ? '#10B981'  // High match - green
+          ? '#2FB49E'  // High match - teal
           : grant.matchScore > 0.7
-          ? '#F59E0B'  // Medium match - amber
-          : '#64748B'; // Lower match - gray
+          ? '#A98CEB'  // Medium match - lavender
+          : '#E4584A'; // Lower match - coral
 
         return (
           <group key={grant.id} position={[x, y, 0]}>
             {/* Grant node sphere */}
             <mesh>
               <sphereGeometry args={[0.15 + grant.matchScore * 0.1, 32, 32]} />
-              <meshStandardMaterial
+              <meshBasicMaterial
                 color={color}
-                emissive={color}
-                emissiveIntensity={0.4}
-                metalness={0.6}
-                roughness={0.2}
+                transparent
+                opacity={0.85}
               />
             </mesh>
 

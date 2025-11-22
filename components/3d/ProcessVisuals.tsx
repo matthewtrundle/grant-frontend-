@@ -12,7 +12,6 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { getStageColor } from '@/lib/digilab-theme';
 
 // Stage 1: Clustering Dots - Tech Categorization
 export function Stage1Clustering() {

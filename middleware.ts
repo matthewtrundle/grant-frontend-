@@ -22,6 +22,7 @@ const isPublicRoute = createRouteMatcher([
   "/test-timeline(.*)",
   "/process-timeline-test(.*)",
   "/showcase-timeline(.*)",
+  "/test-3d(.*)",
   "/api/webhooks/stripe(.*)",
 ]);
 

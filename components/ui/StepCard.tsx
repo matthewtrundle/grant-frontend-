@@ -11,7 +11,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { digilibTheme, getStageColor } from '@/lib/digilab-theme';
+import { fundaidTheme } from '@/lib/digilab-theme';
 
 interface StepCardProps {
   stepNumber: 1 | 2 | 3 | 4;
@@ -22,7 +22,8 @@ interface StepCardProps {
 }
 
 export function StepCard({ stepNumber, title, description, metrics, isActive }: StepCardProps) {
-  const stageColor = getStageColor(stepNumber);
+  // Use single teal accent for all stages (FundAid Light Theme)
+  const stageColor = fundaidTheme.accents.teal;
 
   return (
     <div
@@ -52,11 +53,11 @@ export function StepCard({ stepNumber, title, description, metrics, isActive }: 
       {/* Title */}
       <h3
         className={cn(
-          digilibTheme.typography.h3,
+          fundaidTheme.typography.h3,
           'mb-3 transition-colors duration-300'
         )}
         style={{
-          color: isActive ? digilibTheme.text.lightBg : digilibTheme.text.muted,
+          color: isActive ? fundaidTheme.text.main : fundaidTheme.text.muted,
         }}
       >
         {title}
@@ -65,11 +66,11 @@ export function StepCard({ stepNumber, title, description, metrics, isActive }: 
       {/* Description */}
       <p
         className={cn(
-          digilibTheme.typography.body,
+          fundaidTheme.typography.body,
           'mb-6 transition-opacity duration-300'
         )}
         style={{
-          color: digilibTheme.text.muted,
+          color: fundaidTheme.text.muted,
           opacity: isActive ? 1 : 0.7,
         }}
       >
@@ -90,7 +91,7 @@ export function StepCard({ stepNumber, title, description, metrics, isActive }: 
             >
               {metric.value}
             </div>
-            <div className="text-sm" style={{ color: digilibTheme.text.muted }}>
+            <div className="text-sm" style={{ color: fundaidTheme.text.muted }}>
               {metric.label}
             </div>
           </div>

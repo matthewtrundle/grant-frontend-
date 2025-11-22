@@ -1,18 +1,17 @@
 /**
  * ProcessTimelineCanvas - Client-only R3F canvas wrapper
- * This component is NEVER server-rendered, preventing SSR errors
+ *
+ * Unified particle system approach:
+ * - Single UnifiedParticleSystem component morphs between 4 formations
+ * - No more separate Stage1/2/3/4 components
+ * - Digilab aesthetic: flat materials, subtle motion, max 50 particles
  */
 
 'use client';
 
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import {
-  Stage1Clustering,
-  Stage2GrantGrid,
-  Stage3BudgetBars,
-  Stage4MultiAgent
-} from '@/components/3d/ProcessVisuals';
+import { UnifiedParticleSystem } from '@/components/3d/UnifiedParticleSystem';
 
 interface ProcessTimelineCanvasProps {
   activeStep: 1 | 2 | 3 | 4;
@@ -20,20 +19,30 @@ interface ProcessTimelineCanvasProps {
 
 export default function ProcessTimelineCanvas({ activeStep }: ProcessTimelineCanvasProps) {
   return (
-    <Canvas>
+    <Canvas
+      shadows={false}
+      gl={{
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      }}
+      dpr={[1, 2]}
+      performance={{ min: 0.5 }}
+    >
       <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
-      <OrbitControls enableZoom={false} enablePan={false} />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        autoRotate={false}
+        enableDamping
+        dampingFactor={0.05}
+      />
 
-      {/* Lighting */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <pointLight position={[-5, -5, -5]} intensity={0.3} />
+      {/* Minimal lighting for flat Digilab aesthetic */}
+      <ambientLight intensity={0.8} />
 
-      {/* Stage-specific visualization */}
-      {activeStep === 1 && <Stage1Clustering />}
-      {activeStep === 2 && <Stage2GrantGrid />}
-      {activeStep === 3 && <Stage3BudgetBars />}
-      {activeStep === 4 && <Stage4MultiAgent />}
+      {/* Single unified particle system that morphs between formations */}
+      <UnifiedParticleSystem activeStep={activeStep} />
     </Canvas>
   );
 }
