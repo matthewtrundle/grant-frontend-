@@ -2,45 +2,14 @@
  * Digilab Test Page - Complete modern scroll story
  */
 
-import dynamic from 'next/dynamic';
 import { ContactCTA } from '@/components/sections/digilab/ContactCTA';
 import { AnimationTestPanel } from '@/components/debug/AnimationTestPanel';
 import { SuccessPipeline } from '@/components/sections/success/SuccessPipeline';
 import { OrbitalAgentsSection } from '@/components/sections/home/OrbitalAgentsSection';
 import { GrantMatchingShowcase } from '@/components/sections/home/GrantMatchingShowcase';
-
-// Dynamic imports for client-side components
-const DigilabHero = dynamic(
-  () => import('@/components/sections/digilab/DigilabHero').then(mod => ({ default: mod.DigilabHero })),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-800 to-orange-600">
-        <div className="animate-pulse text-white text-lg">Loading...</div>
-      </div>
-    )
-  }
-);
-
-const ProcessTimelineFixed = dynamic(
-  () => import('@/components/sections/digilab/ProcessTimelineFixed'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="animate-pulse text-gray-800 text-lg">Loading...</div>
-      </div>
-    )
-  }
-);
-
-const FlowingWaveBackground = dynamic(
-  () => import('@/components/FlowingWaveBackground'),
-  {
-    ssr: false,
-    loading: () => null
-  }
-);
+import { DigilabHero } from '@/components/sections/digilab/DigilabHero';
+import ProcessTimelineFixed from '@/components/sections/digilab/ProcessTimelineFixed';
+import FlowingWaveBackground from '@/components/FlowingWaveBackground';
 
 export default function DigilabTestPage() {
   return (
