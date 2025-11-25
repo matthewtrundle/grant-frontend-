@@ -115,7 +115,7 @@ export function DigilabHero() {
         count={30}
         color="cyan"
         scrollInteractive
-        className="opacity-15"
+        className="opacity-15 z-0"
       />
 
       {/* Additional subtle purple particles */}
@@ -123,11 +123,11 @@ export function DigilabHero() {
         count={20}
         color="purple"
         scrollInteractive
-        className="opacity-10"
+        className="opacity-10 z-0"
       />
 
       {/* Space-tech blueprint grid with animated spacecraft particles */}
-      <SpaceTechGrid />
+      <SpaceTechGrid className="z-0" />
 
       {/* Sticky Navigation */}
       <nav
@@ -173,7 +173,7 @@ export function DigilabHero() {
       </nav>
 
       {/* Hero Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-20">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-20">
         <div className="hero-content max-w-5xl mx-auto text-center space-y-8">
           {/* FUNDAID Wordmark with metallic capsule */}
           <div
@@ -269,7 +269,7 @@ export function DigilabHero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
         <span className="text-white/60 text-sm font-light">Scroll to explore</span>
         <svg
           className="w-6 h-6 text-white/60"

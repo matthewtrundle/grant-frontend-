@@ -55,8 +55,8 @@ const stages = [
     title: 'Deep Grant Analysis',
     description: 'Parse RFPs, generate timelines, validate budgets, and ensure 100% compliance with requirements.',
     metrics: [
-      { label: 'Compliance', value: '100%' },
-      { label: 'Timeline', value: 'Auto' },
+      { label: 'Risk Factors', value: 'Auto' },
+      { label: 'Requirements', value: '20+' },
     ],
   },
   {

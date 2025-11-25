@@ -152,6 +152,50 @@
     color: var(--text-data);
   }
 
+  /* Section text color utilities for light/dark backgrounds */
+  .heading-black {
+    color: #14141F;
+  }
+
+  .heading-white {
+    color: #FFFFFF;
+  }
+
+  .body-black {
+    color: #14141F;
+    opacity: 0.85;
+  }
+
+  .body-white {
+    color: #FFFFFF;
+    opacity: 0.9;
+  }
+
+  /* Section background utilities */
+  .section-light {
+    background-color: #FFFFFF;
+  }
+
+  .section-dark {
+    background-color: #0A0F1C;
+  }
+
+  .accent-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .accent-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #14B8A6 0%, #2FB49E 100%);
+    border-radius: 2px;
+  }
+
   /* FundAid Background Utilities */
   .bg-fundaid-page {
     background-color: var(--bg-page);
