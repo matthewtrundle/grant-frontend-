@@ -116,12 +116,12 @@ export function DigilabHero() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col"
     >
-      {/* Floating Particles Background */}
+      {/* Cosmic Floating Particles Background */}
       <FloatingParticles
-        count={30}
-        color="teal"
+        count={80}
+        color="cyan"
         scrollInteractive
-        className="opacity-60"
+        className="opacity-30"
       />
 
       {/* Sticky Navigation */}
@@ -170,14 +170,20 @@ export function DigilabHero() {
       {/* Hero Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-20">
         <div className="hero-content max-w-5xl mx-auto text-center space-y-8">
-          {/* FUNDAID Wordmark with glassmorphic container */}
+          {/* FUNDAID Wordmark with metallic capsule */}
           <div
             className="relative inline-flex items-center justify-center px-16 py-8 rounded-[4rem]"
             style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(24px)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              boxShadow: '0 0 80px rgba(138, 180, 248, 0.4), 0 0 160px rgba(138, 180, 248, 0.2), 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+              background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(100, 200, 255, 0.15)',
+              boxShadow: `
+                0 0 60px rgba(34, 211, 238, 0.3),
+                0 0 100px rgba(99, 102, 241, 0.2),
+                0 0 140px rgba(167, 139, 250, 0.15),
+                inset 0 1px 0 rgba(100, 200, 255, 0.2),
+                inset 0 -1px 0 rgba(99, 102, 241, 0.1)
+              `,
             }}
           >
             <h1
@@ -206,8 +212,16 @@ export function DigilabHero() {
             </h1>
           </div>
 
-          {/* Tagline */}
-          <p className="hero-text text-white text-xl md:text-2xl font-light max-w-2xl mx-auto">
+          {/* Tagline with cyan → lavender gradient */}
+          <p
+            className="hero-text text-xl md:text-2xl font-light max-w-2xl mx-auto"
+            style={{
+              background: 'linear-gradient(90deg, #22d3ee 0%, #a78bfa 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             Stop Writing Grants. Start Winning Them.
           </p>
 

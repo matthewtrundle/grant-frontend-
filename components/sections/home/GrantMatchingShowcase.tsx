@@ -138,7 +138,7 @@ export function GrantMatchingShowcase({
 
             {/* Description */}
             <p className="text-sm md:text-base lg:text-lg text-slate-200/80 leading-relaxed max-w-xl">
-              Our reactor-style AI engine coordinates six specialized agents—Profile, Discovery, Analysis, Writing, Quality, and Optimization. Each agent processes grant data in parallel, feeding intelligence into the core which synthesizes findings and generates the real-time matching cards you see <span className="hidden lg:inline">on the right</span><span className="lg:hidden">below</span>.
+              Our AI Grant Intelligence Network coordinates six specialized agents—Profile, Discovery, Analysis, Writing, Quality, and Optimization. Each agent processes grant data in parallel, feeding intelligence into the network which synthesizes findings and generates the real-time matching cards you see <span className="hidden lg:inline">on the right</span><span className="lg:hidden">below</span>.
             </p>
 
             {/* Technical capabilities - enhanced with metrics */}
