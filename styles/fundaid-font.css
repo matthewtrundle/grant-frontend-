@@ -26,22 +26,19 @@
 .fundaid-wordmark-gradient {
   font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 900;
-  letter-spacing: 0.04em; /* Tightened by 4% */
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #ffffff; /* Pure white */
+  color: #ffffff;
 
-  /* Subtle 1-2px ambient glow - premium, not neon */
+  /* Improved rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  /* Subtle glow for depth */
   text-shadow:
-    0 0 2px rgba(255, 255, 255, 0.3),
-    0 1px 3px rgba(0, 0, 0, 0.05);
-
-  /* Very subtle internal gradient (2% intensity) */
-  background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.02) 0%,
-    rgba(227, 242, 253, 0.02) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
+    0 0 3px rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive - Mobile optimization */

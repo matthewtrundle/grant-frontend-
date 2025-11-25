@@ -172,22 +172,26 @@ export function DigilabHero() {
         <div className="hero-content max-w-5xl mx-auto text-center space-y-8">
           {/* FUNDAID Wordmark with glassmorphic container */}
           <div
-            className="relative inline-flex items-center justify-center px-12 py-6 rounded-[3rem]"
+            className="relative inline-flex items-center justify-center px-16 py-8 rounded-[4rem]"
             style={{
-              background: 'rgba(255, 255, 255, 0.08)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(24px)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
             }}
           >
             <h1
               className="fundaid-wordmark-gradient"
               style={{
-                fontSize: 'clamp(3rem, 10vw, 9rem)',
+                fontSize: 'clamp(2.5rem, 8vw, 7rem)',
                 lineHeight: 1.1,
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '0.04em'
+                gap: '0.08em',
+                fontWeight: 900,
+                letterSpacing: '0.02em',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
               }}
             >
               {'FUNDAID'.split('').map((letter, index) => (
