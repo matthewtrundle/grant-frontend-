@@ -48,15 +48,14 @@ export default function DigilabTestPage() {
       className="relative overflow-hidden"
       style={{
         background: `linear-gradient(180deg,
-          #1a1a3e 0%,
-          #2d2d5f 15%,
-          #4a4a7a 25%,
-          #ff8e6e 40%,
-          #ffb4a2 50%,
-          #ffa07a 60%,
-          #2d7a7a 75%,
-          #3d9a8a 85%,
-          #4db8a8 100%
+          #3a5ba9 0%,
+          #4d6ab5 15%,
+          #6879c1 25%,
+          #e89b5d 45%,
+          #fba45d 55%,
+          #f5b872 65%,
+          #e8c88a 80%,
+          #d4d4a0 100%
         )`
       }}
     >

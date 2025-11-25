@@ -18,6 +18,7 @@ import { useGSAP } from '@/hooks/gsap/useGSAP';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
+import { FloatingParticles } from '@/components/ui/floating-particles';
 import '@/styles/fundaid-font.css';
 
 if (typeof window !== 'undefined') {
@@ -42,13 +43,35 @@ export function DigilabHero() {
       const section = sectionRef.current;
       if (!section) return;
 
-      // Fade in hero content
-      gsap.from('.hero-content', {
+      // Animate FUNDAID letters with 60ms stagger
+      const letters = document.querySelectorAll('.fundaid-letter');
+      gsap.from(letters, {
         opacity: 0,
-        y: 30,
-        duration: 1.2,
+        y: 40,
+        duration: 0.8,
         ease: 'power3.out',
-        delay: 0.3
+        stagger: 0.06, // 60ms stagger
+        delay: 0.2
+      });
+
+      // Gentle pulse glow animation (1% intensity every 4 seconds)
+      gsap.to('.fundaid-wordmark-gradient', {
+        textShadow: '0 0 3px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.05)',
+        duration: 2,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+        repeatDelay: 2
+      });
+
+      // Fade in tagline and description
+      gsap.from('.hero-text', {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.7,
+        stagger: 0.15
       });
 
       // Fade in CTAs
@@ -57,7 +80,7 @@ export function DigilabHero() {
         y: 20,
         duration: 0.8,
         ease: 'power2.out',
-        delay: 0.8,
+        delay: 1.2,
         stagger: 0.1
       });
 
@@ -93,6 +116,14 @@ export function DigilabHero() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col"
     >
+      {/* Floating Particles Background */}
+      <FloatingParticles
+        count={30}
+        color="teal"
+        scrollInteractive
+        className="opacity-60"
+      />
+
       {/* Sticky Navigation */}
       <nav
         className={cn(
@@ -139,25 +170,35 @@ export function DigilabHero() {
       {/* Hero Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-20">
         <div className="hero-content max-w-5xl mx-auto text-center space-y-8">
-          {/* FUNDAID Wordmark with custom font */}
+          {/* FUNDAID Wordmark with custom font - letter by letter for animation */}
           <h1
             className="fundaid-wordmark-gradient"
             style={{
-              fontSize: 'clamp(4rem, 12vw, 10rem)',
+              fontSize: 'clamp(3rem, 10vw, 9rem)',
               lineHeight: 1.1,
-              letterSpacing: '0.08em'
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '0.04em'
             }}
           >
-            FUNDAID
+            {'FUNDAID'.split('').map((letter, index) => (
+              <span
+                key={index}
+                className="fundaid-letter inline-block"
+                style={{ display: 'inline-block' }}
+              >
+                {letter}
+              </span>
+            ))}
           </h1>
 
           {/* Tagline */}
-          <p className="text-white text-xl md:text-2xl font-light max-w-2xl mx-auto">
+          <p className="hero-text text-white text-xl md:text-2xl font-light max-w-2xl mx-auto">
             Stop Writing Grants. Start Winning Them.
           </p>
 
           {/* Description */}
-          <p className="text-white/80 text-base md:text-lg font-light max-w-xl mx-auto">
+          <p className="hero-text text-white/80 text-base md:text-lg font-light max-w-xl mx-auto">
             AI-powered grant automation that learns from winning proposals to help you secure funding faster.
           </p>
 

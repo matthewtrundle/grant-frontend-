@@ -1,0 +1,52 @@
+/**
+ * FundAid Display Font
+ * Custom display typeface for the FUNDAID wordmark
+ *
+ * Usage: font-family: 'FundAid Display', sans-serif;
+ */
+
+@font-face {
+  font-family: 'FundAid Display';
+  src: url('/fonts/FundAid-Display.woff2') format('woff2'),
+       url('/fonts/FundAid-Display.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility class for FUNDAID wordmark */
+.fundaid-wordmark {
+  font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Clean gradient treatment - Pure white with subtle effects */
+.fundaid-wordmark-gradient {
+  font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.04em; /* Tightened by 4% */
+  text-transform: uppercase;
+  color: #ffffff; /* Pure white */
+
+  /* Subtle 1-2px ambient glow - premium, not neon */
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+
+  /* Very subtle internal gradient (2% intensity) */
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(227, 242, 253, 0.02) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Responsive - Mobile optimization */
+@media (max-width: 768px) {
+  .fundaid-wordmark-gradient {
+    letter-spacing: 0.06em; /* Slightly wider for mobile readability */
+  }
+}
