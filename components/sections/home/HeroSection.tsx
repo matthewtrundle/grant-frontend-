@@ -155,9 +155,15 @@ export default function HeroSection() {
       {/* Minimalist Navigation */}
       <nav className="hero-nav absolute top-0 left-0 right-0 z-50 px-12 py-8">
         <div className="flex items-center justify-between">
-          {/* Logo - Using Orbitron font */}
-          <div className="text-2xl font-bold tracking-widest text-white" style={{ fontFamily: 'Orbitron, sans-serif' }}>
-            FUNDAID
+          {/* Logo - Transparent PNG */}
+          <div className="relative h-12 w-48">
+            <Image
+              src="/FUND AID Text Transparent PNG.png"
+              alt="FUNDAID"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </div>
 
           {/* Menu Items */}

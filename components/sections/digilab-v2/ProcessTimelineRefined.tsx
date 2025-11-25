@@ -108,20 +108,35 @@ export function ProcessTimelineRefined() {
   return (
     <section
       ref={sectionRef}
-      className={cn('relative min-h-[400vh]')}
-      style={{ backgroundColor: digilibTheme.backgrounds.light }}
+      className={cn('relative min-h-[400vh] bg-gradient-to-b from-[#0A0E27] via-[#151B3D] to-[#0A0E27]')}
     >
+      {/* Cosmic starfield background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* HUD particles */}
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[2px] h-[2px] rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              backgroundColor: i % 3 === 0 ? '#30E3B7' : i % 3 === 1 ? '#A26CF7' : '#FFFFFF',
+              opacity: Math.random() * 0.3 + 0.1,
+            }}
+          />
+        ))}
+      </div>
+
       <div className="sticky top-0 min-h-screen">
         <div className={cn('grid grid-cols-1 md:grid-cols-2 gap-12', digilibTheme.spacing.container, 'py-16')}>
           {/* Left Column: Sticky Timeline with Cards */}
           <div className="relative flex flex-col justify-center space-y-12">
             {/* Vertical connecting line */}
-            <div className="absolute left-6 top-24 bottom-24 w-[2px] bg-gray-200">
+            <div className="absolute left-6 top-24 bottom-24 w-[3px] rounded-full bg-white/5">
               <div
-                className="connecting-line w-full h-full origin-top"
+                className="connecting-line w-full h-full origin-top rounded-full bg-[#26E6C8]"
                 style={{
-                  backgroundColor: digilibTheme.accents.teal,
-                  opacity: 0.3,
+                  opacity: 0.6,
                   scaleY: 0,
                 }}
               />
@@ -140,25 +155,42 @@ export function ProcessTimelineRefined() {
             ))}
           </div>
 
-          {/* Right Column: 3D Canvas with Evolving Visuals */}
+          {/* Right Column: 3D Canvas with Glassmorphism Panel */}
           <div className="flex items-center justify-center">
-            <div className="relative h-[600px] w-full rounded-2xl overflow-hidden" style={{ backgroundColor: digilibTheme.backgrounds.accent }}>
-              <Canvas>
-                <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
-                <OrbitControls enableZoom={false} enablePan={false} />
+            <div className="relative h-[600px] w-full rounded-3xl bg-white/5 border border-white/15 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.65)] p-6 md:p-8 lg:p-10 overflow-hidden">
+              {/* Inner HUD particles inside the card */}
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-[1px] h-[1px] rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    backgroundColor: i % 2 === 0 ? '#30E3B7' : '#A26CF7',
+                    opacity: 0.15,
+                  }}
+                />
+              ))}
 
-                {/* Lighting */}
-                <ambientLight intensity={0.4} />
-                <directionalLight position={[5, 5, 5]} intensity={0.6} />
-                <pointLight position={[-5, -5, -5]} intensity={0.2} />
+              {/* Inner glass surface for the graph */}
+              <div className="relative h-full w-full rounded-2xl bg-white/5 border border-white/5 overflow-hidden">
+                <Canvas>
+                  <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
+                  <OrbitControls enableZoom={false} enablePan={false} />
 
-                {/* Evolving visual based on active step */}
-                <EvolvingVisual3D activeStep={activeStep} />
-              </Canvas>
+                  {/* Lighting */}
+                  <ambientLight intensity={0.4} />
+                  <directionalLight position={[5, 5, 5]} intensity={0.6} />
+                  <pointLight position={[-5, -5, -5]} intensity={0.2} />
 
-              {/* Stage label overlay */}
-              <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
-                <p className={cn(digilibTheme.typography.small, 'font-medium')} style={{ color: digilibTheme.text.lightBg }}>
+                  {/* Evolving visual based on active step */}
+                  <EvolvingVisual3D activeStep={activeStep} />
+                </Canvas>
+              </div>
+
+              {/* Stage label overlay - glassmorphism style */}
+              <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full shadow-lg">
+                <p className="text-sm md:text-base font-medium text-white/90">
                   Stage {activeStep}: {stages[activeStep - 1].title}
                 </p>
               </div>

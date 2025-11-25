@@ -196,10 +196,10 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99] bg-white"
+            className="fixed inset-0 z-[99] bg-slate-900/95 backdrop-blur-xl"
           >
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-slate-900/40 to-teal-900/20" />
 
             {/* Menu Content */}
             <motion.div
@@ -240,27 +240,27 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
                         <Link
                           href={item.href}
                           onClick={() => setIsOpen(false)}
-                          className="group block p-6 rounded-2xl border border-gray-200 hover:border-blue-500 hover:bg-blue-50/50 transition-all duration-300"
+                          className="group block p-6 rounded-2xl border border-slate-700/40 bg-slate-800/30 hover:border-cyan-500/50 hover:bg-slate-800/60 backdrop-blur-sm transition-all duration-300"
                         >
                           <div className="flex items-start gap-4">
                             {Icon && (
-                              <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+                              <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/20">
                                 <Icon className="w-5 h-5" />
                               </div>
                             )}
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                <h3 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
                                   {item.label}
                                 </h3>
                                 {item.badge && (
-                                  <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+                                  <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white">
                                     {item.badge}
                                   </span>
                                 )}
                               </div>
                               {item.description && (
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-slate-400">
                                   {item.description}
                                 </p>
                               )}
@@ -282,14 +282,14 @@ export function HamburgerMenu({ className }: HamburgerMenuProps) {
                   <Link
                     href="/sign-in"
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-3 rounded-lg border border-gray-300 text-center font-medium hover:bg-gray-50 transition-colors"
+                    className="px-6 py-3 rounded-lg border border-slate-600 bg-slate-800/40 text-white text-center font-medium hover:bg-slate-700/60 hover:border-slate-500 backdrop-blur-sm transition-all"
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/sign-up"
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center font-medium hover:shadow-lg transition-shadow"
+                    className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-center font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all"
                   >
                     Start Free TRL Assessment
                   </Link>

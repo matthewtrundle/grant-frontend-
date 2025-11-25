@@ -5,7 +5,7 @@
  *
  * Sections:
  * - HeroSectionDNA (pinned, teal/green theme, DNA watermark)
- * - HowItWorksDNA (4-stage hexagonal flow)
+ * - HolographicFeatures (premium sci-fi UI cards for AI features)
  * - ResultsDataDNA (circular progress, scientific metrics)
  * - TeamTrustDNA (testimonials, awards, social proof)
  *
@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { HeroSectionDNA } from '@/components/sections/home/HeroSectionDNA';
-import { HowItWorksDNA } from '@/components/sections/home/HowItWorksDNA';
+import { HolographicFeatures } from '@/components/sections/home/HolographicFeatures';
 import { ResultsDataDNA } from '@/components/sections/home/ResultsDataDNA';
 import { TeamTrustDNA } from '@/components/sections/home/TeamTrustDNA';
 
@@ -26,8 +26,8 @@ export default function Home() {
       {/* 1. Hero Section - DNA aesthetic with pinned animation */}
       <HeroSectionDNA />
 
-      {/* 2. How It Works - 4-stage hexagonal flow */}
-      <HowItWorksDNA />
+      {/* 2. Holographic Features - Premium sci-fi AI feature cards */}
+      <HolographicFeatures />
 
       {/* 3. Results & Data - Scientific metrics with circular progress */}
       <ResultsDataDNA />

@@ -47,7 +47,7 @@ export const fundaidTheme = {
     h3: 'text-3xl md:text-4xl font-bold tracking-tight leading-[1.15]',
 
     // Stage-specific typography
-    stageNumber: 'text-[110px] font-black leading-none',  // Massive stage numbers (900 weight)
+    stageNumber: 'text-[180px] font-black leading-none',  // EVEN MORE MASSIVE stage numbers (900 weight)
     stageLabel: 'text-xs uppercase tracking-[0.3em] font-medium',  // PROFILE / DISCOVERY labels
 
     // Body text - clean sans
@@ -78,6 +78,32 @@ export const fundaidTheme = {
     medium: 600,
     slow: 1200,      // Use this for most transitions
     cinematic: 2000, // Scroll-driven morphing
+  },
+
+  // Unified easing system - GSAP-compatible curves
+  easing: {
+    // Standard smooth transitions (use for most animations)
+    smooth: 'power2.out',           // Default: smooth deceleration
+    smoothIn: 'power2.in',          // Smooth acceleration
+    smoothInOut: 'power2.inOut',    // Smooth both directions
+
+    // Strong transitions (stage changes, major UI shifts)
+    strong: 'power3.out',           // Strong deceleration
+    strongIn: 'power3.in',          // Strong acceleration
+    strongInOut: 'power3.inOut',    // Strong both directions
+
+    // Elastic bounce effects (use sparingly for playful elements)
+    elastic: 'back.out(1.4)',       // Moderate bounce-back
+    elasticSoft: 'back.out(1.2)',   // Subtle bounce-back
+    elasticStrong: 'back.out(1.7)', // Strong bounce-back
+    elasticIn: 'back.in(1.4)',      // Bounce in (rare)
+    elasticInOut: 'back.inOut(1.4)', // Bounce both ways (rare)
+
+    // Linear (for continuous animations, particles, scan lines)
+    linear: 'none',                 // No easing, constant speed
+
+    // Cinematic (for scroll-driven animations)
+    cinematic: 'power1.inOut',      // Very gentle, feels natural with scroll
   },
 
   // Opacity levels for structural elements

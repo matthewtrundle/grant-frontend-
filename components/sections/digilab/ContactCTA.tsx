@@ -61,42 +61,9 @@ export function ContactCTA() {
       const section = sectionRef.current;
       if (!section) return;
 
-      // Set initial states
-      gsap.set('.cta-content', { opacity: 0, y: 30 });
-      gsap.set('.cta-dot', { scale: 0, opacity: 0 });
-
-      // Fade-in reveal for content (1200ms, power2.out)
-      gsap.to('.cta-content', {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 60%',
-          toggleActions: 'play none none none',
-          // markers: true, // Uncomment for debugging
-        }
-      });
-
-      // Subtle dots fade-in (no bounce, just appear)
-      gsap.to('.cta-dot', {
-        scale: 1,
-        opacity: 0.3, // Keep dots subtle
-        duration: 1.2,
-        ease: 'power2.out',
-        stagger: {
-          each: 0.02,
-          from: 'center',
-          grid: 'auto',
-        },
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 65%',
-          toggleActions: 'play none none none',
-          // markers: true, // Uncomment for debugging
-        }
-      });
+      // Set initial states - visible by default
+      gsap.set('.cta-content', { opacity: 1, y: 0 });
+      gsap.set('.cta-dot', { scale: 1, opacity: 0.3 });
 
       // Add subtle floating animation to dots
       gsap.utils.toArray('.cta-dot').forEach((dot: any, index: number) => {
@@ -117,9 +84,24 @@ export function ContactCTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen py-24 md:py-32 lg:py-40"
-      style={{ backgroundColor: fundaidTheme.backgrounds.page }}
+      className="relative py-24 md:py-32"
+      style={{
+        background: 'linear-gradient(to bottom, #050714 0%, #0A0F1C 50%, #050816 100%)'
+      }}
     >
+      {/* Cosmic radial glows */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 30% 50%, rgba(57, 242, 195, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(168, 140, 255, 0.08) 0%, transparent 50%)
+            `,
+          }}
+        />
+      </div>
+
       {/* FloatingParticles for additional ambient motion */}
       <div className="absolute inset-0 pointer-events-none">
         <FloatingParticles count={15} color="teal" scrollInteractive />
@@ -149,7 +131,7 @@ export function ContactCTA() {
           {/* Headline */}
           <h2
             className={cn(fundaidTheme.typography.h2, 'mb-8')}
-            style={{ color: fundaidTheme.text.main }}
+            style={{ color: '#FFFFFF' }}
           >
             Ready to Win Your Next Grant?
           </h2>
@@ -158,7 +140,7 @@ export function ContactCTA() {
           <p
             className={cn(fundaidTheme.typography.bodyLarge, 'mb-12')}
             style={{
-              color: fundaidTheme.text.muted,
+              color: 'rgba(255,255,255,0.8)',
               maxWidth: '70ch',
               margin: '0 auto 3rem',
             }}
@@ -190,7 +172,7 @@ export function ContactCTA() {
               className="px-8 py-4 rounded-full font-bold text-lg fundaid-interactive border-2"
               style={{
                 borderColor: fundaidTheme.accents.teal,
-                color: fundaidTheme.text.main,
+                color: '#FFFFFF',
                 backgroundColor: 'transparent',
               }}
             >
@@ -199,7 +181,7 @@ export function ContactCTA() {
           </div>
 
           {/* Trust Signal */}
-          <div className="mt-12 flex items-center justify-center gap-8 text-sm" style={{ color: fundaidTheme.text.muted }}>
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

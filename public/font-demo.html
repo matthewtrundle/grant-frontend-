@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FundAid Display Font Demo</title>
+  <style>
+    @font-face {
+      font-family: 'FundAid Display';
+      src: url('/fonts/FundAid-Display.woff2') format('woff2'),
+           url('/fonts/FundAid-Display.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0A2540 0%, #1E4D8B 50%, #2563EB 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'FundAid Display', sans-serif;
+      font-size: clamp(4rem, 15vw, 12rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(to right, #FFFFFF, #F6E7FF, #E4F1FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 45px rgba(255, 255, 255, 0.65));
+      position: relative;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 4rem;
+      opacity: 0.9;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #60A5FA;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .glyph-showcase {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 3rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .glyph-showcase h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #60A5FA;
+    }
+
+    .glyphs {
+      font-family: 'FundAid Display', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: 0.1em;
+      text-align: center;
+      line-height: 1.5;
+      color: white;
+    }
+
+    .size-demo {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .size-demo p {
+      font-family: 'FundAid Display', sans-serif;
+      letter-spacing: 0.08em;
+      margin: 1.5rem 0;
+      background: linear-gradient(to right, #FFFFFF, #F6E7FF, #E4F1FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .size-8rem { font-size: 8rem; }
+    .size-6rem { font-size: 6rem; }
+    .size-4rem { font-size: 4rem; }
+    .size-2rem { font-size: 2rem; }
+
+    .note {
+      text-align: center;
+      font-size: 0.875rem;
+      opacity: 0.6;
+      margin-top: 2rem;
+      font-style: italic;
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>FUNDAID</h1>
+
+    <p class="subtitle">Custom Display Typeface · Geometric Monoline Design</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Design Features</h3>
+        <p>
+          • Thick monoline weight (120 units)<br>
+          • Rounded terminals (60 unit radius)<br>
+          • Geometric construction<br>
+          • Circular counters<br>
+          • Custom cut-out details
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Technical Specs</h3>
+        <p>
+          • Font Format: OTF + WOFF2<br>
+          • Units Per Em: 1000<br>
+          • Cap Height: 700<br>
+          • Generated with: <code>fontTools</code><br>
+          • Compression: Brotli (WOFF2)
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Usage</h3>
+        <p>
+          <code>font-family: 'FundAid Display', sans-serif;</code><br><br>
+          Optimized for large display sizes. Best used for wordmarks, headlines, and hero sections with generous letter-spacing.
+        </p>
+      </div>
+    </div>
+
+    <div class="glyph-showcase">
+      <h2>Available Glyphs</h2>
+      <div class="glyphs">
+        FUNDAID
+      </div>
+    </div>
+
+    <div class="size-demo">
+      <p class="size-8rem">FUNDAID</p>
+      <p class="size-6rem">FUNDAID</p>
+      <p class="size-4rem">FUNDAID</p>
+      <p class="size-2rem">FUNDAID</p>
+    </div>
+
+    <p class="note">
+      Currently includes: F, U, N, D, A, I + space character<br>
+      To add more letters, edit <code>generate-fundaid-font.py</code> and regenerate
+    </p>
+  </div>
+</body>
+</html>

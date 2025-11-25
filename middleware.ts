@@ -23,6 +23,11 @@ const isPublicRoute = createRouteMatcher([
   "/process-timeline-test(.*)",
   "/showcase-timeline(.*)",
   "/test-3d(.*)",
+  "/ai-features-test(.*)",
+  "/agent-showcase-test(.*)",
+  "/reactor-test-metallic(.*)",
+  "/reactor-test-blueprint(.*)",
+  "/reactor-test-comparison(.*)",
   "/api/webhooks/stripe(.*)",
 ]);
 

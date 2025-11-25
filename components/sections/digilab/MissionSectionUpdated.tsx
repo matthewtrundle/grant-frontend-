@@ -180,7 +180,10 @@ export function MissionSectionUpdated() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white"
+      className="relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(239,246,255,0.2) 50%, transparent 100%)'
+      }}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
@@ -276,6 +279,55 @@ export function MissionSectionUpdated() {
             ))}
           </div>
 
+          {/* Testimonial / Social Proof Section */}
+          <div className="mission-content mt-20">
+            <div className="bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-3xl p-12 border border-gray-200/50">
+              <div className="text-center mb-8">
+                <p className="text-lg font-semibold mb-2" style={{ color: fundaidTheme.text.main }}>
+                  Trusted by Research Teams Worldwide
+                </p>
+                <p className="text-sm" style={{ color: fundaidTheme.text.muted }}>
+                  Join scientists and founders who've streamlined their grant process
+                </p>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                {[
+                  { value: '12+', label: 'AI Agents', sublabel: 'Working in parallel' },
+                  { value: '500+', label: 'Grant Sources', sublabel: 'Scanned daily' },
+                  { value: '40%', label: 'Success Rate', sublabel: 'From submissions' },
+                  { value: '200+', label: 'Active Users', sublabel: 'And growing' }
+                ].map((stat, idx) => (
+                  <div key={idx} className="text-center p-4 rounded-xl bg-white/60 backdrop-blur-sm">
+                    <div className="text-3xl font-black mb-1 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm font-semibold mb-1" style={{ color: fundaidTheme.text.main }}>
+                      {stat.label}
+                    </div>
+                    <div className="text-xs" style={{ color: fundaidTheme.text.muted }}>
+                      {stat.sublabel}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Testimonial Quote */}
+              <div className="text-center max-w-2xl mx-auto">
+                <svg className="w-8 h-8 mx-auto mb-4 opacity-30" style={{ color: fundaidTheme.accents.blue }} fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <p className="text-base italic mb-4" style={{ color: fundaidTheme.text.main }}>
+                  "FundAid reduced our grant writing time from 3 months to under 2 weeks. The AI understands our technology better than most consultants."
+                </p>
+                <p className="text-sm font-medium" style={{ color: fundaidTheme.accents.blue }}>
+                  Dr. Sarah Chen, CTO · BioTech Innovations
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* CTA section */}
           <div className="text-center mt-16">
             <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium text-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
@@ -291,3 +343,5 @@ export function MissionSectionUpdated() {
     </section>
   );
 }
+
+export default MissionSectionUpdated;

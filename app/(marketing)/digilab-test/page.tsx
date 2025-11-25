@@ -16,15 +16,13 @@ export default function DigilabTestPage() {
     <main
       className="relative overflow-hidden"
       style={{
-        background: `linear-gradient(180deg,
-          #3a5ba9 0%,
-          #4d6ab5 15%,
-          #6879c1 25%,
-          #e89b5d 45%,
-          #fba45d 55%,
-          #f5b872 65%,
-          #e8c88a 80%,
-          #d4d4a0 100%
+        background: `radial-gradient(ellipse at 30% 50%,
+          #2a1a4d 0%,
+          #3a2a5d 15%,
+          #4a3a6d 30%,
+          #e89b5d 70%,
+          #fba45d 85%,
+          #f5a872 100%
         )`
       }}
     >

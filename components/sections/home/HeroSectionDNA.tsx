@@ -82,21 +82,62 @@ export function HeroSectionDNA() {
 
       {/* Content Container - Clean and Centered */}
       <div className="relative z-10 max-w-3xl mx-auto px-6 py-20 text-center">
-        {/* Tagline - Elegant Typography with Proper Line Breaks */}
+        {/* Hero Underlight - Holographic Glow */}
+        <div
+          className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] pointer-events-none z-0"
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+
+        {/* Tagline - FundAid Wordmark Style with Holographic Gradient */}
         <h1
           ref={titleRef}
           className={cn(
-            'text-5xl md:text-6xl font-semibold',
-            'tracking-tight leading-tight',
-            'text-slate-900',
-            'mb-6'
+            'relative z-10',
+            'text-8xl md:text-9xl lg:text-[12rem]',
+            'leading-[0.9]',
+            'mb-8',
+            'fundaid-wordmark',
+            'font-bold tracking-tight'
           )}
+          style={{
+            letterSpacing: '-0.02em',
+          }}
         >
-          Grant Automation
-          <span className="block mt-2 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            Powered by Science
+          <span
+            className="inline-block"
+            style={{
+              background: 'linear-gradient(100deg, #ffffff 0%, #f5f4ff 40%, #ffffff 80%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              textShadow: '0 8px 60px rgba(255, 255, 255, 0.25)',
+              mixBlendMode: 'screen',
+            }}
+          >
+            FUND AID
           </span>
         </h1>
+
+        {/* Tagline - Elegant Typography */}
+        <p
+          className={cn(
+            'text-xl md:text-2xl font-light',
+            'tracking-wide leading-relaxed',
+            'text-slate-900',
+            'mb-4',
+            'uppercase'
+          )}
+          style={{
+            fontFamily: 'var(--font-outfit), system-ui, sans-serif',
+            fontWeight: 300,
+            letterSpacing: '0.15em',
+          }}
+        >
+          STOP WRITING GRANTS. START WINNING THEM.
+        </p>
 
         {/* Subtitle - Balanced and Legible */}
         <p

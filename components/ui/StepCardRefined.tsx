@@ -36,49 +36,49 @@ export function StepCardRefined({ stepNumber, title, description, metrics, isAct
   return (
     <div
       className={cn(
-        'relative px-8 py-10 rounded-2xl transition-all duration-700 ease-out',
+        'relative px-8 py-10 rounded-2xl transition-all duration-700 ease-out backdrop-blur-sm',
         isActive ? 'scale-100 opacity-100' : 'scale-95 opacity-40'
       )}
       style={{
-        backgroundColor: isActive ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: isActive ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.03)',
+        border: isActive ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(255, 255, 255, 0.05)',
       }}
     >
-      {/* Accent line on left edge */}
+      {/* Accent line on left edge - teal pill highlight */}
       <div
-        className="absolute left-0 top-8 bottom-8 w-1 rounded-r-full transition-opacity duration-500"
+        className="absolute left-0 top-8 bottom-8 w-[3px] rounded-r-full bg-[#26E6C8] transition-opacity duration-500"
         style={{
-          backgroundColor: accentColor,
           opacity: isActive ? 1 : 0,
         }}
       />
 
-      {/* Step Number Badge */}
+      {/* Step Number - Softer, rounded friendly styling */}
       <div
-        className="inline-flex items-center justify-center w-10 h-10 rounded-full mb-6 font-bold text-white text-sm transition-all duration-500"
-        style={{
-          backgroundColor: accentColor,
-          opacity: isActive ? 1 : 0.5,
-        }}
+        className={cn(
+          'text-4xl md:text-5xl font-semibold mb-6 transition-all duration-500',
+          isActive ? 'text-white/90' : 'text-white/30'
+        )}
       >
         {stepNumber}
       </div>
 
-      {/* Title - use body size (not headline) */}
+      {/* Title - Gradient text for premium feel */}
       <h3
-        className={cn('text-2xl font-bold mb-4 transition-colors duration-500')}
-        style={{
-          color: isActive ? digilibTheme.text.lightBg : digilibTheme.text.muted,
-        }}
+        className={cn(
+          'text-3xl md:text-4xl font-semibold tracking-tight mb-4 transition-all duration-500',
+          isActive ? 'bg-gradient-to-r from-[#30E3B7] to-[#A26CF7] bg-clip-text text-transparent' : 'text-white/40'
+        )}
       >
         {title}
       </h3>
 
-      {/* Description - base size */}
+      {/* Description - Softer off-white with extra line-height */}
       <p
-        className={cn(digilibTheme.typography.body, 'mb-8 transition-opacity duration-500')}
+        className={cn(
+          'text-sm md:text-base text-slate-200/80 leading-relaxed max-w-xl mb-8 transition-opacity duration-500'
+        )}
         style={{
-          color: digilibTheme.text.muted,
-          opacity: isActive ? 1 : 0.6,
+          opacity: isActive ? 1 : 0.5,
         }}
       >
         {description}
@@ -90,11 +90,11 @@ export function StepCardRefined({ stepNumber, title, description, metrics, isAct
           <div key={i} className="transition-opacity duration-500" style={{ opacity: isActive ? 1 : 0.4 }}>
             <div
               className="text-3xl font-bold mb-1"
-              style={{ color: accentColor }}
+              style={{ color: isActive ? '#30E3B7' : 'rgba(255, 255, 255, 0.3)' }}
             >
               {metric.value}
             </div>
-            <div className={cn(digilibTheme.typography.small)} style={{ color: digilibTheme.text.muted }}>
+            <div className="text-xs text-slate-400">
               {metric.label}
             </div>
           </div>

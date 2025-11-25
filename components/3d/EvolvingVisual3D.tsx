@@ -126,27 +126,58 @@ export function EvolvingVisual3D({ activeStep }: EvolvingVisual3DProps) {
 
   return (
     <group ref={groupRef}>
-      {/* Particles */}
-      {particles.map((particle, i) => (
-        <mesh
-          key={i}
-          position={particle.step1Pos}
-          ref={(mesh) => {
-            if (mesh) particle.mesh = mesh;
-          }}
-        >
-          <sphereGeometry args={[0.08, 16, 16]} />
-          <meshStandardMaterial
-            color={particle.color}
-            emissive={particle.color}
-            emissiveIntensity={0.3}
-            metalness={0.5}
-            roughness={0.3}
-          />
-        </mesh>
-      ))}
+      {/* Particles with soft halos */}
+      {particles.map((particle, i) => {
+        // Determine if this is an active node (for step 2 "Find Perfect Matches")
+        const isActiveNode = activeStep === 2 && i < 10; // Highlight top 10 matches in step 2
 
-      {/* Connection lines (only for steps 2, 3, 4) */}
+        return (
+          <group key={i}>
+            {/* Main particle sphere */}
+            <mesh
+              position={particle.step1Pos}
+              ref={(mesh) => {
+                if (mesh) particle.mesh = mesh;
+              }}
+            >
+              <sphereGeometry args={[isActiveNode ? 0.12 : 0.08, 16, 16]} />
+              <meshStandardMaterial
+                color={isActiveNode ? '#2DFDE6' : particle.color}
+                emissive={isActiveNode ? '#2DFDE6' : particle.color}
+                emissiveIntensity={isActiveNode ? 0.8 : 0.3}
+                metalness={0.5}
+                roughness={0.2}
+                transparent
+                opacity={isActiveNode ? 1.0 : 0.8}
+              />
+            </mesh>
+
+            {/* Outer glow halo for active nodes */}
+            {isActiveNode && (
+              <mesh position={particle.mesh?.position || particle.step1Pos}>
+                <sphereGeometry args={[0.24, 16, 16]} />
+                <meshBasicMaterial
+                  color="#2DFDE6"
+                  transparent
+                  opacity={0.15}
+                />
+              </mesh>
+            )}
+
+            {/* Point light for glow effect */}
+            {isActiveNode && (
+              <pointLight
+                position={particle.mesh?.position || particle.step1Pos}
+                color="#2DFDE6"
+                intensity={0.3}
+                distance={1}
+              />
+            )}
+          </group>
+        );
+      })}
+
+      {/* Connection lines (only for steps 2, 3, 4) - thinner and softer */}
       {shouldShowLines &&
         particles.slice(0, 15).map((particle, i) => {
           const nextParticle = particles[(i + 1) % 15];
@@ -156,9 +187,9 @@ export function EvolvingVisual3D({ activeStep }: EvolvingVisual3DProps) {
             <Line
               key={`line-${i}`}
               points={[particle.mesh.position, nextParticle.mesh.position]}
-              color={digilibTheme.accents.teal}
-              lineWidth={1}
-              opacity={0.3}
+              color="#30E3B7"
+              lineWidth={0.5}
+              opacity={0.2}
               transparent
             />
           );
