@@ -20,6 +20,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import { FloatingParticles } from '@/components/ui/floating-particles';
 import { GlassmorphicBulbs } from '@/components/ui/glassmorphic-bulbs';
+import { SpaceTechGrid } from '@/components/SpaceTechGrid';
 import '@/styles/fundaid-font.css';
 
 if (typeof window !== 'undefined') {
@@ -55,15 +56,7 @@ export function DigilabHero() {
         delay: 0.2
       });
 
-      // Gentle pulse glow animation (1% intensity every 4 seconds)
-      gsap.to('.fundaid-wordmark-gradient', {
-        textShadow: '0 0 3px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.05)',
-        duration: 2,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        repeatDelay: 2
-      });
+      // Removed pulsing glow - keeping static premium aesthetic
 
       // Fade in tagline and description
       gsap.from('.hero-text', {
@@ -132,6 +125,9 @@ export function DigilabHero() {
         scrollInteractive
         className="opacity-10"
       />
+
+      {/* Space-tech blueprint grid with animated spacecraft particles */}
+      <SpaceTechGrid />
 
       {/* Sticky Navigation */}
       <nav
