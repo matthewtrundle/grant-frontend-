@@ -19,7 +19,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import { FloatingParticles } from '@/components/ui/floating-particles';
-import { GlassmorphicBulbs } from '@/components/ui/glassmorphic-bulbs';
 import { SpaceTechGrid } from '@/components/SpaceTechGrid';
 import '@/styles/fundaid-font.css';
 
