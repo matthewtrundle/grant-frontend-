@@ -16,11 +16,12 @@ export default function DigilabTestPage() {
     <main
       className="relative overflow-hidden"
       style={{
-        background: `radial-gradient(ellipse at 50% 30%,
-          #1a2332 0%,
-          #111827 30%,
-          #0d1321 60%,
-          #0A0F1F 100%
+        background: `radial-gradient(ellipse at 50% 40%,
+          #ff6b35 0%,
+          #f7931e 15%,
+          #c13584 40%,
+          #833ab4 70%,
+          #1a1a2e 100%
         )`
       }}
     >

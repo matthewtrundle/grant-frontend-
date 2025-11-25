@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
 
 interface FloatingParticlesProps {
   count?: number;              // Number of particles (default: 15)
-  color?: 'teal' | 'green' | 'blue' | 'gray';
+  color?: 'teal' | 'green' | 'blue' | 'gray' | 'cyan' | 'purple' | 'orange' | 'red';
   scrollInteractive?: boolean; // React to scroll position
   className?: string;
 }
@@ -31,6 +31,10 @@ const colorClasses = {
   green: 'bg-green-400',
   blue: 'bg-blue-400',
   gray: 'bg-gray-400',
+  cyan: 'bg-cyan-400',
+  purple: 'bg-purple-400',
+  orange: 'bg-orange-500',
+  red: 'bg-red-500',
 };
 
 export function FloatingParticles({

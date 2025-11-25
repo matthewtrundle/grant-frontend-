@@ -10,56 +10,56 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function AboutPage() {
   const values = [
     {
       icon: Target,
-      title: "Mission-Driven",
+      title: "Patient Impact",
       description:
-        "We're committed to democratizing access to grant funding for innovative companies worldwide.",
+        "We're committed to helping healthcare innovators secure funding that transforms patient care and saves lives.",
     },
     {
       icon: Heart,
-      title: "Customer-First",
+      title: "Healthcare-First",
       description:
-        "Your success is our success. We build features based on real feedback from grant applicants.",
+        "Your clinical mission is our mission. We understand NIH, FDA, and regulatory grant requirements deeply.",
     },
     {
       icon: Users,
-      title: "Expert Team",
+      title: "Regulatory Expertise",
       description:
-        "Our team combines AI/ML expertise with deep grant writing experience from top consultants.",
+        "Our team combines AI/ML expertise with healthcare regulatory consulting and clinical trial grant experience.",
     },
     {
       icon: Zap,
-      title: "Innovation",
+      title: "Scientific Precision",
       description:
-        "We leverage cutting-edge AI technology to solve real problems in the grant application process.",
+        "We leverage cutting-edge AI to handle complex healthcare grant requirements with clinical accuracy.",
     },
   ];
 
   const stats = [
     {
       value: "$50M+",
-      label: "Grant Funding Secured",
-      description: "Total funding won by our customers",
+      label: "Healthcare Grant Funding",
+      description: "NIH, FDA, and CDC grants secured",
     },
     {
-      value: "500+",
-      label: "Applications Submitted",
-      description: "Successful grant submissions",
+      value: "300+",
+      label: "Biotech & Medtech Companies",
+      description: "Healthcare innovators served",
     },
     {
       value: "40%",
       label: "Win Rate",
-      description: "Above industry average of 20%",
+      description: "2x the industry average",
     },
     {
-      value: "14 Days",
+      value: "12 Days",
       label: "Average Turnaround",
-      description: "From start to submission",
+      description: "From profiling to submission",
     },
   ];
 
@@ -90,10 +90,11 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen relative">
-      <CircuitBackground
+      <DNABackground
         density="medium"
-        glowColor="#8B5CF6"
-        opacity={0.10}
+        glowColor="#14B8A6"
+        pattern="molecular"
+        opacity={0.12}
         className="fixed inset-0 z-0"
       />
       {/* Hero Section - White */}
@@ -111,12 +112,12 @@ export default function AboutPage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl heading-black max-w-4xl mx-auto">
               We're on a mission to{" "}
               <span className="accent-underline">democratize</span>{" "}
-              grant funding
+              healthcare innovation funding
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">
-              Grant Automation combines cutting-edge AI with deep grant writing
-              expertise to help innovative companies secure the funding they
-              deserve.
+              FundAid for Health combines cutting-edge AI with deep healthcare grant
+              expertise to help biotech and medtech innovators secure the funding they
+              need to transform patient care.
             </p>
           </motion.div>
         </div>
@@ -172,23 +173,25 @@ export default function AboutPage() {
               className="space-y-6 text-lg body-black"
             >
               <p>
-                Grant Automation was born from a simple observation: brilliant
-                companies with groundbreaking technology were losing out on
-                millions in grant funding—not because their ideas weren't
-                worthy, but because the application process was overwhelming.
+                FundAid for Health was born from a simple observation: brilliant
+                healthcare innovators with life-saving technologies were losing out on
+                millions in NIH, FDA, and CDC grant funding—not because their science wasn't
+                worthy, but because the application process was overwhelming and uniquely complex
+                in the healthcare space.
               </p>
               <p>
-                Our founders, combining decades of experience in AI/ML and grant
-                consulting, saw an opportunity to level the playing field. We
-                asked: What if we could automate the tedious parts of grant
-                applications while preserving the strategic thinking that wins
-                funding?
+                Our founders, combining decades of experience in AI/ML, healthcare regulatory
+                consulting, and grant writing, saw an opportunity to level the playing field
+                for biotech and medtech companies. We asked: What if we could automate the
+                tedious parts of healthcare grant applications while preserving the clinical
+                expertise and regulatory precision that wins funding?
               </p>
               <p>
-                Today, Grant Automation serves hundreds of innovative companies
-                across technology, healthcare, clean energy, and manufacturing.
-                We've helped secure over $50M in funding and continue to push
-                the boundaries of what's possible with AI-powered grant writing.
+                Today, FundAid for Health serves hundreds of healthcare innovators—from
+                early-stage biotech startups to established medical device companies.
+                We've helped secure over $50M in NIH SBIR/STTR, FDA grants, and CDC funding,
+                continuing to push the boundaries of what's possible with AI-powered healthcare
+                grant writing.
               </p>
             </motion.div>
           </div>
@@ -290,11 +293,11 @@ export default function AboutPage() {
             className="max-w-3xl mx-auto text-center space-y-8 bg-gray-900 border border-gray-800 p-12 rounded-2xl"
           >
             <h2 className="text-4xl heading-white">
-              Ready to secure your grant funding?
+              Ready to secure your healthcare grant funding?
             </h2>
             <p className="text-xl body-white">
-              Join hundreds of innovative companies using Grant Automation to
-              win millions in funding.
+              Join hundreds of biotech and medtech innovators using FundAid for Health to
+              win millions in NIH, FDA, and CDC funding.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/sign-up">

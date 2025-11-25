@@ -60,8 +60,8 @@ const SUCCESS_STAGES: SuccessStage[] = [
     title: "RAG-Enhanced Writing",
     subtitle: "Write with real examples",
     description: "Generate winning proposals using successful grant examples.",
-    metricLabel: "Avg score",
-    metricValue: "7.8/10",
+    metricLabel: "Time saved",
+    metricValue: "10x",
     chips: ["Grounded in past wins", "Assessor-style tone"],
     accentColor: "#A88CFF", // Purple
     icon: FileText,
@@ -71,8 +71,8 @@ const SUCCESS_STAGES: SuccessStage[] = [
     title: "Success Optimization",
     subtitle: "Iterate toward a win",
     description: "Continuous learning from assessor feedback and grant outcomes.",
-    metricLabel: "Win rate",
-    metricValue: "40%",
+    metricLabel: "Learning",
+    metricValue: "∞",
     chips: ["Feedback loops", "Portfolio insights"],
     accentColor: "#FF6D6D", // Coral
     icon: TrendingUp,
@@ -317,7 +317,7 @@ export function SuccessPipeline() {
             id="success-pipeline-heading"
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-50 tracking-tight"
           >
-            AI-Powered Grant Success
+            Your Path to Grant Funding
           </h2>
           <p className="text-lg md:text-xl text-slate-300/90 max-w-3xl mx-auto leading-relaxed">
             FundAid combines advanced AI agents with grant expertise to help innovative companies win government funding.

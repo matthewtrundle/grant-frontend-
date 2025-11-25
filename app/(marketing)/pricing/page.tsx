@@ -6,15 +6,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen relative">
-      {/* Circuit Background */}
-      <CircuitBackground
+      {/* DNA Background */}
+      <DNABackground
         density="medium"
-        glowColor="#6C47FF"
+        glowColor="#14B8A6"
+        pattern="molecular"
         opacity={0.12}
         className="fixed inset-0 z-0"
       />
@@ -30,10 +31,10 @@ export default function PricingPage() {
           >
             <Badge className="bg-gradient-to-r from-ocean-600 via-teal-600 to-ocean-700 text-white px-4 py-2 text-sm badge-pulse">Pricing</Badge>
             <h1 className="text-5xl md:text-7xl font-playfair heading-black max-w-4xl mx-auto">
-              Simple, <span className="accent-underline">Transparent</span> Pricing
+              <span className="accent-underline">Transparent</span> Pricing for Healthcare Innovators
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">
-              Start free with Stages 1 & 2, then pay only for the analysis and generation you need
+              Start free with company profiling and NIH/FDA grant discovery, then pay only for the analysis and application you need
             </p>
           </motion.div>
         </div>
@@ -59,15 +60,15 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Stage 2: Grant Discovery & Matching</span>
+                    <span className="text-sm text-gray-300">Stage 2: NIH, FDA, and CDC Grant Discovery</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Up to 3 company profiles</span>
+                    <span className="text-sm text-gray-300">Up to 3 biotech/medtech profiles</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Unlimited grant searches</span>
+                    <span className="text-sm text-gray-300">Unlimited healthcare grant searches</span>
                   </li>
                 </ul>
                 <Link href="/sign-up">
@@ -100,23 +101,23 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Eligibility check with detailed reasoning</span>
+                    <span className="text-sm text-gray-300">FDA compliance and regulatory pathway checking</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Timeline with milestones & dependencies</span>
+                    <span className="text-sm text-gray-300">Clinical trial timeline with milestones</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Budget breakdown by category</span>
+                    <span className="text-sm text-gray-300">Budget breakdown by research category</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Requirements checklist</span>
+                    <span className="text-sm text-gray-300">NIH/FDA requirements checklist</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Success factors & risk mitigation</span>
+                    <span className="text-sm text-gray-300">Success factors & regulatory risk mitigation</span>
                   </li>
                 </ul>
                 <Link href="/sign-up">
@@ -146,11 +147,15 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">RAG-powered writing with proven examples</span>
+                    <span className="text-sm text-gray-300">NIH SBIR/STTR and FDA grant templates</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">3-assessor simulation (Tech, Business, Academic)</span>
+                    <span className="text-sm text-gray-300">RAG-powered writing with successful healthcare examples</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-sm text-gray-300">3-assessor simulation (Technical, Clinical, Commercial)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
@@ -158,11 +163,11 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Consistency checking across sections</span>
+                    <span className="text-sm text-gray-300">Clinical consistency checking across sections</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-success mt-0.5 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm text-gray-300">Download PDF/DOCX formats</span>
+                    <span className="text-sm text-gray-300">Download NIH-compliant PDF/DOCX formats</span>
                   </li>
                 </ul>
                 <Link href="/sign-up">

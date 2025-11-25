@@ -19,6 +19,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import { FloatingParticles } from '@/components/ui/floating-particles';
+import { GlassmorphicBulbs } from '@/components/ui/glassmorphic-bulbs';
 import '@/styles/fundaid-font.css';
 
 if (typeof window !== 'undefined') {
@@ -116,20 +117,27 @@ export function DigilabHero() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col"
     >
-      {/* Dense Cosmic Particles for Fantastical Effect */}
-      <FloatingParticles
-        count={150}
-        color="cyan"
-        scrollInteractive
-        className="opacity-40"
+      {/* Glassmorphic Light Bulbs - Apple-style sunset orbs */}
+      <GlassmorphicBulbs
+        count={18}
+        colors={['orange', 'red', 'pink', 'amber']}
+        className="opacity-80"
       />
 
-      {/* Additional Lavender Particles Layer */}
+      {/* Warm Sunset Particles */}
       <FloatingParticles
         count={100}
-        color="purple"
+        color="orange"
         scrollInteractive
-        className="opacity-25"
+        className="opacity-30"
+      />
+
+      {/* Additional Pink/Red Particles Layer */}
+      <FloatingParticles
+        count={80}
+        color="red"
+        scrollInteractive
+        className="opacity-20"
       />
 
       {/* Sticky Navigation */}
@@ -182,15 +190,15 @@ export function DigilabHero() {
           <div
             className="relative inline-flex items-center justify-center px-16 py-8 rounded-[4rem]"
             style={{
-              background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(100, 200, 255, 0.15)',
+              background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(247, 147, 30, 0.25) 50%, rgba(193, 53, 132, 0.15) 100%)',
+              backdropFilter: 'blur(30px)',
+              border: '1px solid rgba(255, 150, 100, 0.25)',
               boxShadow: `
-                0 0 60px rgba(34, 211, 238, 0.3),
-                0 0 100px rgba(99, 102, 241, 0.2),
-                0 0 140px rgba(167, 139, 250, 0.15),
-                inset 0 1px 0 rgba(100, 200, 255, 0.2),
-                inset 0 -1px 0 rgba(99, 102, 241, 0.1)
+                0 0 80px rgba(255, 107, 53, 0.4),
+                0 0 120px rgba(247, 147, 30, 0.3),
+                0 0 160px rgba(193, 53, 132, 0.2),
+                inset 0 2px 0 rgba(255, 200, 150, 0.3),
+                inset 0 -2px 0 rgba(193, 53, 132, 0.2)
               `,
             }}
           >
@@ -220,11 +228,11 @@ export function DigilabHero() {
             </h1>
           </div>
 
-          {/* Tagline with cyan → lavender gradient */}
+          {/* Tagline with warm sunset gradient */}
           <p
             className="hero-text text-xl md:text-2xl font-light max-w-2xl mx-auto"
             style={{
-              background: 'linear-gradient(90deg, #22d3ee 0%, #a78bfa 100%)',
+              background: 'linear-gradient(90deg, #ff6b35 0%, #f7931e 50%, #ff5e62 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
