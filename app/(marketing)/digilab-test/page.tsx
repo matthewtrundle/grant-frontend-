@@ -17,12 +17,14 @@ export default function DigilabTestPage() {
       className="relative overflow-hidden"
       style={{
         background: `linear-gradient(180deg,
-          #1a1a3e 0%,
-          #2d2d5f 20%,
-          #3a3a6e 40%,
-          #4a4a7a 60%,
-          #5a5a8a 80%,
-          #6a6a9a 100%
+          #3a5ba9 0%,
+          #4d6ab5 15%,
+          #6879c1 25%,
+          #e89b5d 45%,
+          #fba45d 55%,
+          #f5b872 65%,
+          #e8c88a 80%,
+          #d4d4a0 100%
         )`
       }}
     >
