@@ -170,27 +170,37 @@ export function DigilabHero() {
       {/* Hero Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-20">
         <div className="hero-content max-w-5xl mx-auto text-center space-y-8">
-          {/* FUNDAID Wordmark with custom font - letter by letter for animation */}
-          <h1
-            className="fundaid-wordmark-gradient"
+          {/* FUNDAID Wordmark with glassmorphic container */}
+          <div
+            className="relative inline-flex items-center justify-center px-12 py-6 rounded-[3rem]"
             style={{
-              fontSize: 'clamp(3rem, 10vw, 9rem)',
-              lineHeight: 1.1,
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '0.04em'
+              background: 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}
           >
-            {'FUNDAID'.split('').map((letter, index) => (
-              <span
-                key={index}
-                className="fundaid-letter inline-block"
-                style={{ display: 'inline-block' }}
-              >
-                {letter}
-              </span>
-            ))}
-          </h1>
+            <h1
+              className="fundaid-wordmark-gradient"
+              style={{
+                fontSize: 'clamp(3rem, 10vw, 9rem)',
+                lineHeight: 1.1,
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '0.04em'
+              }}
+            >
+              {'FUNDAID'.split('').map((letter, index) => (
+                <span
+                  key={index}
+                  className="fundaid-letter inline-block"
+                  style={{ display: 'inline-block' }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </h1>
+          </div>
 
           {/* Tagline */}
           <p className="hero-text text-white text-xl md:text-2xl font-light max-w-2xl mx-auto">
