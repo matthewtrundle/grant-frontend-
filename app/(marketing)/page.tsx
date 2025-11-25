@@ -4,6 +4,7 @@
 
 import { ContactCTA } from '@/components/sections/digilab/ContactCTA';
 import { SuccessPipeline } from '@/components/sections/success/SuccessPipeline';
+import { ROIComparison } from '@/components/sections/home/ROIComparison';
 import { OrbitalAgentsSection } from '@/components/sections/home/OrbitalAgentsSection';
 import { GrantMatchingShowcase } from '@/components/sections/home/GrantMatchingShowcase';
 import { DeepSpaceHero } from '@/components/hero/DeepSpaceHero';
@@ -16,6 +17,7 @@ export default function Home() {
       <div id="how-it-works">
         <SuccessPipeline />
       </div>
+      <ROIComparison />
       <ProcessTimelineFixed />
       <GrantMatchingShowcase reactorType="svg" svgVariant="blueprint" />
       <OrbitalAgentsSection />

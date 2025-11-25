@@ -1,0 +1,76 @@
+Create a custom Sign-In component for a Next.js 14 App Router application using Clerk authentication.
+
+REQUIREMENTS:
+1. Use the `useSignIn()` hook from `@clerk/nextjs` for headless authentication
+2. Must be a client component ("use client")
+3. Implement the full sign-in flow with email and password
+4. Match the existing glassmorphic dark theme aesthetic
+
+DESIGN SPECIFICATIONS:
+- Background: Dark (#0A0A0F) with circuit pattern and gradient mesh
+- Form card: backdrop-blur-xl bg-white/[0.03] border border-white/10 shadow-2xl
+- Inputs: bg-white/5 border-white/10 text-white with purple focus ring
+- Primary button: Gradient from purple-600 to blue-600 with glow effect
+- Text: White with various opacity levels for hierarchy
+
+FUNCTIONALITY:
+1. Email input field with validation
+2. Password input field with show/hide toggle
+3. Submit button with loading state
+4. Error message display (styled)
+5. "Sign up instead" link that navigates to /sign-up
+6. Form validation before submission
+7. Proper error handling for:
+   - Invalid credentials
+   - Network errors
+   - Account not found
+   - Rate limiting
+
+CLERK API FLOW:
+```typescript
+const { signIn, setActive } = useSignIn();
+
+// 1. Create sign-in attempt
+await signIn.create({
+  identifier: email,
+  password: password,
+});
+
+// 2. Set active session and redirect
+await setActive({ session: signIn.createdSessionId });
+router.push("/dashboard");
+```
+
+COMPONENT STRUCTURE:
+- Wrapper div with background layers (gradient mesh + circuit SVG)
+- Centered glassmorphic card
+- Form with controlled inputs
+- Error display area
+- Loading states on submit button
+- Footer with "Don't have an account?" link
+
+ERROR HANDLING:
+- Display Clerk-specific error messages
+- Handle "session_exists" error
+- Show network errors gracefully
+- Clear errors on input change
+
+STYLING:
+- Use Tailwind CSS utility classes
+- Match the circuit background pattern from existing auth pages
+- Implement smooth transitions (transition-all)
+- Add hover states for interactive elements
+
+OUTPUT FORMAT:
+- Export as default a React functional component named `CustomSignInForm`
+- Include all necessary imports
+- Add TypeScript types for form state
+- Include JSDoc comments for the main component
+
+ACCESSIBILITY:
+- Proper form labels
+- ARIA attributes where needed
+- Keyboard navigation support
+- Focus indicators visible
+
+Generate the complete component code ready for production use.

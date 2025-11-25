@@ -1,0 +1,131 @@
+Create a custom Sign-Up component for a Next.js 14 App Router application using Clerk authentication with email verification.
+
+REQUIREMENTS:
+1. Use the `useSignUp()` hook from `@clerk/nextjs` for headless authentication
+2. Must be a client component ("use client")
+3. Implement multi-step sign-up flow:
+   - Step 1: Email + Password entry
+   - Step 2: Email verification code entry
+4. Match the existing glassmorphic dark theme aesthetic
+5. Redirect to /onboarding after successful sign-up
+
+DESIGN SPECIFICATIONS:
+- Background: Dark (#0A0A0F) with circuit pattern and gradient mesh
+- Form card: backdrop-blur-xl bg-white/[0.03] border border-white/10 shadow-2xl
+- Inputs: bg-white/5 border-white/10 text-white with purple focus ring
+- Primary button: Gradient from purple-600 to blue-600 with glow effect
+- Text: White with various opacity levels for hierarchy
+- Step indicator: Show "Step 1 of 2" or "Step 2 of 2"
+
+FUNCTIONALITY:
+
+STEP 1 - EMAIL & PASSWORD:
+1. Email input field with validation
+2. Password input field with:
+   - Show/hide toggle
+   - Strength indicator
+   - Minimum 8 characters requirement
+3. Confirm password field
+4. Submit button with loading state
+5. Error message display
+6. "Already have an account?" link to /sign-in
+7. Validation:
+   - Email format check
+   - Password match confirmation
+   - Password strength requirements
+
+STEP 2 - EMAIL VERIFICATION:
+1. Display verification message with email address
+2. 6-digit code input field (could use multiple inputs or single input)
+3. Verify button with loading state
+4. Resend code link
+5. Error display for invalid codes
+6. "Back" link to return to step 1
+
+CLERK API FLOW:
+```typescript
+const { signUp, setActive } = useSignUp();
+
+// Step 1: Create sign-up attempt
+await signUp.create({
+  emailAddress: email,
+  password: password,
+});
+
+// Send verification code
+await signUp.prepareEmailAddressVerification({
+  strategy: "email_code"
+});
+
+// Move to step 2
+setCurrentStep(2);
+
+// Step 2: Verify code
+await signUp.attemptEmailAddressVerification({
+  code: verificationCode,
+});
+
+// Set active session and redirect
+await setActive({ session: signUp.createdSessionId });
+router.push("/onboarding");
+```
+
+COMPONENT STRUCTURE:
+- Wrapper div with background layers
+- Centered glassmorphic card
+- Conditional rendering based on current step (step 1 or 2)
+- Form state management for:
+  - email
+  - password
+  - confirmPassword
+  - verificationCode
+  - currentStep (1 or 2)
+  - isLoading
+  - error
+- Progress indicator showing current step
+
+ERROR HANDLING:
+- Email already exists
+- Weak password
+- Password mismatch
+- Invalid verification code
+- Code expired (allow resend)
+- Network errors
+- Rate limiting
+
+SPECIAL FEATURES:
+1. Password strength meter (visual indicator)
+2. Real-time password match validation
+3. Verification code input with auto-focus
+4. Countdown timer for code resend (60 seconds)
+5. Smooth transitions between steps
+
+STYLING:
+- Use Tailwind CSS utility classes
+- Match circuit background from existing auth pages
+- Animated transitions for step changes
+- Glow effects on primary button
+- Focus states for all inputs
+- Loading spinner on buttons
+
+OUTPUT FORMAT:
+- Export as default a React functional component named `CustomSignUpForm`
+- Include all necessary imports
+- Add TypeScript types for form state and steps
+- Include JSDoc comments
+- Use AnimatePresence from framer-motion for step transitions
+
+ACCESSIBILITY:
+- Proper form labels
+- ARIA live regions for error messages
+- ARIA attributes for step indicator
+- Keyboard navigation between fields
+- Visible focus indicators
+
+VALIDATION HELPERS:
+Include helper functions for:
+- Email format validation
+- Password strength checking
+- Password match verification
+
+Generate the complete component code ready for production use with all features implemented.

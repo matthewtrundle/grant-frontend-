@@ -91,8 +91,8 @@ const stages: Stage[] = [
     id: 1,
     label: 'PROFILE',
     title: 'Understand Your Technology',
-    description: 'Extract tech stack, assess TRL, build comprehensive company profile in 5 minutes.',
-    metrics: '5 min setup · 95% accuracy · TRL 1-9 scoring',
+    description: 'Proprietary profiling agents extract tech stack, assess TRL, build comprehensive profile for specialized agent team matching.',
+    metrics: '5 min setup · AI profiler agents · Specialized matching',
     icon: 'profile',
     color: fundaidTheme.accents.blue,
   },
@@ -100,8 +100,8 @@ const stages: Stage[] = [
     id: 2,
     label: 'DISCOVER',
     title: 'Find Perfect Matches',
-    description: 'AI searches thousands of grants, ranks by fit score, delivers personalized PDF report.',
-    metrics: '2,438 grants scanned · 8 sources · 94 strong matches',
+    description: 'Multi-agent discovery system searches 8 databases with specialized search agents, ranks by fit score (0-100), delivers free PDF report.',
+    metrics: 'Agentic search · 2,438 grants scanned · 0-100 fit scoring · Free PDF',
     icon: 'discover',
     color: fundaidTheme.accents.teal,
   },
@@ -109,8 +109,8 @@ const stages: Stage[] = [
     id: 3,
     label: 'ANALYZE',
     title: 'Deep Grant Analysis',
-    description: 'Parse RFPs, generate timelines, validate budgets, ensure 100% compliance.',
-    metrics: '100% compliance · Auto timeline · Budget validation',
+    description: 'Specialized analysis agents parse RFPs, auto-generate timelines, validate budgets, ensure 100% compliance.',
+    metrics: 'Analysis agents · 100% compliance · Auto timeline · Budget validation',
     icon: 'analyze',
     color: fundaidTheme.accents.lavender,
   },
@@ -118,8 +118,8 @@ const stages: Stage[] = [
     id: 4,
     label: 'GENERATE',
     title: 'AI-Powered Writing',
-    description: 'Multi-agent system writes responses, simulates assessor feedback, iterates to 7+/10 quality.',
-    metrics: '7+/10 avg score · <$50 API cost · 3-assessor simulation',
+    description: 'Multi-agent writing system with specialized LLMs writes responses, simulates 3-assessor feedback, iterates to 7+/10 quality.',
+    metrics: 'Specialized LLMs · 7+/10 avg score · <$50 API cost · 3-assessor simulation',
     icon: 'generate',
     color: fundaidTheme.accents.coral,
   },
@@ -233,10 +233,10 @@ export function ProcessTimelineFixed() {
           }
 
           // Map progress to stages with adjusted thresholds for better scroll behavior
-          // Stage 1 gets more range (0-0.28) to make it easier to reach when scrolling up
+          // Stage 1 gets more range (0-0.35) to make it easier to reach when scrolling up
           let newStep: 1 | 2 | 3 | 4;
-          if (p < 0.28) newStep = 1;
-          else if (p < 0.52) newStep = 2;
+          if (p < 0.35) newStep = 1;
+          else if (p < 0.55) newStep = 2;
           else if (p < 0.77) newStep = 3;
           else newStep = 4;
 
