@@ -2,14 +2,50 @@
  * Digilab Test Page - Complete modern scroll story
  */
 
-import { ContactCTA } from '@/components/sections/digilab/ContactCTA';
-import { AnimationTestPanel } from '@/components/debug/AnimationTestPanel';
-import { SuccessPipeline } from '@/components/sections/success/SuccessPipeline';
-import { OrbitalAgentsSection } from '@/components/sections/home/OrbitalAgentsSection';
-import { GrantMatchingShowcase } from '@/components/sections/home/GrantMatchingShowcase';
-import { DigilabHero } from '@/components/sections/digilab/DigilabHero';
-import ProcessTimelineFixed from '@/components/sections/digilab/ProcessTimelineFixed';
-import FlowingWaveBackground from '@/components/FlowingWaveBackground';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import all components to avoid SSR issues with GSAP/R3F
+const ContactCTA = dynamic(
+  () => import('@/components/sections/digilab/ContactCTA').then(mod => ({ default: mod.ContactCTA })),
+  { ssr: false }
+);
+
+const AnimationTestPanel = dynamic(
+  () => import('@/components/debug/AnimationTestPanel').then(mod => ({ default: mod.AnimationTestPanel })),
+  { ssr: false }
+);
+
+const SuccessPipeline = dynamic(
+  () => import('@/components/sections/success/SuccessPipeline').then(mod => ({ default: mod.SuccessPipeline })),
+  { ssr: false }
+);
+
+const OrbitalAgentsSection = dynamic(
+  () => import('@/components/sections/home/OrbitalAgentsSection').then(mod => ({ default: mod.OrbitalAgentsSection })),
+  { ssr: false }
+);
+
+const GrantMatchingShowcase = dynamic(
+  () => import('@/components/sections/home/GrantMatchingShowcase').then(mod => ({ default: mod.GrantMatchingShowcase })),
+  { ssr: false }
+);
+
+const DigilabHero = dynamic(
+  () => import('@/components/sections/digilab/DigilabHero').then(mod => ({ default: mod.DigilabHero })),
+  { ssr: false }
+);
+
+const ProcessTimelineFixed = dynamic(
+  () => import('@/components/sections/digilab/ProcessTimelineFixed'),
+  { ssr: false }
+);
+
+const FlowingWaveBackground = dynamic(
+  () => import('@/components/FlowingWaveBackground'),
+  { ssr: false }
+);
 
 export default function DigilabTestPage() {
   return (

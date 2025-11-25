@@ -2,21 +2,25 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import FlowingWaveBackground from '@/components/FlowingWaveBackground';
 
 // Disable SSR for components using GSAP and R3F
 const HeroSection = dynamic(
-  () => import('@/components/sections/home/HeroSection'),
-  { ssr: false }
+  () => import('@/components/sections/home/HeroSection').then(mod => ({ default: mod.default })),
+  { ssr: false, loading: () => <div className="min-h-screen bg-white" /> }
 );
 
 const HeroTimelineTransition = dynamic(
-  () => import('@/components/sections/home/HeroTimelineTransition'),
-  { ssr: false }
+  () => import('@/components/sections/home/HeroTimelineTransition').then(mod => ({ default: mod.default })),
+  { ssr: false, loading: () => <div className="min-h-screen" /> }
 );
 
 const ProcessTimelineDigilab = dynamic(
-  () => import('@/components/sections/home/ProcessTimelineDigilab'),
+  () => import('@/components/sections/home/ProcessTimelineDigilab').then(mod => ({ default: mod.default })),
+  { ssr: false, loading: () => <div className="min-h-screen" /> }
+);
+
+const FlowingWaveBackgroundDynamic = dynamic(
+  () => import('@/components/FlowingWaveBackground').then(mod => ({ default: mod.default })),
   { ssr: false }
 );
 
@@ -69,7 +73,7 @@ export default function DigilabTimelineIntegratedPage() {
       {/* Main content wrapper with flowing background */}
       <div ref={contentRef} className="relative">
         {/* Flowing Wave Background - spans entire vertical section with scroll tracking */}
-        <FlowingWaveBackground stage={currentStage} scrollProgress={scrollProgress} />
+        <FlowingWaveBackgroundDynamic stage={currentStage} scrollProgress={scrollProgress} />
 
         {/* Transition with Storytelling Backgrounds */}
         <HeroTimelineTransition />

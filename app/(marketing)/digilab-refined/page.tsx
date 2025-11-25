@@ -11,9 +11,25 @@
  * 7. Clean, uncluttered composition
  */
 
-import { HeroRefined } from '@/components/sections/digilab-v2/HeroRefined';
-import { MissionRefined } from '@/components/sections/digilab-v2/MissionRefined';
-import { ProcessTimelineRefined } from '@/components/sections/digilab-v2/ProcessTimelineRefined';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import components that use R3F to avoid SSR issues
+const HeroRefined = dynamic(
+  () => import('@/components/sections/digilab-v2/HeroRefined').then(mod => ({ default: mod.HeroRefined })),
+  { ssr: false }
+);
+
+const MissionRefined = dynamic(
+  () => import('@/components/sections/digilab-v2/MissionRefined').then(mod => ({ default: mod.MissionRefined })),
+  { ssr: false }
+);
+
+const ProcessTimelineRefined = dynamic(
+  () => import('@/components/sections/digilab-v2/ProcessTimelineRefined').then(mod => ({ default: mod.ProcessTimelineRefined })),
+  { ssr: false }
+);
 
 export default function DigilabRefinedPage() {
   return (
