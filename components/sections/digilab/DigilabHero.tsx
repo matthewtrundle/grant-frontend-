@@ -116,12 +116,20 @@ export function DigilabHero() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col"
     >
-      {/* Cosmic Floating Particles Background */}
+      {/* Dense Cosmic Particles for Fantastical Effect */}
       <FloatingParticles
-        count={80}
+        count={150}
         color="cyan"
         scrollInteractive
-        className="opacity-30"
+        className="opacity-40"
+      />
+
+      {/* Additional Lavender Particles Layer */}
+      <FloatingParticles
+        count={100}
+        color="purple"
+        scrollInteractive
+        className="opacity-25"
       />
 
       {/* Sticky Navigation */}
@@ -226,23 +234,39 @@ export function DigilabHero() {
           </p>
 
           {/* Description */}
-          <p className="hero-text text-white/80 text-base md:text-lg font-light max-w-xl mx-auto">
+          <p className="hero-text text-white/70 text-base md:text-lg font-light max-w-xl mx-auto">
             AI-powered grant automation that learns from winning proposals to help you secure funding faster.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+          {/* Prominent Hero CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
             <Link
               href="/sign-up"
-              className="hero-cta px-8 py-4 bg-white text-gray-900 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className="hero-cta group relative px-10 py-5 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300"
+              style={{
+                background: 'linear-gradient(135deg, #22d3ee 0%, #6366f1 100%)',
+                boxShadow: '0 0 40px rgba(34, 211, 238, 0.4), 0 0 80px rgba(99, 102, 241, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3)',
+              }}
             >
-              Start Free Trial
+              <span className="relative z-10 text-white">Start Free Trial</span>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)',
+                }}
+              />
             </Link>
             <Link
               href="#how-it-works"
-              className="hero-cta px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
+              className="hero-cta px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 border-2"
+              style={{
+                borderColor: 'rgba(34, 211, 238, 0.3)',
+                background: 'rgba(15, 23, 42, 0.4)',
+                backdropFilter: 'blur(12px)',
+                color: '#22d3ee',
+                boxShadow: '0 0 20px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
             >
-              See How It Works
+              Explore Features
             </Link>
           </div>
         </div>
