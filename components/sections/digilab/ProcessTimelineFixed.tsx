@@ -199,7 +199,7 @@ export function ProcessTimelineFixed() {
       const mainTrigger = ScrollTrigger.create({
         trigger: section,
         start: 'top top',
-        end: '+=500%',
+        end: '+=1000%',
         pin: true,
         pinSpacing: true,
         scrub: 0.5,

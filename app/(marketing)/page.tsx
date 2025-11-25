@@ -1,50 +1,25 @@
 /**
- * Home Page - Complete modern scroll story with healthcare focus
- *
- * Replacing the DNA Science Aesthetic with the Digilab modern scroll experience
- * featuring flowing wave backgrounds, orbital agents, and grant matching showcase.
+ * Home Page - Deep-Space Control Room Hero
  */
 
 import { ContactCTA } from '@/components/sections/digilab/ContactCTA';
-import { AnimationTestPanel } from '@/components/debug/AnimationTestPanel';
 import { SuccessPipeline } from '@/components/sections/success/SuccessPipeline';
 import { OrbitalAgentsSection } from '@/components/sections/home/OrbitalAgentsSection';
 import { GrantMatchingShowcase } from '@/components/sections/home/GrantMatchingShowcase';
-import { DigilabHero } from '@/components/sections/digilab/DigilabHero';
+import { DeepSpaceHero } from '@/components/hero/DeepSpaceHero';
 import ProcessTimelineFixed from '@/components/sections/digilab/ProcessTimelineFixed';
-import FlowingWaveBackground from '@/components/FlowingWaveBackground';
 
 export default function Home() {
   return (
-    <main
-      className="relative overflow-hidden"
-      style={{
-        background: `radial-gradient(ellipse at 50% 30%,
-          #1e3a8a 0%,
-          #4338ca 20%,
-          #6d28d9 40%,
-          #1e1b4b 70%,
-          #0f0a1e 100%
-        )`
-      }}
-    >
-      {/* Animated wave background */}
-      <FlowingWaveBackground />
-
-      {/* Main content layer */}
-      <div className="relative z-10">
-        <DigilabHero />
-        <div id="how-it-works">
-          <SuccessPipeline />
-        </div>
-        <ProcessTimelineFixed />
-        <GrantMatchingShowcase reactorType="svg" svgVariant="blueprint" />
-        <OrbitalAgentsSection />
-        <ContactCTA />
+    <main className="relative overflow-hidden bg-black min-h-screen">
+      <DeepSpaceHero />
+      <div id="how-it-works">
+        <SuccessPipeline />
       </div>
-
-      {/* Development debug panel */}
-      {process.env.NODE_ENV === 'development' && <AnimationTestPanel />}
+      <ProcessTimelineFixed />
+      <GrantMatchingShowcase reactorType="svg" svgVariant="blueprint" />
+      <OrbitalAgentsSection />
+      <ContactCTA />
     </main>
   );
 }

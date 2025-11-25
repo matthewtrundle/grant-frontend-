@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Playfair_Display, Orbitron, Fredoka, Nunito, Varela_Round, Outfit } from "next/font/google";
+import { Playfair_Display, Orbitron, Fredoka, Nunito, Varela_Round, Outfit, Exo } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
@@ -51,6 +51,13 @@ const outfit = Outfit({
   display: "swap",
 });
 
+const exo = Exo({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-exo",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "FundAid for Health - AI-Powered Healthcare Grant Writing",
   description: "Generate winning NIH, FDA, and CDC grant applications with AI. Save $10,000+ and 100+ hours. Biotech and medtech companies get TRL assessment, discover matching grants, and create complete applications.",
@@ -72,7 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} ${orbitron.variable} ${fredoka.variable} ${nunito.variable} ${varelaRound.variable} ${outfit.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable} ${playfair.variable} ${orbitron.variable} ${fredoka.variable} ${nunito.variable} ${varelaRound.variable} ${outfit.variable} ${exo.variable}`}>
         <body className="antialiased">
           <SmoothScrollProvider />
           {children}
