@@ -1,4 +1,3 @@
-```typescript
 'use client';
 
 import { useSignIn } from '@clerk/nextjs';
@@ -108,13 +107,10 @@ export default function CustomSignInForm() {
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20" />
       
       {/* Circuit Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-5"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
-          `,
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
           backgroundSize: '50px 50px'
         }}
       />
@@ -242,4 +238,3 @@ export default function CustomSignInForm() {
     </div>
   );
 }
-```

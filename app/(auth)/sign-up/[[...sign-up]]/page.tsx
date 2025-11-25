@@ -1,4 +1,3 @@
-```typescript
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -184,17 +183,30 @@ export default function CustomSignUpForm() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
       {/* Circuit Pattern Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            radial-gradient(circle at 25% 25%, rgba(147, 51, 234, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-            linear-gradient(45deg, transparent 48%, rgba(147, 51, 234, 0.1) 49%, rgba(147, 51, 234, 0.1) 51%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(59, 130, 246, 0.1) 49%, rgba(59, 130, 246, 0.1) 51%, transparent 52%)
-          `,
-          backgroundSize: '100px 100px',
-        }} />
-      </div>
+      <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="signup-circuit" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="30" x2="120" y2="30" stroke="#8B5CF6" strokeWidth="0.5" />
+            <line x1="0" y1="60" x2="120" y2="60" stroke="#6366F1" strokeWidth="0.5" />
+            <line x1="0" y1="90" x2="120" y2="90" stroke="#8B5CF6" strokeWidth="0.5" />
+            <line x1="30" y1="0" x2="30" y2="120" stroke="#8B5CF6" strokeWidth="0.5" />
+            <line x1="60" y1="0" x2="60" y2="120" stroke="#6366F1" strokeWidth="0.5" />
+            <line x1="90" y1="0" x2="90" y2="120" stroke="#8B5CF6" strokeWidth="0.5" />
+            <circle cx="30" cy="30" r="2" fill="#8B5CF6" opacity="0.5" />
+            <circle cx="60" cy="60" r="2" fill="#6366F1" opacity="0.5" />
+            <circle cx="90" cy="90" r="2" fill="#8B5CF6" opacity="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#signup-circuit)" />
+      </svg>
+
+      {/* Gradient mesh */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(circle at top right, rgba(120, 60, 255, 0.05), transparent 50%), radial-gradient(circle at bottom left, rgba(60, 120, 255, 0.05), transparent 50%)'
+        }}
+      />
 
       {/* Animated Mesh Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-blue-900/20 animate-pulse" />
