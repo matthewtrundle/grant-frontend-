@@ -202,9 +202,8 @@ export function DigilabHero() {
                 lineHeight: 1.1,
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '0.08em',
+                gap: '0.02em', /* Reduced gap for Inter's better kerning */
                 fontWeight: 900,
-                letterSpacing: '0.02em',
                 WebkitFontSmoothing: 'antialiased',
                 MozOsxFontSmoothing: 'grayscale',
               }}

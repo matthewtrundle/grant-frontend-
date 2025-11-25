@@ -1,22 +1,15 @@
 /**
  * FundAid Display Font
- * Custom display typeface for the FUNDAID wordmark
+ * Professional typography using Inter Display
  *
- * Usage: font-family: 'FundAid Display', sans-serif;
+ * Usage: font-family: 'Inter Display', sans-serif;
  */
 
-@font-face {
-  font-family: 'FundAid Display';
-  src: url('/fonts/FundAid-Display.woff2') format('woff2'),
-       url('/fonts/FundAid-Display.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* Utility class for FUNDAID wordmark */
 .fundaid-wordmark {
-  font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -24,9 +17,9 @@
 
 /* Apple-style soft white glow with minimal saturation */
 .fundaid-wordmark-gradient {
-  font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em; /* Tighter tracking for Inter at display sizes */
   text-transform: uppercase;
 
   /* Soft white with subtle pastel hints */
@@ -54,6 +47,6 @@
 /* Responsive - Mobile optimization */
 @media (max-width: 768px) {
   .fundaid-wordmark-gradient {
-    letter-spacing: 0.06em; /* Slightly wider for mobile readability */
+    letter-spacing: -0.01em; /* Slightly wider for mobile readability with Inter */
   }
 }
