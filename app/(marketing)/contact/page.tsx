@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 import {
   Mail,
   MessageSquare,
@@ -90,8 +90,8 @@ export default function ContactPage() {
       icon: Mail,
       title: "Email Us",
       description: "Get in touch via email for support and inquiries",
-      contact: "hello@grantautomation.com",
-      href: "mailto:hello@grantautomation.com",
+      contact: "hello@fundaidforhealth.com",
+      href: "mailto:hello@fundaidforhealth.com",
     },
     {
       icon: MessageSquare,
@@ -111,34 +111,35 @@ export default function ContactPage() {
 
   const faqs = [
     {
-      question: "What industries do you serve?",
+      question: "What types of healthcare companies do you serve?",
       answer:
-        "We work with technology startups, healthcare, clean energy, manufacturing, and any innovative company seeking grant funding.",
+        "We specialize in biotech, medtech, digital health, diagnostics, therapeutics, and medical device companies seeking NIH, FDA, and CDC grant funding.",
     },
     {
-      question: "How long does the process take?",
+      question: "How long does the healthcare grant process take?",
       answer:
-        "From start to submission, most applications take 10-14 days. Our AI-powered system significantly reduces traditional timelines.",
+        "From start to submission, most NIH and FDA applications take 10-14 days. Our AI-powered system significantly reduces traditional 4-6 week timelines.",
     },
     {
-      question: "What's your success rate?",
+      question: "What's your success rate for healthcare grants?",
       answer:
-        "Our customers achieve a 40% win rate, double the industry average of 20%. Success depends on grant fit and project quality.",
+        "Our healthcare customers achieve a 40% win rate, more than double the industry average of 18% for NIH SBIR/STTR grants. Success depends on grant fit, TRL level, and clinical validation.",
     },
     {
-      question: "Do you offer custom enterprise plans?",
+      question: "Do you handle FDA regulatory requirements?",
       answer:
-        "Yes! Contact our sales team to discuss volume pricing and custom features for large organizations.",
+        "Yes! Our platform includes FDA compliance checking, regulatory pathway assessment, and clinical trial planning support built into our Pro and Enterprise tiers.",
     },
   ];
 
   return (
     <div className="min-h-screen relative">
-      {/* Circuit Background */}
-      <CircuitBackground
-        density="low"
-        glowColor="#3B82F6"
-        opacity={0.08}
+      {/* DNA Background */}
+      <DNABackground
+        density="medium"
+        glowColor="#14B8A6"
+        pattern="molecular"
+        opacity={0.12}
         className="fixed inset-0 z-0"
       />
 
@@ -158,8 +159,8 @@ export default function ContactPage() {
               Let's <span className="accent-underline">talk</span> about your grant goals
             </h1>
             <p className="text-xl md:text-2xl body-black max-w-3xl mx-auto">
-              Our team is here to answer questions, provide demos, and help you
-              secure the funding you need.
+              Our healthcare grant specialists are here to answer questions, provide demos, and help you
+              secure the NIH, FDA, and CDC funding you need.
             </p>
           </motion.div>
         </div>
@@ -309,7 +310,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       rows={6}
                       className="flex w-full rounded-md border border-gray-300 bg-white text-black placeholder:text-gray-500 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-0 hover:border-gray-400 px-3 py-2 text-base transition-all duration-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                      placeholder="Tell us about your grant funding needs..."
+                      placeholder="Tell us about your healthcare grant funding needs..."
                       aria-invalid={errors.message ? "true" : "false"}
                       aria-describedby={errors.message ? "message-error" : undefined}
                     />

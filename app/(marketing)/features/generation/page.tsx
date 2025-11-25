@@ -6,15 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, FileText, Users, Target, CheckCircle2, Download, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, FloatingContentCard, MinimalIconCard, QuoteCard, SplitCard } from "@/components/ui/abstract-cards";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function GenerationPage() {
   return (
     <div className="min-h-screen relative">
-      <CircuitBackground
+      <DNABackground
         density="high"
-        glowColor="#9333EA"
-        opacity={0.12}
+        glowColor="#14B8A6"
+        pattern="helix"
+        opacity={0.15}
         className="fixed inset-0 z-0"
       />
       {/* Hero Section - White Background */}
@@ -35,8 +36,8 @@ export default function GenerationPage() {
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl">
-              RAG-powered writing system generates publication-ready grant applications.
-              Multi-agent simulation scores and refines your responses. Download PDF/DOCX and submit with confidence.
+              RAG-powered writing system generates publication-ready NIH, FDA, and CDC grant applications.
+              Multi-agent simulation (Technical, Clinical, Commercial) scores and refines your responses. Download NIH-compliant PDF/DOCX and submit with confidence.
             </p>
 
             <div className="flex gap-4 flex-wrap pt-4">
@@ -89,14 +90,14 @@ export default function GenerationPage() {
               RAG-Powered Writing Engine
             </h2>
             <p className="text-xl body-white">
-              Learn from 50+ successful grants in your field
+              Learn from 50+ successful NIH SBIR/STTR and FDA grants in healthcare
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <OffsetCard
-              title="Example Library"
-              description="Vector database of successful grant applications. Search by question type, industry, TRL, and award size to find relevant examples."
+              title="Healthcare Grant Library"
+              description="Vector database of successful NIH SBIR/STTR and FDA grant applications. Search by question type, therapeutic area, clinical stage, TRL, and award size to find relevant healthcare examples."
               number="01"
               theme="dark"
             />

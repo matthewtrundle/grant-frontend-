@@ -6,15 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Target, FileText, Lightbulb, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, AsymmetricTextCard, MinimalIconCard, QuoteCard } from "@/components/ui/abstract-cards";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function ProfilerPage() {
   return (
     <div className="min-h-screen relative">
-      <CircuitBackground
+      <DNABackground
         density="medium"
-        glowColor="#8B5CF6"
-        opacity={0.10}
+        glowColor="#14B8A6"
+        pattern="molecular"
+        opacity={0.12}
         className="fixed inset-0 z-0"
       />
       {/* Hero Section - White Background */}
@@ -35,8 +36,8 @@ export default function ProfilerPage() {
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl">
-              Get your Technology Readiness Level score and create a comprehensive company profile
-              that matches you with the perfect grants.
+              Get your Technology Readiness Level score and create a comprehensive biotech/medtech profile
+              that matches you with NIH, FDA, and CDC grants.
             </p>
 
             <div className="flex gap-4 flex-wrap pt-4">
@@ -102,8 +103,8 @@ export default function ProfilerPage() {
             />
 
             <OffsetCard
-              title="Team & Expertise"
-              description="Founder backgrounds, technical expertise, academic credentials, and industry experience that strengthen grant applications."
+              title="Team & Clinical Expertise"
+              description="Founder backgrounds, clinical expertise, academic credentials, regulatory experience, and medical advisory board members that strengthen healthcare grant applications."
               number="02"
               theme="dark"
             />
@@ -216,9 +217,9 @@ export default function ProfilerPage() {
       <section className="section-light py-24 px-4 border-t border-gray-200 relative z-10">
         <div className="container mx-auto max-w-4xl">
           <QuoteCard
-            quote="Without an accurate TRL assessment, you're applying to grants you can't win. Our profiler saved us weeks of wasted effort."
+            quote="Without an accurate TRL assessment, you're applying to NIH grants you can't win. The profiler correctly identified our TRL 5 status and matched us with appropriate SBIR Phase I opportunities. Saved us weeks of wasted effort."
             author="Dr. Sarah Chen"
-            role="Founder, BioTech Innovations"
+            role="Founder, CardioAI Diagnostics"
             theme="light"
           />
 

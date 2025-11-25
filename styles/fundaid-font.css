@@ -22,21 +22,19 @@
   text-transform: uppercase;
 }
 
-/* Warm sunset gradient treatment - Orange to pink sheen */
+/* Apple-style soft white glow with minimal saturation */
 .fundaid-wordmark-gradient {
   font-family: 'FundAid Display', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 900;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  /* Warm sunset gradient text */
+  /* Soft white with subtle pastel hints */
   background: linear-gradient(135deg,
     #ffffff 0%,
-    #ffe4b5 20%,
-    #ffb347 40%,
-    #ff8c42 60%,
-    #ff6b6b 80%,
-    #ff5e8a 100%
+    #f0f4ff 30%,
+    #e8eeff 60%,
+    #dfe6ff 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -47,9 +45,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 
-  /* Warm sunset glow */
-  filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.4))
-          drop-shadow(0 0 40px rgba(247, 147, 30, 0.3));
+  /* Soft, luminous glow - calm and premium */
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
+          drop-shadow(0 0 32px rgba(168, 140, 255, 0.15))
+          drop-shadow(0 0 48px rgba(57, 242, 195, 0.08));
 }
 
 /* Responsive - Mobile optimization */

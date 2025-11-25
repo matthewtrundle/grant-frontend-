@@ -246,16 +246,20 @@ export default function PricingPage() {
               <p className="body-white">No! Stages 1 and 2 are completely free with no credit card required. You only pay when you want to analyze or generate applications.</p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-white mb-2">Can I purchase just Stage 3 or Stage 4?</h3>
-              <p className="body-white">Yes! You can purchase each stage individually. Stage 3 ($199) gives you the analysis, and Stage 4 ($999) includes everything plus the full application.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Do you support NIH SBIR/STTR applications?</h3>
+              <p className="body-white">Yes! Our Stage 4 Enterprise tier includes NIH SBIR/STTR templates and specialized knowledge of NIH grant requirements, review criteria, and successful application patterns.</p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-white mb-2">How long does it take to generate an application?</h3>
-              <p className="body-white">Stage 4 typically completes in 30-60 minutes, depending on grant complexity. You&apos;ll see real-time progress updates.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Can you handle FDA regulatory grant requirements?</h3>
+              <p className="body-white">Absolutely. Our Pro tier includes FDA compliance checking and regulatory pathway assessment. We understand FDA grant requirements, clinical trial protocols, and regulatory milestones.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-2">How long does it take to generate a healthcare grant application?</h3>
+              <p className="body-white">Stage 4 typically completes in 30-60 minutes for most NIH and FDA grants. Complex clinical trial applications may take longer. You&apos;ll see real-time progress updates throughout.</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-white mb-2">What if I&apos;m not satisfied with the results?</h3>
-              <p className="body-white">We use iterative improvement with 3-assessor simulation to ensure quality scores. If you need revisions, contact support and we&apos;ll work with you.</p>
+              <p className="body-white">We use iterative improvement with 3-assessor simulation (Technical, Clinical, Commercial) to ensure quality scores. If you need revisions, contact support and we&apos;ll work with you.</p>
             </div>
           </div>
         </div>

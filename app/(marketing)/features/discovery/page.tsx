@@ -6,15 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Search, Target, TrendingUp, CheckCircle2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, FloatingContentCard, MinimalIconCard, SplitCard } from "@/components/ui/abstract-cards";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function DiscoveryPage() {
   return (
     <div className="min-h-screen relative">
-      <CircuitBackground
+      <DNABackground
         density="medium"
-        glowColor="#3B82F6"
-        opacity={0.10}
+        glowColor="#14B8A6"
+        pattern="molecular"
+        opacity={0.12}
         className="fixed inset-0 z-0"
       />
       {/* Hero Section - White Background */}
@@ -35,8 +36,8 @@ export default function DiscoveryPage() {
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl">
-              Find matching grants with intelligent search, automated fit scoring, and ranked
-              recommendations. Your perfect funding opportunity is waiting.
+              Find matching NIH, FDA, and CDC grants with intelligent search, automated fit scoring, and ranked
+              recommendations. Your perfect healthcare funding opportunity is waiting.
             </p>
 
             <div className="flex gap-4 flex-wrap pt-4">
@@ -60,9 +61,9 @@ export default function DiscoveryPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <StatCard
-              stat="10K+"
-              label="Active Grants"
-              description="Federal, state, and private funding sources"
+              stat="1000+"
+              label="Healthcare Grants"
+              description="NIH, FDA, CDC, and private funding sources"
               theme="light"
             />
             <StatCard
@@ -102,8 +103,8 @@ export default function DiscoveryPage() {
             />
 
             <OffsetCard
-              title="Industry Alignment"
-              description="Cross-references your technology with grant focus areas. Healthcare tech matches with biotech grants, not manufacturing."
+              title="Clinical & Regulatory Alignment"
+              description="Cross-references your technology with grant focus areas. Biotech innovations match with NIH SBIR/STTR, medical devices with FDA CDRH grants, not generic manufacturing opportunities."
               number="02"
               theme="dark"
             />

@@ -52,9 +52,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Grant Automation Platform - AI-Powered Grant Writing in 48 Hours",
-  description: "Generate winning grant applications with AI. Save $10,000+ and 100+ hours. Get your TRL assessment, discover matching grants, and create complete applications.",
-  keywords: ["grant writing", "AI grants", "SBIR", "STTR", "grant automation", "grant funding"],
+  title: "FundAid for Health - AI-Powered Healthcare Grant Writing",
+  description: "Generate winning NIH, FDA, and CDC grant applications with AI. Save $10,000+ and 100+ hours. Biotech and medtech companies get TRL assessment, discover matching grants, and create complete applications.",
+  keywords: ["healthcare grant writing", "NIH grants", "FDA grants", "SBIR", "STTR", "biotech funding", "medtech grants", "grant automation"],
   icons: {
     icon: [
       { url: '/icon.png', sizes: '32x32', type: 'image/png' },

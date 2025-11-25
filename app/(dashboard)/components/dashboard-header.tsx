@@ -41,10 +41,10 @@ export function DashboardHeader() {
             </Link>
             <div className="border-l border-dark-700 h-8" />
             <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">G</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">F</span>
               </div>
-              <span className="font-semibold text-gradient-purple-blue-animated hidden md:block">Grant Automation</span>
+              <span className="font-semibold text-gradient-purple-blue-animated hidden md:block">FundAid for Health</span>
             </Link>
           </div>
 

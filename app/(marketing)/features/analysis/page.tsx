@@ -6,15 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, FileSearch, Calendar, DollarSign, CheckCircle2, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 import { OffsetCard, StatCard, AsymmetricTextCard, MinimalIconCard, QuoteCard } from "@/components/ui/abstract-cards";
-import { CircuitBackground } from "@/components/ui/circuit-background";
+import { DNABackground } from "@/components/ui/dna-background";
 
 export default function AnalysisPage() {
   return (
     <div className="min-h-screen relative">
-      <CircuitBackground
+      <DNABackground
         density="medium"
-        glowColor="#6C47FF"
-        opacity={0.10}
+        glowColor="#14B8A6"
+        pattern="molecular"
+        opacity={0.12}
         className="fixed inset-0 z-0"
       />
       {/* Hero Section - White Background */}
@@ -35,8 +36,8 @@ export default function AnalysisPage() {
             </h1>
 
             <p className="text-xl md:text-2xl body-black max-w-3xl">
-              AI-powered analysis of grant requirements, timeline extraction, budget breakdown,
-              and success factors. Know exactly what it takes to win before you write a single word.
+              AI-powered analysis of NIH, FDA, and CDC grant requirements, clinical timeline extraction, regulatory budget breakdown,
+              and success factors. Know exactly what it takes to win healthcare funding before you write a single word.
             </p>
 
             <div className="flex gap-4 flex-wrap pt-4">
@@ -95,8 +96,8 @@ export default function AnalysisPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <OffsetCard
-              title="Timeline Analysis"
-              description="Extract all deadlines, milestones, reporting requirements, and submission dates. Never miss a critical date again."
+              title="Clinical Timeline Analysis"
+              description="Extract all deadlines, clinical trial milestones, FDA submission dates, IRB approval timelines, and reporting requirements. Never miss a critical regulatory date again."
               number="01"
               theme="dark"
             />

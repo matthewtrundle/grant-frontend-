@@ -117,27 +117,20 @@ export function DigilabHero() {
       ref={sectionRef}
       className="relative min-h-screen w-full flex flex-col"
     >
-      {/* Glassmorphic Light Bulbs - Apple-style sunset orbs */}
-      <GlassmorphicBulbs
-        count={18}
-        colors={['orange', 'red', 'pink', 'amber']}
-        className="opacity-80"
+      {/* Minimal dust-particle field - ultra-subtle */}
+      <FloatingParticles
+        count={30}
+        color="cyan"
+        scrollInteractive
+        className="opacity-15"
       />
 
-      {/* Warm Sunset Particles */}
+      {/* Additional subtle purple particles */}
       <FloatingParticles
-        count={100}
-        color="orange"
+        count={20}
+        color="purple"
         scrollInteractive
-        className="opacity-30"
-      />
-
-      {/* Additional Pink/Red Particles Layer */}
-      <FloatingParticles
-        count={80}
-        color="red"
-        scrollInteractive
-        className="opacity-20"
+        className="opacity-10"
       />
 
       {/* Sticky Navigation */}
@@ -190,15 +183,15 @@ export function DigilabHero() {
           <div
             className="relative inline-flex items-center justify-center px-16 py-8 rounded-[4rem]"
             style={{
-              background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(247, 147, 30, 0.25) 50%, rgba(193, 53, 132, 0.15) 100%)',
-              backdropFilter: 'blur(30px)',
-              border: '1px solid rgba(255, 150, 100, 0.25)',
+              background: 'linear-gradient(135deg, rgba(147, 197, 253, 0.08) 0%, rgba(196, 181, 253, 0.12) 50%, rgba(244, 114, 182, 0.08) 100%)',
+              backdropFilter: 'blur(40px) saturate(120%)',
+              border: '1px solid rgba(168, 140, 255, 0.15)',
               boxShadow: `
-                0 0 80px rgba(255, 107, 53, 0.4),
-                0 0 120px rgba(247, 147, 30, 0.3),
-                0 0 160px rgba(193, 53, 132, 0.2),
-                inset 0 2px 0 rgba(255, 200, 150, 0.3),
-                inset 0 -2px 0 rgba(193, 53, 132, 0.2)
+                0 0 40px rgba(57, 242, 195, 0.15),
+                0 0 80px rgba(168, 140, 255, 0.12),
+                0 0 120px rgba(32, 216, 210, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(168, 140, 255, 0.05)
               `,
             }}
           >
@@ -228,11 +221,11 @@ export function DigilabHero() {
             </h1>
           </div>
 
-          {/* Tagline with warm sunset gradient */}
+          {/* Tagline with FundAid brand gradient */}
           <p
             className="hero-text text-xl md:text-2xl font-light max-w-2xl mx-auto"
             style={{
-              background: 'linear-gradient(90deg, #ff6b35 0%, #f7931e 50%, #ff5e62 100%)',
+              background: 'linear-gradient(90deg, #39F2C3 0%, #20D8D2 50%, #A88CFF 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
