@@ -170,11 +170,27 @@ export function ProcessTimelineFixed() {
       : false
   );
 
+  // Check if we're on desktop (lg breakpoint: 1024px)
+  const isDesktop = useRef(
+    typeof window !== 'undefined'
+      ? window.matchMedia('(min-width: 1024px)').matches
+      : false
+  );
+
   // Main ScrollTrigger setup for pinning, scroll progress, and line animations
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const content = contentRef.current;
     if (!section || !content) return;
+
+    // Media query to detect desktop breakpoint (lg: 1024px)
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    isDesktop.current = mediaQuery.matches;
+
+    // Only run ScrollTrigger on desktop
+    if (!isDesktop.current) {
+      return; // Exit early on mobile, no ScrollTrigger
+    }
 
     const ctx = gsap.context(() => {
       // Clear existing ScrollTriggers for this section
@@ -369,7 +385,19 @@ export function ProcessTimelineFixed() {
       };
     }, sectionRef);
 
+    // Resize listener to reinitialize when crossing breakpoints
+    const handleResize = () => {
+      const nowDesktop = mediaQuery.matches;
+      if (nowDesktop !== isDesktop.current) {
+        // Breakpoint crossed, trigger re-render
+        window.location.reload(); // Simple approach: reload on breakpoint change
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleResize);
+
     return () => {
+      mediaQuery.removeEventListener('change', handleResize);
       ctx.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
@@ -581,7 +609,7 @@ export function ProcessTimelineFixed() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-b from-[#0A0E27] via-[#151B3D] to-[#0A0E27]"
+      className="hidden lg:block relative min-h-screen bg-gradient-to-b from-[#0A0E27] via-[#151B3D] to-[#0A0E27]"
     >
       {/* Cosmic starfield background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1083,7 +1111,7 @@ export function ProcessTimelineFixed() {
               {/* Conditional rendering based on active stage */}
               {activeStep === 1 ? (
                 // PROFILE stage - Cosmic Company Profile Panel
-                <div className="stage-1-panel w-full h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(32,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                <div className="stage-1-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(32,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
                   {/* Hexagonal pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1138,7 +1166,7 @@ export function ProcessTimelineFixed() {
                 </div>
               ) : activeStep === 2 ? (
                 // DISCOVER stage - Cosmic Grant Matching Panel
-                <div className="stage-2-panel w-full h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(20,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                <div className="stage-2-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(20,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
                   {/* Grid pattern overlay for discovery theme */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1193,7 +1221,7 @@ export function ProcessTimelineFixed() {
                 </div>
               ) : activeStep === 3 ? (
                 // ANALYZE stage - Cosmic Analysis Panel
-                <div className="stage-3-panel w-full h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#A88CFF]/20 hover:shadow-[0_0_30px_rgba(168,140,255,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                <div className="stage-3-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#A88CFF]/20 hover:shadow-[0_0_30px_rgba(168,140,255,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
                   {/* Circuit/analysis pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1249,7 +1277,7 @@ export function ProcessTimelineFixed() {
                 </div>
               ) : (
                 // GENERATE stage - Cosmic AI Writing Panel
-                <div className="stage-4-panel w-full h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#FF6D6D]/20 hover:shadow-[0_0_30px_rgba(255,109,109,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                <div className="stage-4-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#FF6D6D]/20 hover:shadow-[0_0_30px_rgba(255,109,109,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
                   {/* Document/writing lines pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1312,56 +1340,6 @@ export function ProcessTimelineFixed() {
                   <span>TIMELINE: {Math.round((activeStep - 1) * 25 + 25)}%</span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Mobile Layout */}
-          <div className="lg:hidden">
-            {/* Mobile stage selector */}
-            <div className="flex justify-center gap-4 mb-8">
-              {stages.map((stage) => (
-                <button
-                  key={stage.id}
-                  onClick={() => setActiveStep(stage.id)}
-                  className={cn(
-                    'w-12 h-12 rounded-full font-bold transition-all',
-                    activeStep === stage.id
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white scale-110'
-                      : 'bg-gray-100 text-gray-400'
-                  )}
-                >
-                  {stage.id}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile content */}
-            <div className="space-y-6">
-              {stages.map((stage) => {
-                if (activeStep !== stage.id) return null;
-
-                return (
-                  <div key={stage.id} className="text-center">
-                    <div className="flex justify-center mb-4" style={{ color: stage.color }}>
-                      {StageIcons[stage.icon]}
-                    </div>
-                    <h3 className={cn(fundaidTheme.typography.h3, 'mb-4')}>
-                      {stage.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      {stage.description}
-                    </p>
-                    <div className="p-4 bg-gray-50 rounded-lg text-sm text-gray-700">
-                      {stage.metrics}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Mobile canvas */}
-            <div className="mt-8 aspect-video rounded-xl overflow-hidden shadow-xl">
-              <ProcessTimelineCanvas activeStep={activeStep} />
             </div>
           </div>
         </div>
