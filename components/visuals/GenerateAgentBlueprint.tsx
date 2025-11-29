@@ -29,9 +29,9 @@ export function GenerateAgentBlueprint({ className = '', animate = true }: Gener
         <defs>
           {/* Coral gradients */}
           <linearGradient id="generate-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FF6D6D" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#FF9B7D" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#FF6D6D" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="#FF6D6D" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#FF9B7D" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#FF6D6D" stopOpacity="0.7" />
           </linearGradient>
 
           <linearGradient id="generate-card-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -54,17 +54,17 @@ export function GenerateAgentBlueprint({ className = '', animate = true }: Gener
         </defs>
 
         {/* Background grid - subtle */}
-        <g id="background-grid" opacity="0.05">
+        <g id="background-grid" opacity="0.15">
           {Array.from({ length: 24 }).map((_, i) => (
-            <line key={`v-${i}`} x1={i * 50 + 40} y1="40" x2={i * 50 + 40} y2="860" stroke="#FF9B7D" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 50 + 40} y1="40" x2={i * 50 + 40} y2="860" stroke="#FF9B7D" strokeWidth="1" />
           ))}
           {Array.from({ length: 18 }).map((_, i) => (
-            <line key={`h-${i}`} x1="40" y1={i * 50 + 40} x2="1160" y2={i * 50 + 40} stroke="#FF9B7D" strokeWidth="0.5" />
+            <line key={`h-${i}`} x1="40" y1={i * 50 + 40} x2="1160" y2={i * 50 + 40} stroke="#FF9B7D" strokeWidth="1" />
           ))}
         </g>
 
         {/* Corner registration marks */}
-        <g opacity="0.5">
+        <g opacity="0.8">
           <line x1="40" y1="60" x2="80" y2="60" stroke="#FF6D6D" strokeWidth="1.5" />
           <line x1="60" y1="40" x2="60" y2="80" stroke="#FF6D6D" strokeWidth="1.5" />
 
@@ -141,7 +141,7 @@ export function GenerateAgentBlueprint({ className = '', animate = true }: Gener
         })}
 
         {/* Connections from Lead Writer to orbiting agents */}
-        <g opacity="0.25">
+        <g opacity="0.4">
           {[0, 60, 120, 180, 240, 300].map((angle, i) => {
             const radian = (angle - 90) * (Math.PI / 180);
             const radius = 180;
@@ -154,7 +154,7 @@ export function GenerateAgentBlueprint({ className = '', animate = true }: Gener
                 d={`M 600,280 L ${x},${y}`}
                 fill="none"
                 stroke="url(#generate-stroke)"
-                strokeWidth="1"
+                strokeWidth="1.5"
                 strokeDasharray="4,4"
                 className={animate ? 'animate-generate-flow' : ''}
                 style={{ animationDelay: `${i * 0.2}s` }}
@@ -198,10 +198,10 @@ export function GenerateAgentBlueprint({ className = '', animate = true }: Gener
         ))}
 
         {/* Feedback loops from Lead Writer to assessors */}
-        <g opacity="0.25">
-          <path d="M 600,330 Q 450,480 300,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} />
-          <path d="M 600,330 L 600,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} style={{ animationDelay: '0.3s' }} />
-          <path d="M 600,330 Q 750,480 900,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} style={{ animationDelay: '0.6s' }} />
+        <g opacity="0.4">
+          <path d="M 600,330 Q 450,480 300,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} />
+          <path d="M 600,330 L 600,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} style={{ animationDelay: '0.3s' }} />
+          <path d="M 600,330 Q 750,480 900,592" fill="none" stroke="url(#generate-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-generate-flow' : ''} style={{ animationDelay: '0.6s' }} />
         </g>
 
         {/* FLOATING CARD 1 - Progress (top-left) */}

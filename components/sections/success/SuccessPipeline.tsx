@@ -100,30 +100,27 @@ function StageCard({ stage, isHovered, onHover }: {
       <div
         className={cn(
           "relative rounded-2xl transition-all duration-300 ease-out",
-          "bg-[#080C14]/80 backdrop-blur-xl",
-          "border border-white/6",
-          "shadow-[0_20px_60px_rgba(0,0,0,0.75)]",
+          "bg-white",
+          "border border-fundaid-border-subtle",
+          "shadow-fundaid-lg",
           "hover:-translate-y-1 hover:scale-[1.01]",
-          "hover:border-white/10 hover:shadow-[0_22px_65px_rgba(0,0,0,0.85)]",
+          "hover:border-fundaid-accent-primary/20 hover:shadow-fundaid-xl",
           "p-6 md:p-8"
         )}
       >
-        {/* Inner radial gradient from top-left */}
+        {/* Inner radial gradient from top-left - very subtle */}
         <div
-          className="absolute inset-0 rounded-2xl opacity-40 pointer-events-none"
+          className="absolute inset-0 rounded-2xl opacity-20 pointer-events-none"
           style={{
-            background: `radial-gradient(circle at 10% 10%, ${stage.accentColor}08 0%, transparent 50%)`
+            background: `radial-gradient(circle at 10% 10%, ${stage.accentColor}10 0%, transparent 50%)`
           }}
         />
-
-        {/* Top inner stroke for hardware faceplate feel */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
         {/* Content */}
         <div className="relative space-y-4">
           {/* Top row: Metallic orb icon + Stage label */}
           <div className="flex items-start justify-between">
-            {/* Metallic mini-orb icon */}
+            {/* Icon with accent color background */}
             <div
               className={cn(
                 "relative w-12 h-12 rounded-full flex items-center justify-center",
@@ -131,20 +128,10 @@ function StageCard({ stage, isHovered, onHover }: {
                 "group-hover:scale-110"
               )}
               style={{
-                background: `radial-gradient(circle at 35% 35%, #1a1f2e 0%, #0a0e16 100%)`,
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: isHovered
-                  ? `0 0 20px ${stage.accentColor}60, inset 0 0 15px rgba(0,0,0,0.8)`
-                  : `0 0 12px ${stage.accentColor}30, inset 0 0 12px rgba(0,0,0,0.9)`
+                background: `${stage.accentColor}15`,
+                border: `2px solid ${stage.accentColor}30`,
               }}
             >
-              {/* Inner glow core */}
-              <div
-                className="absolute inset-2 rounded-full opacity-40"
-                style={{
-                  background: `radial-gradient(circle, ${stage.accentColor}40 0%, transparent 70%)`
-                }}
-              />
               <Icon
                 className="relative z-10 w-5 h-5 transition-colors"
                 style={{ color: stage.accentColor }}
@@ -152,26 +139,26 @@ function StageCard({ stage, isHovered, onHover }: {
             </div>
 
             {/* Stage label */}
-            <div className="text-xs font-medium uppercase tracking-wider text-slate-400/80">
+            <div className="text-xs font-medium uppercase tracking-wider text-fundaid-text-muted">
               Stage {stage.id}
             </div>
           </div>
 
           {/* Title & subtitle */}
           <div className="space-y-1">
-            <div className="text-xs uppercase tracking-wider text-slate-300/80 font-medium">
+            <div className="text-xs uppercase tracking-wider text-fundaid-text-muted font-medium">
               {stage.subtitle}
             </div>
             <h3
               id={`stage-${stage.id}-title`}
-              className="text-xl md:text-2xl font-semibold text-slate-50 tracking-tight"
+              className="text-xl md:text-2xl font-semibold text-fundaid-text-primary tracking-tight"
             >
               {stage.title}
             </h3>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-slate-300/90 leading-relaxed max-w-[280px]">
+          <p className="text-sm text-fundaid-text-secondary leading-relaxed max-w-[280px]">
             {stage.description}
           </p>
 
@@ -303,23 +290,20 @@ export function SuccessPipeline() {
 
   return (
     <section
-      className="relative py-24 md:py-32 lg:py-40 overflow-hidden"
+      className="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-fundaid-section-subtle"
       aria-labelledby="success-pipeline-heading"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1C] via-[#0F1420] to-[#0A0F1C]" />
-
       {/* Container */}
       <div className="relative max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Heading */}
         <div className="text-center mb-16 md:mb-20 space-y-4">
           <h2
             id="success-pipeline-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-50 tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-fundaid-text-primary tracking-tight"
           >
             Your Path to Grant Funding
           </h2>
-          <p className="text-lg md:text-xl text-slate-300/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-fundaid-text-secondary max-w-3xl mx-auto leading-relaxed">
             FundAid combines advanced AI agents with grant expertise to help innovative companies win government funding.
             <br className="hidden md:block" />
             Our multi-stage system handles everything from assessment to submission.
@@ -336,7 +320,7 @@ export function SuccessPipeline() {
               style={{
                 backgroundColor: hoveredStage === 1 || hoveredStage === 2
                   ? SUCCESS_STAGES[0].accentColor
-                  : 'rgba(255,255,255,0.05)'
+                  : 'rgba(17, 24, 39, 0.1)'
               }}
             />
 
@@ -346,7 +330,7 @@ export function SuccessPipeline() {
               style={{
                 backgroundColor: hoveredStage === 3 || hoveredStage === 4
                   ? SUCCESS_STAGES[2].accentColor
-                  : 'rgba(255,255,255,0.05)'
+                  : 'rgba(17, 24, 39, 0.1)'
               }}
             />
 
@@ -356,7 +340,7 @@ export function SuccessPipeline() {
               style={{
                 backgroundColor: hoveredStage === 2 || hoveredStage === 3
                   ? SUCCESS_STAGES[1].accentColor
-                  : 'rgba(255,255,255,0.05)'
+                  : 'rgba(17, 24, 39, 0.1)'
               }}
             />
           </div>

@@ -214,51 +214,33 @@ export function DeepSpaceHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col"
-      style={{
-        background: `linear-gradient(180deg, ${DESIGN_TOKENS.colors.bgGradientStart}, ${DESIGN_TOKENS.colors.bgGradientEnd})`,
-      }}
+      className="relative min-h-screen w-full flex flex-col bg-gradient-to-br from-white via-fundaid-section-accent to-fundaid-section-subtle"
     >
       {/* Sticky Navigation */}
       <nav
         className={cn(
           'sticky top-0 z-50 transition-all duration-500',
           scrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-sm'
+            ? 'bg-white/90 backdrop-blur-md shadow-fundaid-sm'
             : 'bg-transparent'
         )}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div
-            className="fundaid-wordmark text-2xl text-white transition-colors duration-300"
-            style={{
-              fontFamily: DESIGN_TOKENS.typography.fontFamily,
-              fontWeight: 900,
-              letterSpacing: '0.08em',
-            }}
+            className="fundaid-wordmark text-2xl text-fundaid-accent-primary transition-colors duration-300 font-black tracking-wide"
           >
             FUNDAID
           </div>
           <div className="flex items-center gap-6">
             <Link
               href="#how-it-works"
-              className={cn(
-                'text-sm font-medium transition-colors duration-300',
-                scrolled
-                  ? 'text-gray-600 hover:text-gray-900'
-                  : 'text-white/80 hover:text-white'
-              )}
+              className="text-sm font-medium text-fundaid-text-secondary hover:text-fundaid-accent-primary transition-colors duration-300"
             >
               How It Works
             </Link>
             <Link
               href="/sign-up"
-              className={cn(
-                'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
-                scrolled
-                  ? 'bg-gray-900 text-white hover:bg-gray-800'
-                  : 'bg-white text-gray-900 hover:bg-gray-100'
-              )}
+              className="px-4 py-2 rounded-full text-sm font-medium bg-fundaid-accent-primary text-white hover:bg-fundaid-accent-primary-hover transition-all duration-300"
             >
               Get Started
             </Link>
@@ -486,33 +468,19 @@ export function DeepSpaceHero() {
 
           {/* Layer 6: Direct Text Content (no box) */}
           <div className="relative z-20 flex flex-col items-center justify-center gap-8" style={{ minHeight: '900px' }}>
-            {/* FUNDAID Title - Restrained precision styling */}
+            {/* FUNDAID Title - Clean, professional styling */}
             <h1
-              className="text-8xl sm:text-9xl md:text-[12rem] lg:text-[14rem] font-black"
-              style={{
-                fontFamily: DESIGN_TOKENS.typography.fontFamily,
-                color: '#ffffff',
-                letterSpacing: '0.15em',
-                textShadow: `
-                  -1px -1px 0 ${DESIGN_TOKENS.colors.nodeCyan},
-                  1px -1px 0 ${DESIGN_TOKENS.colors.nodeCyan},
-                  -1px 1px 0 ${DESIGN_TOKENS.colors.nodeCyan},
-                  1px 1px 0 ${DESIGN_TOKENS.colors.nodeCyan},
-                  0 0 15px ${DESIGN_TOKENS.colors.nodeCyan}10,
-                  inset 0 2px 4px rgba(0,0,0,0.15)
-                `.replace(/\n/g, '').replace(/\s+/g, ' ').trim(),
-                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-              }}
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-fundaid-accent-primary tracking-tight"
             >
               FUNDAID
             </h1>
 
             {/* Tagline */}
             <div className="text-center max-w-3xl px-6">
-              <p className="text-2xl sm:text-3xl md:text-4xl text-white/90 font-light mb-2 leading-relaxed">
+              <p className="text-2xl sm:text-3xl md:text-4xl text-fundaid-text-primary font-light mb-2 leading-relaxed">
                 Stop Writing Grants.
               </p>
-              <p className="text-2xl sm:text-3xl md:text-4xl text-white/90 font-light mb-8 leading-relaxed">
+              <p className="text-2xl sm:text-3xl md:text-4xl text-fundaid-text-primary font-light mb-8 leading-relaxed">
                 Start Winning Them.
               </p>
             </div>
@@ -521,31 +489,14 @@ export function DeepSpaceHero() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
               <Link
                 href="/sign-up"
-                className="group relative px-10 py-4 rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 w-full sm:w-auto"
-                style={{
-                  background: `linear-gradient(135deg, ${DESIGN_TOKENS.colors.nodeCyan} 0%, ${DESIGN_TOKENS.colors.nodeTeal} 100%)`,
-                  boxShadow: `0 0 30px ${DESIGN_TOKENS.colors.nodeCyan}50, 0 8px 24px rgba(0, 0, 0, 0.3)`,
-                }}
+                className="group relative px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 w-full sm:w-auto bg-fundaid-accent-primary hover:bg-fundaid-accent-primary-hover text-white shadow-fundaid-lg hover:shadow-fundaid-xl"
               >
-                <span className="relative z-10 text-black font-bold">Get Started</span>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, #ffffff 0%, #39F2C3 100%)',
-                  }}
-                />
+                Get Started
               </Link>
 
               <Link
                 href="#how-it-works"
-                className="px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 border-2 w-full sm:w-auto"
-                style={{
-                  borderColor: `${DESIGN_TOKENS.colors.nodeCyan}50`,
-                  background: 'rgba(15, 23, 42, 0.3)',
-                  backdropFilter: 'blur(8px)',
-                  color: DESIGN_TOKENS.colors.nodeCyan,
-                  boxShadow: `0 0 20px ${DESIGN_TOKENS.colors.nodeCyan}20, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
-                }}
+                className="px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 border-2 w-full sm:w-auto border-fundaid-accent-primary text-fundaid-accent-primary hover:bg-fundaid-section-accent"
               >
                 Explore Features
               </Link>
@@ -556,9 +507,9 @@ export function DeepSpaceHero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 opacity-60 hover:opacity-100 transition-opacity">
-        <span className="text-white/60 text-sm font-light">Scroll to explore</span>
+        <span className="text-fundaid-text-muted text-sm font-light">Scroll to explore</span>
         <svg
-          className="w-6 h-6 text-white/60 animate-bounce"
+          className="w-6 h-6 text-fundaid-accent-primary animate-bounce"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

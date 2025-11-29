@@ -1,0 +1,84 @@
+Create a comprehensive testing strategy for custom Clerk authentication components in a Next.js 14 application.
+
+CONTEXT:
+We've replaced Clerk's prebuilt <SignIn /> and <SignUp /> components with custom implementations using Clerk's headless hooks (useSignIn() and useSignUp()).
+
+COMPONENTS TO TEST:
+
+1. **CustomSignInForm** - Located at app/(auth)/sign-in/[[...sign-in]]/page.tsx
+   - Email + password authentication
+   - Uses useSignIn() hook
+   - Redirects to /dashboard on success
+
+2. **CustomSignUpForm** - Located at app/(auth)/sign-up/[[...sign-up]]/page.tsx
+   - Multi-step flow: Email/Password → Email Verification
+   - Uses useSignUp() hook
+   - Password strength meter
+   - 6-digit verification code
+   - Redirects to /onboarding on success
+
+TESTING REQUIREMENTS:
+
+Generate a comprehensive testing strategy that includes:
+
+1. **Manual Testing Checklist**
+   - Step-by-step instructions for testing each component
+   - Expected outcomes at each step
+   - Edge cases to verify
+   - Error scenarios to test
+
+2. **Automated Testing Strategy**
+   - Recommend testing tools (Jest, React Testing Library, Playwright, etc.)
+   - Unit test cases for key functions
+   - Integration test scenarios
+   - E2E test flows
+
+3. **Test Data Setup**
+   - Sample test user credentials
+   - Mock Clerk responses for testing
+   - Test verification codes
+
+4. **Visual Regression Testing**
+   - Key screenshots to capture
+   - Components to verify visually
+   - Responsive breakpoints to test
+
+5. **Security Testing**
+   - Authentication flow security checks
+   - Input validation testing
+   - XSS/injection prevention verification
+
+6. **Performance Testing**
+   - Load time benchmarks
+   - Metrics to track
+   - Performance optimization checks
+
+7. **Accessibility Testing**
+   - WCAG compliance checklist
+   - Screen reader testing steps
+   - Keyboard navigation verification
+
+8. **Integration Points to Verify**
+   - Clerk API integration
+   - Navigation/routing
+   - Onboarding flow handoff
+   - Metadata storage in Clerk
+
+OUTPUT FORMAT:
+Create a detailed Markdown document with:
+- Clear section headers
+- Numbered step-by-step instructions
+- Code examples for automated tests
+- Checklists with checkboxes [ ]
+- Expected vs actual result templates
+- Success criteria for each test category
+
+TECHNICAL STACK:
+- Next.js 14 (App Router)
+- TypeScript
+- Clerk authentication
+- Tailwind CSS
+- Framer Motion
+- React Hook Form (if applicable)
+
+Generate a production-ready testing strategy that ensures the custom auth components work flawlessly.

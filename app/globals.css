@@ -51,48 +51,63 @@
 
 @layer base {
   :root {
-    /* FundAid Light Theme - CSS Variables */
-    --bg-page: #F5F2ED;
-    --bg-page-alt: #F8F5EE;
-    --bg-panel: #FFFFFF;
-    --bg-canvas: #EFE9DF;
+    /* FundAid Clinical Medical SaaS Theme - Design System Tokens */
 
-    --text-main: #14141F;
-    --text-muted: #6B6B7C;
-    --text-data: #6B6B7C;
+    /* Backgrounds */
+    --bg-page: #FFFFFF;
+    --bg-section-subtle: #F5F7FA;
+    --bg-section-accent: #F2F6FF;
+    --bg-card: #FFFFFF;
+    --bg-muted: #F3F4F6;
 
-    --accent-teal: #2FB49E;
-    --accent-lavender: #A98CEB;
-    --accent-coral: #E4584A;
+    /* Text Colors */
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
 
-    /* Shadcn UI variables (updated for light theme) */
-    --background: 0 0% 96%;  /* Light cream */
-    --foreground: 240 10% 8%; /* Near-black */
+    /* Borders & Dividers */
+    --border-subtle: #E5E7EB;
+    --border-medium: #D1D5DB;
+
+    /* Brand Accent Colors */
+    --accent-primary: #1446A0;
+    --accent-primary-hover: #0F3580;
+    --accent-secondary: #1BA39C;
+    --accent-data: #6D5BD0;
+
+    /* Functional Colors */
+    --success: #2BAF7D;
+    --error: #EF4444;
+    --warning: #F59E0B;
+
+    /* Shadcn UI variables (aligned with clinical theme) */
+    --background: 0 0% 100%;  /* Pure white */
+    --foreground: 222 47% 11%; /* #111827 */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 8%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 8%;
-    --primary: 171 43% 46%;  /* Teal */
+    --popover-foreground: 222 47% 11%;
+    --primary: 217 76% 45%;  /* #1446A0 - Primary Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 8%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 42%;
-    --accent: 240 5% 96%;
-    --accent-foreground: 240 10% 8%;
-    --destructive: 3 78% 57%;  /* Coral for errors */
+    --secondary: 177 44% 37%;  /* #1BA39C - Teal */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;  /* #F3F4F6 */
+    --muted-foreground: 220 9% 46%;  /* #6B7280 */
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;  /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 171 43% 46%;  /* Teal focus ring */
-    --radius: 0.5rem;
+    --border: 220 13% 91%;  /* #E5E7EB */
+    --input: 220 13% 91%;
+    --ring: 217 76% 45%;  /* Primary blue focus ring */
+    --radius: 0.75rem;
 
-    /* Chart colors (FundAid accents) */
-    --chart-1: 171 43% 46%;  /* Teal */
-    --chart-2: 267 48% 73%;  /* Lavender */
-    --chart-3: 3 78% 57%;    /* Coral */
-    --chart-4: 240 5% 42%;   /* Muted gray */
-    --chart-5: 240 10% 8%;   /* Near-black */
+    /* Chart colors (clinical data visualization) */
+    --chart-1: 217 76% 45%;  /* Primary Blue */
+    --chart-2: 177 44% 37%;  /* Teal */
+    --chart-3: 262 52% 62%;  /* Purple */
+    --chart-4: 142 56% 53%;  /* Success Green */
+    --chart-5: 220 9% 46%;   /* Muted Gray */
   }
 
   /* Remove dark mode - FundAid is light-only */
@@ -112,12 +127,14 @@
 
   body {
     @apply text-foreground;
-    background: linear-gradient(to bottom, #1A1A2E 0%, #2D2D44 50%, #1A1A2E 100%);
+    background: var(--bg-page);
+    color: var(--text-primary);
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv02' on;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6; /* Improved readability for medical SaaS */
   }
 
   code, pre {
@@ -139,47 +156,75 @@
     text-shadow: 0 2px 8px rgba(251, 146, 60, 0.15);
   }
 
-  /* FundAid Typography Utilities */
-  .text-fundaid-main {
-    color: var(--text-main);
+  /* FundAid Clinical Theme - Typography Utilities */
+  .text-fundaid-primary {
+    color: var(--text-primary);
+  }
+
+  .text-fundaid-secondary {
+    color: var(--text-secondary);
   }
 
   .text-fundaid-muted {
     color: var(--text-muted);
   }
 
-  .text-fundaid-data {
-    color: var(--text-data);
+  /* FundAid Clinical Theme - Background Utilities */
+  .bg-fundaid-page {
+    background-color: var(--bg-page);
   }
 
-  /* Section text color utilities for light/dark backgrounds */
-  .heading-black {
-    color: #14141F;
+  .bg-fundaid-section-subtle {
+    background-color: var(--bg-section-subtle);
   }
 
-  .heading-white {
-    color: #FFFFFF;
+  .bg-fundaid-section-accent {
+    background-color: var(--bg-section-accent);
   }
 
-  .body-black {
-    color: #14141F;
-    opacity: 0.85;
+  .bg-fundaid-card {
+    background-color: var(--bg-card);
   }
 
-  .body-white {
-    color: #FFFFFF;
-    opacity: 0.9;
+  .bg-fundaid-muted {
+    background-color: var(--bg-muted);
   }
 
-  /* Section background utilities */
-  .section-light {
-    background-color: #FFFFFF;
+  /* FundAid Clinical Theme - Accent Colors */
+  .text-accent-primary {
+    color: var(--accent-primary);
   }
 
-  .section-dark {
-    background-color: #0A0F1C;
+  .text-accent-secondary {
+    color: var(--accent-secondary);
   }
 
+  .text-accent-data {
+    color: var(--accent-data);
+  }
+
+  .bg-accent-primary {
+    background-color: var(--accent-primary);
+  }
+
+  .bg-accent-secondary {
+    background-color: var(--accent-secondary);
+  }
+
+  .bg-accent-data {
+    background-color: var(--accent-data);
+  }
+
+  /* Border Utilities */
+  .border-fundaid-subtle {
+    border-color: var(--border-subtle);
+  }
+
+  .border-fundaid-medium {
+    border-color: var(--border-medium);
+  }
+
+  /* Accent underline for headings */
   .accent-underline {
     position: relative;
     display: inline-block;
@@ -192,50 +237,8 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #14B8A6 0%, #2FB49E 100%);
+    background: var(--accent-secondary);
     border-radius: 2px;
-  }
-
-  /* FundAid Background Utilities */
-  .bg-fundaid-page {
-    background-color: var(--bg-page);
-  }
-
-  .bg-fundaid-page-alt {
-    background-color: var(--bg-page-alt);
-  }
-
-  .bg-fundaid-panel {
-    background-color: var(--bg-panel);
-  }
-
-  .bg-fundaid-canvas {
-    background-color: var(--bg-canvas);
-  }
-
-  /* FundAid Accent Utilities */
-  .text-fundaid-teal {
-    color: var(--accent-teal);
-  }
-
-  .text-fundaid-lavender {
-    color: var(--accent-lavender);
-  }
-
-  .text-fundaid-coral {
-    color: var(--accent-coral);
-  }
-
-  .bg-fundaid-teal {
-    background-color: var(--accent-teal);
-  }
-
-  .bg-fundaid-lavender {
-    background-color: var(--accent-lavender);
-  }
-
-  .bg-fundaid-coral {
-    background-color: var(--accent-coral);
   }
 
   /* Restrained Interaction Utilities - Digilab Style */
@@ -264,13 +267,13 @@
     transform: translateY(-2px);
   }
 
-  /* Skeleton loader - light theme */
+  /* Skeleton loader - clinical light theme */
   .skeleton-light {
     background: linear-gradient(
       90deg,
-      #F5F2ED 0%,
-      #EEEBE6 50%,
-      #F5F2ED 100%
+      var(--bg-section-subtle) 0%,
+      var(--bg-muted) 50%,
+      var(--bg-section-subtle) 100%
     );
     background-size: 1000px 100%;
     animation: shimmer 2s infinite linear;
@@ -285,15 +288,15 @@
     }
   }
 
-  /* Focus States for Accessibility - Teal focus ring */
+  /* Focus States for Accessibility - Primary blue focus ring */
   *:focus-visible {
-    outline: 2px solid var(--accent-teal) !important;
+    outline: 2px solid var(--accent-primary) !important;
     outline-offset: 2px;
   }
 
   button:focus-visible,
   a:focus-visible {
-    box-shadow: 0 0 0 3px rgba(47, 180, 158, 0.2);
+    box-shadow: 0 0 0 3px rgba(20, 70, 160, 0.2);
   }
 
   /* Accessibility: Reduced Motion */
@@ -308,17 +311,21 @@
     }
   }
 
-  /* Clean Shadows - No glows */
+  /* Clinical Shadows - Subtle, No Glows */
   .fundaid-shadow-sm {
-    box-shadow: 0 1px 2px rgba(20, 20, 31, 0.05);
+    box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
   }
 
   .fundaid-shadow-md {
-    box-shadow: 0 2px 4px rgba(20, 20, 31, 0.08);
+    box-shadow: 0 2px 4px rgba(17, 24, 39, 0.08);
   }
 
   .fundaid-shadow-lg {
-    box-shadow: 0 4px 8px rgba(20, 20, 31, 0.12);
+    box-shadow: 0 4px 8px rgba(17, 24, 39, 0.12);
+  }
+
+  .fundaid-shadow-xl {
+    box-shadow: 0 8px 16px rgba(17, 24, 39, 0.16);
   }
 
   /* Mono font utility */

@@ -29,9 +29,9 @@ export function ProfileAgentBlueprint({ className = '', animate = true }: Profil
         <defs>
           {/* Cyan/Teal gradients */}
           <linearGradient id="profile-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#39F2C3" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#20D8D2" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#39F2C3" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#39F2C3" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#20D8D2" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#39F2C3" stopOpacity="0.7" />
           </linearGradient>
 
           <linearGradient id="profile-card-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -54,17 +54,17 @@ export function ProfileAgentBlueprint({ className = '', animate = true }: Profil
         </defs>
 
         {/* Background grid */}
-        <g id="background-grid" opacity="0.05">
+        <g id="background-grid" opacity="0.15">
           {Array.from({ length: 41 }).map((_, i) => (
-            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#20D8D2" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#20D8D2" strokeWidth="1" />
           ))}
           {Array.from({ length: 31 }).map((_, i) => (
-            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#20D8D2" strokeWidth="0.5" />
+            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#20D8D2" strokeWidth="1" />
           ))}
         </g>
 
         {/* Corner registration marks */}
-        <g opacity="0.6">
+        <g opacity="0.8">
           {/* Top-left */}
           <line x1="40" y1="60" x2="80" y2="60" stroke="#39F2C3" strokeWidth="1.5" />
           <line x1="60" y1="40" x2="60" y2="80" stroke="#39F2C3" strokeWidth="1.5" />
@@ -87,15 +87,15 @@ export function ProfileAgentBlueprint({ className = '', animate = true }: Profil
         </g>
 
         {/* Data flow paths - organic connections */}
-        <g opacity="0.4">
-          <path d="M 260,360 Q 380,410 500,480" fill="none" stroke="url(#profile-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-profile-pulse' : ''} />
-          <path d="M 520,500 Q 580,540 620,590" fill="none" stroke="url(#profile-stroke)" strokeWidth="1.8" strokeDasharray="5,5" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '0.5s' }} />
-          <path d="M 660,615 Q 720,660 760,720" fill="none" stroke="url(#profile-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '1s' }} />
-          <path d="M 780,750 Q 740,780 680,780" fill="none" stroke="url(#profile-stroke)" strokeWidth="1.2" strokeDasharray="3,3" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '1.5s' }} />
+        <g opacity="0.6">
+          <path d="M 260,360 Q 380,410 500,480" fill="none" stroke="url(#profile-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-profile-pulse' : ''} />
+          <path d="M 520,500 Q 580,540 620,590" fill="none" stroke="url(#profile-stroke)" strokeWidth="3" strokeDasharray="5,5" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '0.5s' }} />
+          <path d="M 660,615 Q 720,660 760,720" fill="none" stroke="url(#profile-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '1s' }} />
+          <path d="M 780,750 Q 740,780 680,780" fill="none" stroke="url(#profile-stroke)" strokeWidth="2" strokeDasharray="3,3" className={animate ? 'animate-profile-pulse' : ''} style={{ animationDelay: '1.5s' }} />
 
           {/* Cross connections */}
-          <path d="M 260,365 Q 450,500 620,595" fill="none" stroke="#20D8D2" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.25" />
-          <path d="M 510,490 Q 650,580 760,720" fill="none" stroke="#20D8D2" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.25" />
+          <path d="M 260,365 Q 450,500 620,595" fill="none" stroke="#20D8D2" strokeWidth="1" strokeDasharray="2,2" opacity="0.4" />
+          <path d="M 510,490 Q 650,580 760,720" fill="none" stroke="#20D8D2" strokeWidth="1" strokeDasharray="2,2" opacity="0.4" />
         </g>
 
         {/* AGENT NODE 1 - Document Extraction (Left) */}

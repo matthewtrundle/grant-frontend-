@@ -12,7 +12,7 @@ import ProcessTimelineFixed from '@/components/sections/digilab/ProcessTimelineF
 
 export default function Home() {
   return (
-    <main className="relative overflow-hidden bg-black min-h-screen">
+    <main className="relative overflow-hidden bg-fundaid-page min-h-screen">
       <DeepSpaceHero />
       <div id="how-it-works">
         <SuccessPipeline />

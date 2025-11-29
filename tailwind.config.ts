@@ -52,30 +52,44 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
 
-        /* FundAid Light Theme - Named Colors */
-        'fundaid-page': '#F5F2ED',
-        'fundaid-page-alt': '#F8F5EE',
-        'fundaid-panel': '#FFFFFF',
-        'fundaid-canvas': '#EFE9DF',
+        /* FundAid Clinical Medical SaaS Theme */
+        // Backgrounds
+        'fundaid-page': '#FFFFFF',
+        'fundaid-section-subtle': '#F5F7FA',
+        'fundaid-section-accent': '#F2F6FF',
+        'fundaid-card': '#FFFFFF',
+        'fundaid-muted': '#F3F4F6',
 
-        'fundaid-text-main': '#14141F',
-        'fundaid-text-muted': '#6B6B7C',
-        'fundaid-text-data': '#6B6B7C',
+        // Text
+        'fundaid-text-primary': '#111827',
+        'fundaid-text-secondary': '#374151',
+        'fundaid-text-muted': '#6B7280',
 
-        'fundaid-teal': '#2FB49E',
-        'fundaid-lavender': '#A98CEB',
-        'fundaid-coral': '#E4584A',
+        // Borders
+        'fundaid-border-subtle': '#E5E7EB',
+        'fundaid-border-medium': '#D1D5DB',
 
-        /* Grayscale for structural elements */
+        // Brand Accents
+        'fundaid-accent-primary': '#1446A0',
+        'fundaid-accent-primary-hover': '#0F3580',
+        'fundaid-accent-secondary': '#1BA39C',
+        'fundaid-accent-data': '#6D5BD0',
+
+        // Functional
+        'fundaid-success': '#2BAF7D',
+        'fundaid-error': '#EF4444',
+        'fundaid-warning': '#F59E0B',
+
+        /* Clinical grayscale - aligned with medical SaaS aesthetic */
         gray: {
-          50: '#FAFBFD',
-          100: '#F8F9FC',
-          200: '#E8EAED',
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
           300: '#D1D5DB',
-          400: '#BEC3C9',
-          500: '#9CA3AF',
-          600: '#6B7280',
-          700: '#4B5563',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
           800: '#1F2937',
           900: '#111827',
         },
@@ -86,14 +100,14 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        /* Clean, subtle shadows - no glows */
-        'fundaid-sm': '0 1px 2px rgba(20, 20, 31, 0.05)',
-        'fundaid-md': '0 2px 4px rgba(20, 20, 31, 0.08)',
-        'fundaid-lg': '0 4px 8px rgba(20, 20, 31, 0.12)',
-        'fundaid-xl': '0 8px 16px rgba(20, 20, 31, 0.16)',
+        /* Clinical shadows - subtle, professional */
+        'fundaid-sm': '0 1px 2px rgba(17, 24, 39, 0.06)',
+        'fundaid-md': '0 2px 4px rgba(17, 24, 39, 0.08)',
+        'fundaid-lg': '0 4px 8px rgba(17, 24, 39, 0.12)',
+        'fundaid-xl': '0 8px 16px rgba(17, 24, 39, 0.16)',
 
-        /* Teal focus ring (no glow) */
-        'fundaid-focus': '0 0 0 3px rgba(47, 180, 158, 0.2)',
+        /* Primary blue focus ring (WCAG compliant) */
+        'fundaid-focus': '0 0 0 3px rgba(20, 70, 160, 0.2)',
       },
       transitionDuration: {
         'instant': '150ms',

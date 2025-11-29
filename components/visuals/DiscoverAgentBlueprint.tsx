@@ -29,9 +29,9 @@ export function DiscoverAgentBlueprint({ className = '', animate = true }: Disco
         <defs>
           {/* Teal gradients */}
           <linearGradient id="discover-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#20D8D2" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#20D8D2" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#20D8D2" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#20D8D2" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#20D8D2" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#20D8D2" stopOpacity="0.7" />
           </linearGradient>
 
           <linearGradient id="discover-card-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -54,17 +54,17 @@ export function DiscoverAgentBlueprint({ className = '', animate = true }: Disco
         </defs>
 
         {/* Background grid */}
-        <g id="background-grid" opacity="0.05">
+        <g id="background-grid" opacity="0.15">
           {Array.from({ length: 41 }).map((_, i) => (
-            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#20D8D2" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#20D8D2" strokeWidth="1" />
           ))}
           {Array.from({ length: 31 }).map((_, i) => (
-            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#20D8D2" strokeWidth="0.5" />
+            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#20D8D2" strokeWidth="1" />
           ))}
         </g>
 
         {/* Corner registration marks */}
-        <g opacity="0.6">
+        <g opacity="0.8">
           {/* Top-left */}
           <line x1="40" y1="60" x2="80" y2="60" stroke="#20D8D2" strokeWidth="1.5" />
           <line x1="60" y1="40" x2="60" y2="80" stroke="#20D8D2" strokeWidth="1.5" />
@@ -127,7 +127,7 @@ export function DiscoverAgentBlueprint({ className = '', animate = true }: Disco
         ))}
 
         {/* Search connections - radial lines from center to database nodes */}
-        <g opacity="0.4">
+        <g opacity="0.6">
           {[
             'M 600,420 L 300,250',
             'M 600,420 L 900,280',
@@ -141,7 +141,7 @@ export function DiscoverAgentBlueprint({ className = '', animate = true }: Disco
               d={path}
               fill="none"
               stroke="url(#discover-stroke)"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
               strokeDasharray="4,4"
               className={animate ? 'animate-discover-pulse-line' : ''}
               style={{ animationDelay: `${i * 0.3}s` }}

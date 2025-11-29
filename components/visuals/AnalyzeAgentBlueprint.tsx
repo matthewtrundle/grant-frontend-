@@ -29,9 +29,9 @@ export function AnalyzeAgentBlueprint({ className = '', animate = true }: Analyz
         <defs>
           {/* Lavender gradients */}
           <linearGradient id="analyze-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#A88CFF" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#A88CFF" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#A88CFF" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#A88CFF" stopOpacity="0.7" />
+            <stop offset="50%" stopColor="#A88CFF" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#A88CFF" stopOpacity="0.7" />
           </linearGradient>
 
           <linearGradient id="analyze-card-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -54,17 +54,17 @@ export function AnalyzeAgentBlueprint({ className = '', animate = true }: Analyz
         </defs>
 
         {/* Background grid */}
-        <g id="background-grid" opacity="0.05">
+        <g id="background-grid" opacity="0.15">
           {Array.from({ length: 41 }).map((_, i) => (
-            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#A88CFF" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 30} y1="0" x2={i * 30} y2="900" stroke="#A88CFF" strokeWidth="1" />
           ))}
           {Array.from({ length: 31 }).map((_, i) => (
-            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#A88CFF" strokeWidth="0.5" />
+            <line key={`h-${i}`} x1="0" y1={i * 30} x2="1200" y2={i * 30} stroke="#A88CFF" strokeWidth="1" />
           ))}
         </g>
 
         {/* Corner registration marks */}
-        <g opacity="0.6">
+        <g opacity="0.8">
           {/* Top-left */}
           <line x1="40" y1="60" x2="80" y2="60" stroke="#A88CFF" strokeWidth="1.5" />
           <line x1="60" y1="40" x2="60" y2="80" stroke="#A88CFF" strokeWidth="1.5" />
@@ -160,7 +160,7 @@ export function AnalyzeAgentBlueprint({ className = '', animate = true }: Analyz
                 d={`M 600,${agent.y + 28} L 600,${agent.y + 122}`}
                 fill="none"
                 stroke="url(#analyze-stroke)"
-                strokeWidth="2"
+                strokeWidth="3"
                 strokeDasharray="5,5"
                 className={animate ? 'animate-analyze-flow' : ''}
                 style={{ animationDelay: `${i * 0.3}s` }}
@@ -170,9 +170,9 @@ export function AnalyzeAgentBlueprint({ className = '', animate = true }: Analyz
         ))}
 
         {/* Flow connections - input and output */}
-        <g opacity="0.4">
-          <path d="M 220,330 Q 410,300 600,250" fill="none" stroke="url(#analyze-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-analyze-flow' : ''} />
-          <path d="M 600,780 Q 750,800 900,800" fill="none" stroke="url(#analyze-stroke)" strokeWidth="1.5" strokeDasharray="4,4" className={animate ? 'animate-analyze-flow' : ''} style={{ animationDelay: '1s' }} />
+        <g opacity="0.6">
+          <path d="M 220,330 Q 410,300 600,250" fill="none" stroke="url(#analyze-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-analyze-flow' : ''} />
+          <path d="M 600,780 Q 750,800 900,800" fill="none" stroke="url(#analyze-stroke)" strokeWidth="2.5" strokeDasharray="4,4" className={animate ? 'animate-analyze-flow' : ''} style={{ animationDelay: '1s' }} />
         </g>
 
         {/* FLOATING CARD 1 - Analysis Scores (Top-Right) */}

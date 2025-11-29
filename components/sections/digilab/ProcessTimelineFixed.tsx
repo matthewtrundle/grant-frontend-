@@ -495,7 +495,7 @@ export function ProcessTimelineFixed() {
           { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.4 }
         );
 
-        // Animate Stage 1 right panel with scale-in and glow pulse
+        // Animate Stage 1 right panel with scale-in
         gsap.fromTo('.stage-1-panel',
           { opacity: 0, scale: 0.95 },
           {
@@ -503,17 +503,7 @@ export function ProcessTimelineFixed() {
             scale: 1,
             duration: 1.2,
             ease: 'power2.out',
-            delay: 0.6,
-            onComplete: () => {
-              // Subtle glow pulse after entry
-              gsap.to('.stage-1-panel', {
-                boxShadow: '0 0 40px rgba(57, 242, 195, 0.3), inset 0 1px 1px rgba(255,255,255,0.05), 0 24px 60px rgba(0,0,0,0.65)',
-                duration: 2,
-                yoyo: true,
-                repeat: 1,
-                ease: 'sine.inOut'
-              });
-            }
+            delay: 0.6
           }
         );
       } else if (activeStep === 2) {
@@ -523,7 +513,7 @@ export function ProcessTimelineFixed() {
           { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.4 }
         );
 
-        // Animate Stage 2 right panel with scale-in and glow pulse
+        // Animate Stage 2 right panel with scale-in
         gsap.fromTo('.stage-2-panel',
           { opacity: 0, scale: 0.95 },
           {
@@ -531,17 +521,7 @@ export function ProcessTimelineFixed() {
             scale: 1,
             duration: 1.2,
             ease: 'power2.out',
-            delay: 0.6,
-            onComplete: () => {
-              // Subtle teal glow pulse after entry
-              gsap.to('.stage-2-panel', {
-                boxShadow: '0 0 40px rgba(20, 216, 210, 0.3), inset 0 1px 1px rgba(255,255,255,0.05), 0 24px 60px rgba(0,0,0,0.65)',
-                duration: 2,
-                yoyo: true,
-                repeat: 1,
-                ease: 'sine.inOut'
-              });
-            }
+            delay: 0.6
           }
         );
       } else if (activeStep === 3) {
@@ -551,7 +531,7 @@ export function ProcessTimelineFixed() {
           { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.4 }
         );
 
-        // Animate Stage 3 right panel with scale-in and purple glow pulse
+        // Animate Stage 3 right panel with scale-in
         gsap.fromTo('.stage-3-panel',
           { opacity: 0, scale: 0.95 },
           {
@@ -559,17 +539,7 @@ export function ProcessTimelineFixed() {
             scale: 1,
             duration: 1.2,
             ease: 'power2.out',
-            delay: 0.6,
-            onComplete: () => {
-              // Subtle purple glow pulse after entry
-              gsap.to('.stage-3-panel', {
-                boxShadow: '0 0 40px rgba(168, 140, 255, 0.3), inset 0 1px 1px rgba(255,255,255,0.05), 0 24px 60px rgba(0,0,0,0.65)',
-                duration: 2,
-                yoyo: true,
-                repeat: 1,
-                ease: 'sine.inOut'
-              });
-            }
+            delay: 0.6
           }
         );
       } else if (activeStep === 4) {
@@ -579,7 +549,7 @@ export function ProcessTimelineFixed() {
           { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.4 }
         );
 
-        // Animate Stage 4 right panel with scale-in and coral glow pulse
+        // Animate Stage 4 right panel with scale-in
         gsap.fromTo('.stage-4-panel',
           { opacity: 0, scale: 0.95 },
           {
@@ -587,17 +557,7 @@ export function ProcessTimelineFixed() {
             scale: 1,
             duration: 1.2,
             ease: 'power2.out',
-            delay: 0.6,
-            onComplete: () => {
-              // Subtle coral glow pulse after entry
-              gsap.to('.stage-4-panel', {
-                boxShadow: '0 0 40px rgba(255, 109, 109, 0.3), inset 0 1px 1px rgba(255,255,255,0.05), 0 24px 60px rgba(0,0,0,0.65)',
-                duration: 2,
-                yoyo: true,
-                repeat: 1,
-                ease: 'sine.inOut'
-              });
-            }
+            delay: 0.6
           }
         );
       }
@@ -609,30 +569,29 @@ export function ProcessTimelineFixed() {
   return (
     <section
       ref={sectionRef}
-      className="hidden lg:block relative min-h-screen bg-gradient-to-b from-[#0A0E27] via-[#151B3D] to-[#0A0E27]"
+      className="hidden lg:block relative min-h-screen bg-fundaid-section-accent"
     >
-      {/* Cosmic starfield background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* HUD particles */}
+      {/* Subtle decorative background - clean dots instead of cosmic particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {/* Subtle grid dots */}
         {[...Array(40)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-[2px] h-[2px] rounded-full"
+            className="absolute w-[2px] h-[2px] rounded-full bg-fundaid-border-medium"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              backgroundColor: i % 3 === 0 ? '#30E3B7' : i % 3 === 1 ? '#A26CF7' : '#FFFFFF',
               opacity: Math.random() * 0.3 + 0.1,
             }}
           />
         ))}
       </div>
 
-      {/* Progress Bar - removed white background to prevent white space creep */}
-      <div className="absolute top-0 left-0 right-0 h-1 z-50" style={{ background: 'rgba(229, 231, 235, 0.2)' }}>
+      {/* Progress Bar - clean design */}
+      <div className="absolute top-0 left-0 right-0 h-1 z-50 bg-fundaid-border-subtle">
         <div
           ref={progressBarRef}
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-600"
+          className="h-full bg-gradient-to-r from-fundaid-accent-primary to-fundaid-accent-data"
           style={{ transform: 'scaleX(0)', transformOrigin: 'left center' }}
         />
       </div>
@@ -672,16 +631,8 @@ export function ProcessTimelineFixed() {
                           ? '#A88CFF'
                           : isActive && stage.id === 4
                           ? '#FF6D6D'
-                          : isActive ? stage.color : '#e5e7eb',
-                        filter: isActive && stage.id === 1
-                          ? 'drop-shadow(0 0 16px rgba(20, 216, 210, 0.8)) drop-shadow(0 0 32px rgba(20, 216, 210, 0.4))'
-                          : isActive && stage.id === 2
-                          ? 'drop-shadow(0 0 16px rgba(20, 216, 210, 0.8)) drop-shadow(0 0 32px rgba(20, 216, 210, 0.4))'
-                          : isActive && stage.id === 3
-                          ? 'drop-shadow(0 0 16px rgba(168, 140, 255, 0.8)) drop-shadow(0 0 32px rgba(168, 140, 255, 0.4))'
-                          : isActive && stage.id === 4
-                          ? 'drop-shadow(0 0 16px rgba(255, 109, 109, 0.8)) drop-shadow(0 0 32px rgba(255, 109, 109, 0.4))'
-                          : isActive ? `drop-shadow(0 0 12px ${stage.color}40)` : 'none'
+                          : isActive ? stage.color : '#D1D5DB',
+                        filter: 'none'
                       }}
                     >
                       {Icon}
@@ -703,61 +654,45 @@ export function ProcessTimelineFixed() {
                             ? '#A88CFF'
                             : isActive && stage.id === 4
                             ? '#FF6D6D'
-                            : isActive ? stage.color : '#e5e7eb',
-                          textShadow: isActive && stage.id === 1
-                            ? '0 0 30px rgba(32, 216, 210, 0.8), 0 0 60px rgba(57, 242, 195, 0.4)'
-                            : isActive && stage.id === 2
-                            ? '0 0 30px rgba(20, 216, 210, 0.8), 0 0 60px rgba(57, 242, 195, 0.4)'
-                            : isActive && stage.id === 3
-                            ? '0 0 30px rgba(168, 140, 255, 0.8), 0 0 60px rgba(196, 164, 255, 0.4)'
-                            : isActive && stage.id === 4
-                            ? '0 0 30px rgba(255, 109, 109, 0.8), 0 0 60px rgba(255, 143, 143, 0.4)'
-                            : isActive ? `0 0 20px ${stage.color}40` : '0 2px 4px rgba(0,0,0,0.1)'
+                            : isActive ? stage.color : '#D1D5DB',
+                          textShadow: 'none'
                         }}
                       >
                         {stage.id}
                       </div>
                       <div
-                        className="text-sm uppercase tracking-widest mt-2"
+                        className="text-sm uppercase tracking-widest mt-2 text-fundaid-text-secondary"
                         style={{
                           color: isActive && stage.id === 1
-                            ? '#39F2C3'
+                            ? '#20D8D2'
                             : isActive && stage.id === 2
                             ? '#20D8D2'
                             : isActive && stage.id === 3
                             ? '#A88CFF'
                             : isActive && stage.id === 4
                             ? '#FF6D6D'
-                            : isActive ? stage.color : '#9ca3af'
+                            : isActive ? stage.color : undefined
                         }}
                       >
                         {stage.label}
                       </div>
                     </div>
 
-                    {/* Active indicator line with enhanced glow for all Stages */}
+                    {/* Active indicator line - clean design without glow */}
                     {isActive && (
                       <div
                         className="absolute -left-4 top-0 bottom-0 w-1 rounded-full"
                         style={{
                           background: stage.id === 1
-                            ? 'linear-gradient(to bottom, #39F2C3, #20D8D2)'
+                            ? '#20D8D2'
                             : stage.id === 2
-                            ? 'linear-gradient(to bottom, #20D8D2, #39F2C3)'
+                            ? '#20D8D2'
                             : stage.id === 3
-                            ? 'linear-gradient(to bottom, #A88CFF, #C4A4FF)'
+                            ? '#A88CFF'
                             : stage.id === 4
-                            ? 'linear-gradient(to bottom, #FF6D6D, #FF8F8F)'
+                            ? '#FF6D6D'
                             : stage.color,
-                          boxShadow: stage.id === 1
-                            ? '0 0 20px rgba(32, 216, 210, 0.8), 0 0 40px rgba(57, 242, 195, 0.4)'
-                            : stage.id === 2
-                            ? '0 0 20px rgba(20, 216, 210, 0.8), 0 0 40px rgba(20, 216, 210, 0.4)'
-                            : stage.id === 3
-                            ? '0 0 20px rgba(168, 140, 255, 0.8), 0 0 40px rgba(196, 164, 255, 0.4)'
-                            : stage.id === 4
-                            ? '0 0 20px rgba(255, 109, 109, 0.8), 0 0 40px rgba(255, 143, 143, 0.4)'
-                            : `0 0 12px ${stage.color}60`
+                          boxShadow: 'none'
                         }}
                       />
                     )}
@@ -773,8 +708,8 @@ export function ProcessTimelineFixed() {
                     className={cn(
                       'h-2 rounded-full transition-all duration-500',
                       activeStep >= stage.id
-                        ? 'w-8 bg-gradient-to-r from-blue-500 to-purple-600'
-                        : 'w-2 bg-gray-300'
+                        ? 'w-8 bg-gradient-to-r from-fundaid-accent-primary to-fundaid-accent-data'
+                        : 'w-2 bg-fundaid-border-medium'
                     )}
                   />
                 ))}
@@ -795,25 +730,25 @@ export function ProcessTimelineFixed() {
                       isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute inset-0 pointer-events-none'
                     )}
                   >
-                    {/* Title with premium gradient text on key word */}
+                    {/* Title with accent gradient text on key word */}
                     <h3 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
                       {stage.id === 1 ? (
                         <>
-                          <span className="text-white">Understand Your </span>
-                          <span className="bg-gradient-to-r from-[#39F2C3] via-[#20D8D2] to-[#A88CFF] bg-clip-text text-transparent">
+                          <span className="text-fundaid-text-primary">Understand Your </span>
+                          <span className="bg-gradient-to-r from-[#20D8D2] via-[#39F2C3] to-[#A88CFF] bg-clip-text text-transparent">
                             Technology
                           </span>
                         </>
                       ) : stage.id === 2 ? (
                         <>
-                          <span className="text-white">Find </span>
+                          <span className="text-fundaid-text-primary">Find </span>
                           <span className="bg-gradient-to-r from-[#20D8D2] via-[#39F2C3] to-[#A88CFF] bg-clip-text text-transparent">
                             Perfect Matches
                           </span>
                         </>
                       ) : stage.id === 3 ? (
                         <>
-                          <span className="text-white">Deep </span>
+                          <span className="text-fundaid-text-primary">Deep </span>
                           <span className="bg-gradient-to-r from-[#A88CFF] via-[#C4A4FF] to-[#FF6D6D] bg-clip-text text-transparent">
                             Grant Analysis
                           </span>
@@ -825,179 +760,119 @@ export function ProcessTimelineFixed() {
                           </span>
                         </>
                       ) : (
-                        <span className="bg-gradient-to-r from-[#30E3B7] to-[#A26CF7] bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-[#20D8D2] to-[#A88CFF] bg-clip-text text-transparent">
                           {stage.title}
                         </span>
                       )}
                     </h3>
 
-                    {/* Description - Softer off-white with extra line-height and airy max-width */}
-                    <p className="text-sm md:text-base text-[#F5F6FF]/80 leading-[1.8] max-w-xl mb-8">
+                    {/* Description - clean text for light theme */}
+                    <p className="text-sm md:text-base text-fundaid-text-secondary leading-[1.8] max-w-xl mb-8">
                       {stage.description}
                     </p>
 
-                    {/* Cosmic Glassmorphic Metrics Card - Stages 1 & 2 Enhanced */}
+                    {/* Clean Metrics Cards - Light Theme */}
                     {stage.id === 1 ? (
                       <div className="relative mb-8 group">
-                        {/* Outer gradient border container */}
-                        <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-[#39F2C3] via-[#20D8D2] to-[#A88CFF] shadow-[0_0_40px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(32,216,210,0.5)]">
-                          {/* Inner dark glassmorphism card */}
-                          <div className="relative bg-[#0B1020]/80 backdrop-blur-xl rounded-2xl p-6 transition-all duration-300 group-hover:bg-[#0B1020]/90">
-                            {/* Stage pill with glowing dot */}
-                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#20D8D2]" style={{
-                              boxShadow: '0 0 20px rgba(32, 216, 210, 0.6), inset 0 1px 1px rgba(255,255,255,0.2)'
-                            }}>
-                              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{
-                                boxShadow: '0 0 8px rgba(255,255,255,0.8)'
-                              }} />
+                        {/* Clean white card with subtle border */}
+                        <div className="relative bg-white border border-fundaid-border-subtle rounded-2xl p-6 shadow-fundaid-lg transition-all duration-300 hover:shadow-fundaid-xl hover:border-fundaid-accent-secondary/40">
+                            {/* Stage pill - clean design */}
+                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-fundaid-accent-secondary">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
                               STAGE {stage.id}
                             </div>
 
-                            {/* Metrics text with tech font and letter spacing */}
-                            <div className="font-mono text-sm md:text-base font-medium text-white tracking-wide mt-2">
+                            {/* Metrics text */}
+                            <div className="font-mono text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide mt-2">
                               {stage.metrics}
                             </div>
 
-                            {/* Cyan progress beam */}
-                            <div className="mt-4 h-[3px] bg-slate-200/10 rounded-full overflow-hidden">
+                            {/* Clean progress bar */}
+                            <div className="mt-4 h-[3px] bg-fundaid-section-subtle rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-gradient-to-r from-[#39F2C3] to-[#20D8D2]"
-                                style={{
-                                  width: '75%',
-                                  boxShadow: '0 0 12px rgba(57, 242, 195, 0.6)'
-                                }}
+                                className="h-full rounded-full bg-gradient-to-r from-fundaid-accent-secondary to-fundaid-accent-primary"
+                                style={{ width: '75%' }}
                               />
                             </div>
-
-                            {/* Subtle cyan outer glow */}
-                            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
-                              boxShadow: '0 0 24px rgba(57, 242, 195, 0.15)'
-                            }} />
-                          </div>
                         </div>
                       </div>
                     ) : stage.id === 2 ? (
                       <div className="relative mb-8 group">
-                        {/* Outer gradient border container - Teal/Cyan gradient for Stage 2 */}
-                        <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-[#20D8D2] via-[#39F2C3] to-[#A88CFF] shadow-[0_0_40px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(20,216,210,0.5)]">
-                          {/* Inner dark glassmorphism card */}
-                          <div className="relative bg-[#0B1020]/80 backdrop-blur-xl rounded-2xl p-6 transition-all duration-300 group-hover:bg-[#0B1020]/90">
-                            {/* Stage pill with glowing dot - Teal for Stage 2 */}
-                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#20D8D2]" style={{
-                              boxShadow: '0 0 20px rgba(20, 216, 210, 0.6), inset 0 1px 1px rgba(255,255,255,0.2)'
-                            }}>
-                              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{
-                                boxShadow: '0 0 8px rgba(255,255,255,0.8)'
-                              }} />
+                        {/* Clean white card with subtle border */}
+                        <div className="relative bg-white border border-fundaid-border-subtle rounded-2xl p-6 shadow-fundaid-lg transition-all duration-300 hover:shadow-fundaid-xl hover:border-fundaid-accent-primary/40">
+                            {/* Stage pill - Teal for Stage 2 */}
+                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-fundaid-accent-primary">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
                               STAGE {stage.id}
                             </div>
 
-                            {/* Metrics text with tech font and letter spacing */}
-                            <div className="font-mono text-sm md:text-base font-medium text-white tracking-wide mt-2">
+                            {/* Metrics text */}
+                            <div className="font-mono text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide mt-2">
                               {stage.metrics}
                             </div>
 
-                            {/* Teal progress beam for Stage 2 */}
-                            <div className="mt-4 h-[3px] bg-slate-200/10 rounded-full overflow-hidden">
+                            {/* Clean progress bar for Stage 2 */}
+                            <div className="mt-4 h-[3px] bg-fundaid-section-subtle rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-gradient-to-r from-[#20D8D2] to-[#39F2C3]"
-                                style={{
-                                  width: '85%',
-                                  boxShadow: '0 0 12px rgba(20, 216, 210, 0.6)'
-                                }}
+                                className="h-full rounded-full bg-gradient-to-r from-fundaid-accent-primary to-fundaid-accent-secondary"
+                                style={{ width: '85%' }}
                               />
                             </div>
-
-                            {/* Subtle teal outer glow */}
-                            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
-                              boxShadow: '0 0 24px rgba(20, 216, 210, 0.15)'
-                            }} />
-                          </div>
                         </div>
                       </div>
                     ) : stage.id === 3 ? (
                       <div className="relative mb-8 group">
-                        {/* Outer gradient border container - Purple/Lavender gradient for Stage 3 */}
-                        <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-[#A88CFF] via-[#C4A4FF] to-[#FF6D6D] shadow-[0_0_40px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(168,140,255,0.5)]">
-                          {/* Inner dark glassmorphism card */}
-                          <div className="relative bg-[#0B1020]/80 backdrop-blur-xl rounded-2xl p-6 transition-all duration-300 group-hover:bg-[#0B1020]/90">
-                            {/* Stage pill with glowing dot - Purple for Stage 3 */}
-                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#A88CFF]" style={{
-                              boxShadow: '0 0 20px rgba(168, 140, 255, 0.6), inset 0 1px 1px rgba(255,255,255,0.2)'
-                            }}>
-                              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{
-                                boxShadow: '0 0 8px rgba(255,255,255,0.8)'
-                              }} />
+                        {/* Clean white card with subtle border */}
+                        <div className="relative bg-white border border-fundaid-border-subtle rounded-2xl p-6 shadow-fundaid-lg transition-all duration-300 hover:shadow-fundaid-xl hover:border-fundaid-accent-data/40">
+                            {/* Stage pill - Purple for Stage 3 */}
+                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-fundaid-accent-data">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
                               STAGE {stage.id}
                             </div>
 
-                            {/* Metrics text with tech font and letter spacing */}
-                            <div className="font-mono text-sm md:text-base font-medium text-white tracking-wide mt-2">
+                            {/* Metrics text */}
+                            <div className="font-mono text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide mt-2">
                               {stage.metrics}
                             </div>
 
-                            {/* Purple progress beam for Stage 3 */}
-                            <div className="mt-4 h-[3px] bg-slate-200/10 rounded-full overflow-hidden">
+                            {/* Clean progress bar for Stage 3 */}
+                            <div className="mt-4 h-[3px] bg-fundaid-section-subtle rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-gradient-to-r from-[#A88CFF] to-[#C4A4FF]"
-                                style={{
-                                  width: '90%',
-                                  boxShadow: '0 0 12px rgba(168, 140, 255, 0.6)'
-                                }}
+                                className="h-full rounded-full bg-gradient-to-r from-fundaid-accent-data to-[#C4A4FF]"
+                                style={{ width: '90%' }}
                               />
                             </div>
-
-                            {/* Subtle purple outer glow */}
-                            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
-                              boxShadow: '0 0 24px rgba(168, 140, 255, 0.15)'
-                            }} />
-                          </div>
                         </div>
                       </div>
                     ) : stage.id === 4 ? (
                       <div className="relative mb-8 group">
-                        {/* Outer gradient border container - Coral gradient for Stage 4 */}
-                        <div className="relative p-[1px] rounded-2xl bg-gradient-to-r from-[#FF6D6D] via-[#FF8F8F] to-[#A88CFF] shadow-[0_0_40px_rgba(0,0,0,0.7)] transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(255,109,109,0.5)]">
-                          {/* Inner dark glassmorphism card */}
-                          <div className="relative bg-[#0B1020]/80 backdrop-blur-xl rounded-2xl p-6 transition-all duration-300 group-hover:bg-[#0B1020]/90">
-                            {/* Stage pill with glowing dot - Coral for Stage 4 */}
-                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-[#FF6D6D]" style={{
-                              boxShadow: '0 0 20px rgba(255, 109, 109, 0.6), inset 0 1px 1px rgba(255,255,255,0.2)'
-                            }}>
-                              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{
-                                boxShadow: '0 0 8px rgba(255,255,255,0.8)'
-                              }} />
+                        {/* Clean white card with subtle border */}
+                        <div className="relative bg-white border border-fundaid-border-subtle rounded-2xl p-6 shadow-fundaid-lg transition-all duration-300 hover:shadow-fundaid-xl hover:border-fundaid-success/40">
+                            {/* Stage pill - Coral for Stage 4 */}
+                            <div className="absolute -top-3 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold text-white bg-fundaid-success">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
                               STAGE {stage.id}
                             </div>
 
-                            {/* Metrics text with tech font and letter spacing */}
-                            <div className="font-mono text-sm md:text-base font-medium text-white tracking-wide mt-2">
+                            {/* Metrics text */}
+                            <div className="font-mono text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide mt-2">
                               {stage.metrics}
                             </div>
 
-                            {/* Coral progress beam for Stage 4 */}
-                            <div className="mt-4 h-[3px] bg-slate-200/10 rounded-full overflow-hidden">
+                            {/* Clean progress bar for Stage 4 */}
+                            <div className="mt-4 h-[3px] bg-fundaid-section-subtle rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-gradient-to-r from-[#FF6D6D] to-[#FF8F8F]"
-                                style={{
-                                  width: '95%',
-                                  boxShadow: '0 0 12px rgba(255, 109, 109, 0.6)'
-                                }}
+                                className="h-full rounded-full bg-gradient-to-r from-fundaid-success to-[#FF8F8F]"
+                                style={{ width: '95%' }}
                               />
                             </div>
-
-                            {/* Subtle coral outer glow */}
-                            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
-                              boxShadow: '0 0 24px rgba(255, 109, 109, 0.15)'
-                            }} />
-                          </div>
                         </div>
                       </div>
                     ) : (
                       /* Minimal fallback for any other stages */
                       <div className="relative mb-8">
-                        <div className="relative p-8 rounded-2xl backdrop-blur-xl border shadow-2xl bg-[#0B1020]/80">
-                          <div className="text-xl font-mono font-bold text-white tracking-tight">
+                        <div className="relative p-8 rounded-2xl border border-fundaid-border-subtle shadow-fundaid-lg bg-white">
+                          <div className="text-xl font-mono font-bold text-fundaid-text-primary tracking-tight">
                             {stage.metrics}
                           </div>
                         </div>
@@ -1007,7 +882,7 @@ export function ProcessTimelineFixed() {
                 );
               })}
 
-              {/* Cosmic Horizontal Data Rails with Glowing Nodes */}
+              {/* Clean Horizontal Progress Rails */}
               <div className="space-y-3 mt-4">
                 {nodulesData.current.map((lineNodules, lineIndex) => (
                   <div
@@ -1015,10 +890,10 @@ export function ProcessTimelineFixed() {
                     ref={(el) => (timelineLinesRef.current[lineIndex] = el)}
                     className="relative h-[3px]"
                   >
-                    {/* Base track - faint light rail */}
-                    <div className="absolute inset-0 bg-slate-200/10 rounded-full overflow-hidden" />
+                    {/* Base track - subtle gray */}
+                    <div className="absolute inset-0 bg-fundaid-border-medium rounded-full overflow-hidden" />
 
-                    {/* Smooth expanding line with cosmic gradients */}
+                    {/* Smooth expanding line with clean gradients */}
                     <div
                       className="timeline-line-bar absolute left-0 top-0 h-full rounded-full"
                       style={{
@@ -1032,19 +907,11 @@ export function ProcessTimelineFixed() {
                           : activeStep === 4
                           ? 'linear-gradient(to right, #FF6D6D, #FF8F8F)'
                           : stages[activeStep - 1].color,
-                        boxShadow: activeStep === 1
-                          ? '0 0 12px rgba(57, 242, 195, 0.6), 0 2px 4px rgba(57, 242, 195, 0.4)'
-                          : activeStep === 2
-                          ? '0 0 12px rgba(20, 216, 210, 0.6), 0 2px 4px rgba(20, 216, 210, 0.4)'
-                          : activeStep === 3
-                          ? '0 0 12px rgba(168, 140, 255, 0.6), 0 2px 4px rgba(168, 140, 255, 0.4)'
-                          : activeStep === 4
-                          ? '0 0 12px rgba(255, 109, 109, 0.6), 0 2px 4px rgba(255, 109, 109, 0.4)'
-                          : `0 0 12px ${stages[activeStep - 1].color}40`,
+                        boxShadow: 'none'
                       }}
                     />
 
-                    {/* Coordinated nodules with enhanced glow */}
+                    {/* Coordinated nodules - clean design */}
                     {lineNodules.map((nodule) => (
                       <div
                         key={nodule.id}
@@ -1056,10 +923,10 @@ export function ProcessTimelineFixed() {
                         }}
                         data-shown="false"
                       >
-                        {/* Nodule dot with enhanced cosmic glow */}
+                        {/* Nodule dot - clean circles */}
                         <div className="relative">
                           <div
-                            className="nodule-dot w-3 h-3 rounded-full border-2 border-white relative z-10"
+                            className="nodule-dot w-3 h-3 rounded-full border-2 border-white relative z-10 shadow-sm"
                             style={{
                               backgroundColor: activeStep === 1
                                 ? '#20D8D2'
@@ -1070,20 +937,12 @@ export function ProcessTimelineFixed() {
                                 : activeStep === 4
                                 ? '#FF6D6D'
                                 : stages[activeStep - 1].color,
-                              boxShadow: activeStep === 1
-                                ? '0 0 20px rgba(32, 216, 210, 0.9), 0 0 40px rgba(32, 216, 210, 0.4)'
-                                : activeStep === 2
-                                ? '0 0 20px rgba(20, 216, 210, 0.9), 0 0 40px rgba(20, 216, 210, 0.4)'
-                                : activeStep === 3
-                                ? '0 0 20px rgba(168, 140, 255, 0.9), 0 0 40px rgba(168, 140, 255, 0.4)'
-                                : activeStep === 4
-                                ? '0 0 20px rgba(255, 109, 109, 0.9), 0 0 40px rgba(255, 109, 109, 0.4)'
-                                : `0 0 20px ${stages[activeStep - 1].color}80`,
+                              boxShadow: 'none'
                             }}
                           />
-                          {/* Enhanced outer glow ring */}
+                          {/* Subtle ring indicator */}
                           <div
-                            className="nodule-ring absolute inset-0 rounded-full blur-sm"
+                            className="nodule-ring absolute inset-0 rounded-full opacity-0"
                             style={{
                               backgroundColor: activeStep === 1
                                 ? '#20D8D2'
@@ -1094,7 +953,6 @@ export function ProcessTimelineFixed() {
                                 : activeStep === 4
                                 ? '#FF6D6D'
                                 : stages[activeStep - 1].color,
-                              opacity: 0.4,
                               transform: 'scale(2)',
                             }}
                           />
@@ -1110,233 +968,141 @@ export function ProcessTimelineFixed() {
             <div className="relative h-full flex items-center">
               {/* Conditional rendering based on active stage */}
               {activeStep === 1 ? (
-                // PROFILE stage - Cosmic Company Profile Panel
-                <div className="stage-1-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(32,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
-                  {/* Hexagonal pattern overlay */}
+                // PROFILE stage - Clean Company Profile Panel
+                <div className="stage-1-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-white border border-fundaid-border-subtle shadow-fundaid-lg p-6 overflow-hidden relative transition-all duration-500 hover:shadow-fundaid-xl hover:border-fundaid-accent-secondary/40">
+                  {/* Subtle pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <pattern id="hexagons" x="0" y="0" width="50" height="43.4" patternUnits="userSpaceOnUse">
-                          <polygon points="25,0 50,14.43 50,28.87 25,43.3 0,28.87 0,14.43" fill="none" stroke="rgba(57, 242, 195, 0.3)" strokeWidth="0.5"/>
+                          <polygon points="25,0 50,14.43 50,28.87 25,43.3 0,28.87 0,14.43" fill="none" stroke="currentColor" strokeWidth="0.5"/>
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#hexagons)" />
+                      <rect width="100%" height="100%" fill="url(#hexagons)" className="text-fundaid-border-medium" />
                     </svg>
                   </div>
 
-                  {/* Inner HUD particles inside the card */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-[1px] h-[1px] rounded-full animate-pulse"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        backgroundColor: i % 2 === 0 ? '#39F2C3' : '#A88CFF',
-                        opacity: Math.random() * 0.4 + 0.2,
-                        animationDelay: `${Math.random() * 3}s`,
-                        animationDuration: `${Math.random() * 2 + 2}s`,
-                      }}
-                    />
-                  ))}
-
-                  {/* Inner recessed display */}
-                  <div className="relative h-full w-full rounded-2xl bg-[#050816]/60 border border-white/5 overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
+                  {/* Inner display container */}
+                  <div className="relative h-full w-full rounded-2xl border border-fundaid-border-subtle overflow-hidden" style={{ backgroundColor: '#1BA39C08' }}>
                     <ProfileAgentBlueprint animate={true} />
                   </div>
 
-                  {/* HUD label in top-right corner */}
-                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border text-xs font-medium tracking-[0.2em] uppercase" style={{
-                    background: 'linear-gradient(135deg, rgba(57, 242, 195, 0.1), rgba(168, 140, 255, 0.1))',
-                    borderImage: 'linear-gradient(to right, #39F2C3, #A88CFF) 1',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    color: '#F5F6FF',
-                    boxShadow: '0 0 20px rgba(57, 242, 195, 0.2)'
-                  }}>
+                  {/* Clean label in top-right corner */}
+                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border border-fundaid-border-subtle bg-white text-xs font-medium tracking-[0.2em] uppercase text-fundaid-text-secondary shadow-sm">
                     Stage 1 • Tech Profiling
                   </div>
 
-                  {/* Stage indicator for Profile - Enhanced glassmorphism */}
-                  <div className="absolute bottom-6 left-6 bg-[#0B1020]/90 backdrop-blur-md border border-[#20D8D2]/30 px-6 py-3 rounded-full shadow-lg">
-                    <p className="text-sm md:text-base font-medium text-white tracking-wide">
-                      <span className="uppercase text-xs text-[#20D8D2] tracking-[0.2em]">COMPANY PROFILE</span>
+                  {/* Stage indicator for Profile */}
+                  <div className="absolute bottom-6 left-6 bg-white border border-fundaid-accent-secondary/30 px-6 py-3 rounded-full shadow-md">
+                    <p className="text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide">
+                      <span className="uppercase text-xs text-fundaid-accent-secondary tracking-[0.2em]">COMPANY PROFILE</span>
                     </p>
                   </div>
                 </div>
               ) : activeStep === 2 ? (
-                // DISCOVER stage - Cosmic Grant Matching Panel
-                <div className="stage-2-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#20D8D2]/20 hover:shadow-[0_0_30px_rgba(20,216,210,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                // DISCOVER stage - Clean Grant Matching Panel
+                <div className="stage-2-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-white border border-fundaid-border-subtle shadow-fundaid-lg p-6 overflow-hidden relative transition-all duration-500 hover:shadow-fundaid-xl hover:border-fundaid-accent-primary/40">
                   {/* Grid pattern overlay for discovery theme */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <pattern id="grid-discover" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(20, 216, 210, 0.3)" strokeWidth="0.5"/>
+                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#grid-discover)" />
+                      <rect width="100%" height="100%" fill="url(#grid-discover)" className="text-fundaid-border-medium" />
                     </svg>
                   </div>
 
-                  {/* Inner HUD particles - teal theme */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-[1px] h-[1px] rounded-full animate-pulse"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        backgroundColor: i % 2 === 0 ? '#20D8D2' : '#A88CFF',
-                        opacity: Math.random() * 0.4 + 0.2,
-                        animationDelay: `${Math.random() * 3}s`,
-                        animationDuration: `${Math.random() * 2 + 2}s`,
-                      }}
-                    />
-                  ))}
-
-                  {/* Inner recessed display */}
-                  <div className="relative h-full w-full rounded-2xl bg-[#050816]/60 border border-white/5 overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
+                  {/* Inner display container */}
+                  <div className="relative h-full w-full rounded-2xl border border-fundaid-border-subtle overflow-hidden" style={{ backgroundColor: '#1446A008' }}>
                     <DiscoverAgentBlueprint animate={true} />
                   </div>
 
-                  {/* HUD label in top-right corner */}
-                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border text-xs font-medium tracking-[0.2em] uppercase" style={{
-                    background: 'linear-gradient(135deg, rgba(20, 216, 210, 0.1), rgba(168, 140, 255, 0.1))',
-                    borderImage: 'linear-gradient(to right, #20D8D2, #A88CFF) 1',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    color: '#F5F6FF',
-                    boxShadow: '0 0 20px rgba(20, 216, 210, 0.2)'
-                  }}>
+                  {/* Clean label in top-right corner */}
+                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border border-fundaid-border-subtle bg-white text-xs font-medium tracking-[0.2em] uppercase text-fundaid-text-secondary shadow-sm">
                     Stage 2 • Grant Matching
                   </div>
 
-                  {/* Stage indicator for Discover - Enhanced glassmorphism */}
-                  <div className="absolute bottom-6 left-6 bg-[#0B1020]/90 backdrop-blur-md border border-[#20D8D2]/30 px-6 py-3 rounded-full shadow-lg">
-                    <p className="text-sm md:text-base font-medium text-white tracking-wide">
-                      <span className="uppercase text-xs text-[#20D8D2] tracking-[0.2em]">DISCOVERY ENGINE</span>
+                  {/* Stage indicator for Discover */}
+                  <div className="absolute bottom-6 left-6 bg-white border border-fundaid-accent-primary/30 px-6 py-3 rounded-full shadow-md">
+                    <p className="text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide">
+                      <span className="uppercase text-xs text-fundaid-accent-primary tracking-[0.2em]">DISCOVERY ENGINE</span>
                     </p>
                   </div>
                 </div>
               ) : activeStep === 3 ? (
-                // ANALYZE stage - Cosmic Analysis Panel
-                <div className="stage-3-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#A88CFF]/20 hover:shadow-[0_0_30px_rgba(168,140,255,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                // ANALYZE stage - Clean Analysis Panel
+                <div className="stage-3-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-white border border-fundaid-border-subtle shadow-fundaid-lg p-6 overflow-hidden relative transition-all duration-500 hover:shadow-fundaid-xl hover:border-fundaid-accent-data/40">
                   {/* Circuit/analysis pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <pattern id="circuit-analyze" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                          <path d="M 0 30 L 60 30 M 30 0 L 30 60" fill="none" stroke="rgba(168, 140, 255, 0.3)" strokeWidth="0.5"/>
-                          <circle cx="30" cy="30" r="2" fill="rgba(168, 140, 255, 0.5)"/>
+                          <path d="M 0 30 L 60 30 M 30 0 L 30 60" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                          <circle cx="30" cy="30" r="2" fill="currentColor"/>
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#circuit-analyze)" />
+                      <rect width="100%" height="100%" fill="url(#circuit-analyze)" className="text-fundaid-border-medium" />
                     </svg>
                   </div>
 
-                  {/* Inner HUD particles - purple theme */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-[1px] h-[1px] rounded-full animate-pulse"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        backgroundColor: i % 2 === 0 ? '#A88CFF' : '#C4A4FF',
-                        opacity: Math.random() * 0.4 + 0.2,
-                        animationDelay: `${Math.random() * 3}s`,
-                        animationDuration: `${Math.random() * 2 + 2}s`,
-                      }}
-                    />
-                  ))}
-
-                  {/* Inner recessed display */}
-                  <div className="relative h-full w-full rounded-2xl bg-[#050816]/60 border border-white/5 overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
+                  {/* Inner display container */}
+                  <div className="relative h-full w-full rounded-2xl border border-fundaid-border-subtle overflow-hidden" style={{ backgroundColor: '#6D5BD008' }}>
                     <AnalyzeAgentBlueprint animate={true} />
                   </div>
 
-                  {/* HUD label in top-right corner */}
-                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border text-xs font-medium tracking-[0.2em] uppercase" style={{
-                    background: 'linear-gradient(135deg, rgba(168, 140, 255, 0.1), rgba(255, 109, 109, 0.1))',
-                    borderImage: 'linear-gradient(to right, #A88CFF, #FF6D6D) 1',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    color: '#F5F6FF',
-                    boxShadow: '0 0 20px rgba(168, 140, 255, 0.2)'
-                  }}>
+                  {/* Clean label in top-right corner */}
+                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border border-fundaid-border-subtle bg-white text-xs font-medium tracking-[0.2em] uppercase text-fundaid-text-secondary shadow-sm">
                     Stage 3 • Deep Analysis
                   </div>
 
-                  {/* Stage indicator for Analyze - Enhanced glassmorphism */}
-                  <div className="absolute bottom-6 left-6 bg-[#0B1020]/90 backdrop-blur-md border border-[#A88CFF]/30 px-6 py-3 rounded-full shadow-lg">
-                    <p className="text-sm md:text-base font-medium text-white tracking-wide">
-                      <span className="uppercase text-xs text-[#A88CFF] tracking-[0.2em]">ANALYSIS ENGINE</span>
+                  {/* Stage indicator for Analyze */}
+                  <div className="absolute bottom-6 left-6 bg-white border border-fundaid-accent-data/30 px-6 py-3 rounded-full shadow-md">
+                    <p className="text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide">
+                      <span className="uppercase text-xs text-fundaid-accent-data tracking-[0.2em]">ANALYSIS ENGINE</span>
                     </p>
                   </div>
                 </div>
               ) : (
-                // GENERATE stage - Cosmic AI Writing Panel
-                <div className="stage-4-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-[#050816]/80 backdrop-blur-2xl border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)] p-6 overflow-hidden relative transition-all duration-500 hover:border-[#FF6D6D]/20 hover:shadow-[0_0_30px_rgba(255,109,109,0.2),inset_0_1px_1px_rgba(255,255,255,0.05),0_24px_60px_rgba(0,0,0,0.65)]">
+                // GENERATE stage - Clean AI Writing Panel
+                <div className="stage-4-panel w-full h-[500px] lg:h-[750px] rounded-[32px] bg-white border border-fundaid-border-subtle shadow-fundaid-lg p-6 overflow-hidden relative transition-all duration-500 hover:shadow-fundaid-xl hover:border-fundaid-success/40">
                   {/* Document/writing lines pattern overlay */}
                   <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <pattern id="lines-generate" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
-                          <path d="M 10 10 L 90 10" fill="none" stroke="rgba(255, 109, 109, 0.3)" strokeWidth="0.5"/>
-                          <circle cx="5" cy="10" r="1.5" fill="rgba(255, 109, 109, 0.5)"/>
+                          <path d="M 10 10 L 90 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                          <circle cx="5" cy="10" r="1.5" fill="currentColor"/>
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#lines-generate)" />
+                      <rect width="100%" height="100%" fill="url(#lines-generate)" className="text-fundaid-border-medium" />
                     </svg>
                   </div>
 
-                  {/* Inner HUD particles - coral theme */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-[1px] h-[1px] rounded-full animate-pulse"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        backgroundColor: i % 2 === 0 ? '#FF6D6D' : '#FF8F8F',
-                        opacity: Math.random() * 0.4 + 0.2,
-                        animationDelay: `${Math.random() * 3}s`,
-                        animationDuration: `${Math.random() * 2 + 2}s`,
-                      }}
-                    />
-                  ))}
-
-                  {/* Inner recessed display */}
-                  <div className="relative h-full w-full rounded-2xl bg-[#050816]/60 border border-white/5 overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]">
+                  {/* Inner display container */}
+                  <div className="relative h-full w-full rounded-2xl border border-fundaid-border-subtle overflow-hidden" style={{ backgroundColor: '#2BAF7D08' }}>
                     <GenerateAgentBlueprint animate={true} />
                   </div>
 
-                  {/* HUD label in top-right corner */}
-                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border text-xs font-medium tracking-[0.2em] uppercase" style={{
-                    background: 'linear-gradient(135deg, rgba(255, 109, 109, 0.1), rgba(168, 140, 255, 0.1))',
-                    borderImage: 'linear-gradient(to right, #FF6D6D, #A88CFF) 1',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    color: '#F5F6FF',
-                    boxShadow: '0 0 20px rgba(255, 109, 109, 0.2)'
-                  }}>
+                  {/* Clean label in top-right corner */}
+                  <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full border border-fundaid-border-subtle bg-white text-xs font-medium tracking-[0.2em] uppercase text-fundaid-text-secondary shadow-sm">
                     Stage 4 • AI Writing
                   </div>
 
-                  {/* Stage indicator for Generate - Enhanced glassmorphism */}
-                  <div className="absolute bottom-6 left-6 bg-[#0B1020]/90 backdrop-blur-md border border-[#FF6D6D]/30 px-6 py-3 rounded-full shadow-lg">
-                    <p className="text-sm md:text-base font-medium text-white tracking-wide">
-                      <span className="uppercase text-xs text-[#FF6D6D] tracking-[0.2em]">AI WRITING SYSTEM</span>
+                  {/* Stage indicator for Generate */}
+                  <div className="absolute bottom-6 left-6 bg-white border border-fundaid-success/30 px-6 py-3 rounded-full shadow-md">
+                    <p className="text-sm md:text-base font-medium text-fundaid-text-primary tracking-wide">
+                      <span className="uppercase text-xs text-fundaid-success tracking-[0.2em]">AI WRITING SYSTEM</span>
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Status readout - always visible */}
-              <div className="absolute top-4 right-4 px-4 py-2 bg-black/70 backdrop-blur-sm rounded-md text-xs font-mono text-green-400">
+              {/* Status readout - always visible - clean light theme */}
+              <div className="absolute top-4 right-4 px-4 py-2 bg-white/90 border border-fundaid-border-subtle backdrop-blur-sm rounded-md text-xs font-mono text-fundaid-text-primary shadow-sm">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                  <span className="w-1.5 h-1.5 bg-fundaid-success rounded-full" />
                   <span>TIMELINE: {Math.round((activeStep - 1) * 25 + 25)}%</span>
                 </div>
               </div>
